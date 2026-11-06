@@ -1,0 +1,538 @@
+{
+  "bec-api-design": {
+    "should_trigger": [
+      "Make order creation retries idempotent",
+      "Evolve a request schema without breaking old clients",
+      "Define stable API errors and validation boundaries",
+      "Test pagination and concurrent retry contracts"
+    ],
+    "should_not_trigger": [
+      "Only implement a React controlled form",
+      "Only design a responsive CSS toolbar",
+      "Only tune a SQL query without API contract changes",
+      "Only reorganize internal Rust crates"
+    ]
+  },
+  "bec-architecture-design": {
+    "should_trigger": [
+      "Define module boundaries for an existing backend",
+      "Compare a modular monolith with service extraction",
+      "Clarify data ownership and failure boundaries",
+      "Write an architecture decision with migration and rollback"
+    ],
+    "should_not_trigger": [
+      "Only implement a React controlled form",
+      "Only design a responsive CSS toolbar",
+      "Only tune one SQL index in an established design",
+      "Only repair a client cleanup branch without architecture changes"
+    ]
+  },
+  "bec-auth-security": {
+    "should_trigger": [
+      "Fix tenant isolation in a server API",
+      "Review object-level authorization after JWT validation",
+      "Test forbidden cross-tenant and privilege paths",
+      "Handle server secrets and untrusted service input"
+    ],
+    "should_not_trigger": [
+      "Only implement a React controlled form",
+      "Only design a responsive CSS toolbar",
+      "Only rename internal variables without security implications",
+      "Only optimize a pure arithmetic calculation"
+    ]
+  },
+  "bec-c-project-standard": {
+    "should_trigger": [
+      "Review a C allocation and release contract",
+      "Keep a C ABI while fixing failure cleanup",
+      "Organize headers and implementation in an existing C library",
+      "Test C allocation failure and invalid input"
+    ],
+    "should_not_trigger": [
+      "Only implement a React controlled form",
+      "Only design a responsive CSS toolbar",
+      "Refactor a C++ RAII owner with no C interface",
+      "Resolve a safe Rust borrowing error"
+    ]
+  },
+  "bec-cache-design": {
+    "should_trigger": [
+      "Invalidate cached permissions after revocation",
+      "Avoid cache stampedes without unbounded locks",
+      "Specify bounded stale data and cache fallback",
+      "Test cache refill racing a committed update"
+    ],
+    "should_not_trigger": [
+      "Only implement a React controlled form",
+      "Only design a responsive CSS toolbar",
+      "Only alter an uncached SQL query plan",
+      "Only design a JSON response schema"
+    ]
+  },
+  "bec-code-review": {
+    "should_trigger": [
+      "Review a backend PR for transactions and retries",
+      "Assess tenant authorization and API compatibility in a diff",
+      "Check concurrency/resource regression evidence",
+      "Write severity-ranked backend findings with locations"
+    ],
+    "should_not_trigger": [
+      "Only implement a React controlled form",
+      "Only design a responsive CSS toolbar",
+      "Generate an editable architecture diagram only",
+      "Only translate existing prose"
+    ]
+  },
+  "bec-cpp-project-standard": {
+    "should_trigger": [
+      "Review RAII and exception safety in a C++ library",
+      "Keep a plugin ABI while clarifying ownership",
+      "Reduce header and template dependency boundaries",
+      "Test C++ destruction and partial construction"
+    ],
+    "should_not_trigger": [
+      "Only implement a React controlled form",
+      "Only design a responsive CSS toolbar",
+      "Repair pure C99 cleanup with no C++ code",
+      "Organize Go packages"
+    ]
+  },
+  "bec-database-design": {
+    "should_trigger": [
+      "Roll out a NOT NULL column on a large table",
+      "Review indexes with actual query plans",
+      "Design staged data backfill and constraint validation",
+      "Plan schema compatibility and migration rollback"
+    ],
+    "should_not_trigger": [
+      "Only implement a React controlled form",
+      "Only design a responsive CSS toolbar",
+      "Only change HTTP error status documentation with no database change",
+      "Only fix a Go channel lifecycle"
+    ]
+  },
+  "bec-debug-framework": {
+    "should_trigger": [
+      "Investigate an intermittent backend 500 without guessing",
+      "Compare connection-pool and downstream timeout hypotheses",
+      "Reproduce a backend build or data failure",
+      "Verify the smallest service bug fix with regression evidence"
+    ],
+    "should_not_trigger": [
+      "Only implement a React controlled form",
+      "Only design a responsive CSS toolbar",
+      "Plan a new capability without an existing failure",
+      "Only synchronize documentation facts"
+    ]
+  },
+  "bec-dependency-management": {
+    "should_trigger": [
+      "Assess whether a transitive vulnerability affects this backend",
+      "Make a minimal dependency and lockfile upgrade",
+      "Keep the declared toolchain while fixing a package issue",
+      "Plan dependency rollback and compatibility checks"
+    ],
+    "should_not_trigger": [
+      "Only implement a React controlled form",
+      "Only design a responsive CSS toolbar",
+      "Only rename a private helper",
+      "Only design a database query without dependency changes"
+    ]
+  },
+  "bec-doc-sync": {
+    "should_trigger": [
+      "Synchronize API docs after backend request changes",
+      "Map migration and configuration changes to release notes",
+      "Refresh OpenAPI from its actual source",
+      "Verify backend command examples against repository facts"
+    ],
+    "should_not_trigger": [
+      "Only implement a React controlled form",
+      "Only design a responsive CSS toolbar",
+      "Only polish grammar without changing facts",
+      "Only diagnose a service failure without documentation changes"
+    ]
+  },
+  "bec-go-concurrency": {
+    "should_trigger": [
+      "Stop Go workers blocked on channel sends",
+      "Define who closes a shared Go channel",
+      "Bound goroutines and propagate request cancellation",
+      "Reproduce and test a Go data race"
+    ],
+    "should_not_trigger": [
+      "Only implement a React controlled form",
+      "Only design a responsive CSS toolbar",
+      "Review Tokio select cancellation",
+      "Only update Go module directory conventions"
+    ]
+  },
+  "bec-go-project-standard": {
+    "should_trigger": [
+      "Organize internal packages in a Go module",
+      "Review errors and context boundaries in a Go service",
+      "Add a repository adapter without global database state",
+      "Validate one module inside go.work"
+    ],
+    "should_not_trigger": [
+      "Only implement a React controlled form",
+      "Only design a responsive CSS toolbar",
+      "Tune JVM GC without changing Go code",
+      "Design Python packaging with no Go module"
+    ]
+  },
+  "bec-java-project-standard": {
+    "should_trigger": [
+      "Separate HTTP DTO and persistence entity in Java",
+      "Review application transaction boundaries in a Java module",
+      "Respect an existing Maven or Gradle wrapper",
+      "Add behavior tests to a Java service"
+    ],
+    "should_not_trigger": [
+      "Only implement a React controlled form",
+      "Only design a responsive CSS toolbar",
+      "Organize a Cargo workspace without Java",
+      "Repair a C-only allocator contract"
+    ]
+  },
+  "bec-java-runtime": {
+    "should_trigger": [
+      "Diagnose Java p99 and thread pool queue growth",
+      "Use bounded JFR and thread samples for a JVM incident",
+      "Compare JVM heap or pool changes with baseline evidence",
+      "Investigate Java blocking contention and downstream waits"
+    ],
+    "should_not_trigger": [
+      "Only implement a React controlled form",
+      "Only design a responsive CSS toolbar",
+      "Fix Python event-loop blocking",
+      "Only reorganize Java application packages without a runtime issue"
+    ]
+  },
+  "bec-native-memory-safety": {
+    "should_trigger": [
+      "Diagnose use-after-free across a C/C++ FFI boundary",
+      "Pair allocation and release across dynamic libraries",
+      "Test partial initialization and repeated cleanup",
+      "Reproduce a teardown race without disabling sanitizers"
+    ],
+    "should_not_trigger": [
+      "Only implement a React controlled form",
+      "Only design a responsive CSS toolbar",
+      "Resolve a safe Rust borrow without unsafe or FFI",
+      "Only change an HTTP response schema"
+    ]
+  },
+  "bec-observability": {
+    "should_trigger": [
+      "Correlate backend request traces with database waits",
+      "Control metric cardinality and sensitive fields",
+      "Design bounded sampling for error diagnostics",
+      "Verify service latency and error telemetry end to end"
+    ],
+    "should_not_trigger": [
+      "Only implement a React controlled form",
+      "Only design a responsive CSS toolbar",
+      "Only write a pure function unit test without instrumentation",
+      "Only change API field names without telemetry changes"
+    ]
+  },
+  "bec-performance-optimization": {
+    "should_trigger": [
+      "Find the measured bottleneck in a slow service",
+      "Compare backend p99 changes under equivalent load",
+      "Profile database and CPU contributions to latency",
+      "Set performance regression and rollback thresholds"
+    ],
+    "should_not_trigger": [
+      "Only implement a React controlled form",
+      "Only design a responsive CSS toolbar",
+      "Only design a new API schema with no performance task",
+      "Only translate documentation with no engineering changes"
+    ]
+  },
+  "bec-project-init": {
+    "should_trigger": [
+      "Initialize backend rules in a mixed frontend/backend monorepo",
+      "Preserve existing AGENTS while adding Go and native context",
+      "Select language-scoped validation configuration",
+      "Report missing toolchains without installing them"
+    ],
+    "should_not_trigger": [
+      "Only implement a React controlled form",
+      "Only design a responsive CSS toolbar",
+      "Fix one bug in an already initialized project without rule changes",
+      "Only review an isolated code diff"
+    ]
+  },
+  "bec-python-async": {
+    "should_trigger": [
+      "Remove blocking client calls from an async Python handler",
+      "Return pooled resources correctly after asyncio cancellation",
+      "Bound Python thread offloading and task concurrency",
+      "Test async Python shutdown and timeout cleanup"
+    ],
+    "should_not_trigger": [
+      "Only implement a React controlled form",
+      "Only design a responsive CSS toolbar",
+      "Diagnose JVM heap pressure",
+      "Only change Python package metadata without async behavior"
+    ]
+  },
+  "bec-python-project-standard": {
+    "should_trigger": [
+      "Organize a Python domain package under existing pyproject",
+      "Remove import-time database side effects",
+      "Review typing and dependency boundaries in Python",
+      "Use existing Ruff mypy and pytest configuration"
+    ],
+    "should_not_trigger": [
+      "Only implement a React controlled form",
+      "Only design a responsive CSS toolbar",
+      "Fix a Go channel leak with no Python",
+      "Review C++ DLL ownership"
+    ]
+  },
+  "bec-refactoring": {
+    "should_trigger": [
+      "Move a billing calculation without changing rounding",
+      "Extract a backend module with baseline behavior tests",
+      "Simplify service logic in reversible verified steps",
+      "Prove a refactor preserves errors and side effects"
+    ],
+    "should_not_trigger": [
+      "Only implement a React controlled form",
+      "Only design a responsive CSS toolbar",
+      "Change business rounding semantics as a feature",
+      "Upgrade a dependency with observable behavior changes"
+    ]
+  },
+  "bec-rust-async": {
+    "should_trigger": [
+      "Fix partial writes cancelled by Tokio select",
+      "Bound spawned Rust tasks and own JoinHandle cleanup",
+      "Design Rust async shutdown and cancellation",
+      "Keep blocking I/O outside async executor paths"
+    ],
+    "should_not_trigger": [
+      "Only implement a React controlled form",
+      "Only design a responsive CSS toolbar",
+      "Fix a Go channel cancellation path",
+      "Only reorganize Rust crate boundaries without async behavior"
+    ]
+  },
+  "bec-rust-project-standard": {
+    "should_trigger": [
+      "Organize crates in an existing Cargo workspace",
+      "Review Rust public API ownership and Result boundaries",
+      "Keep the current Rust edition while adding a storage module",
+      "Select Cargo checks for a Rust library"
+    ],
+    "should_not_trigger": [
+      "Only implement a React controlled form",
+      "Only design a responsive CSS toolbar",
+      "Fix only an asyncio cancellation path",
+      "Review a pure C ABI with no Rust code"
+    ]
+  },
+  "bec-tdd-workflow": {
+    "should_trigger": [
+      "Reproduce a concurrent inventory bug before fixing it",
+      "Implement a backend behavior through observable red and green",
+      "Use real storage for a transactional TDD regression",
+      "Report missing toolchains without claiming tests ran"
+    ],
+    "should_not_trigger": [
+      "Only implement a React controlled form",
+      "Only design a responsive CSS toolbar",
+      "Only produce a test-strategy matrix",
+      "Only perform a read-only code review"
+    ]
+  },
+  "bec-testing-strategy": {
+    "should_trigger": [
+      "Map backend payment risks to test layers",
+      "Plan database rollback and retry integration tests",
+      "Assess API compatibility and failure-path coverage",
+      "Report release verification gaps beyond coverage percentage"
+    ],
+    "should_not_trigger": [
+      "Only implement a React controlled form",
+      "Only design a responsive CSS toolbar",
+      "Write one regression whose test layer is already selected",
+      "Only diagnose a runtime symptom without test planning"
+    ]
+  },
+  "bec-transaction-management": {
+    "should_trigger": [
+      "Handle commit success followed by message publication failure",
+      "Design retry-safe payment side effects",
+      "Review isolation and concurrent updates",
+      "Test outbox replay and duplicate delivery"
+    ],
+    "should_not_trigger": [
+      "Only implement a React controlled form",
+      "Only design a responsive CSS toolbar",
+      "Only update a response schema with no state mutation",
+      "Only repair C++ pointer lifetime"
+    ]
+  },
+  "cc-debug-methodology": {
+    "should_trigger": [
+      "Vite build error reports Module not found, please help me troubleshoot",
+      "The page has a white screen and a TypeError appears in the console.",
+      "The rendering result of this component is inconsistent with expectations. Help me debug it.",
+      "The interface returns 500 but the front end does not display the error message",
+      "Styles are lost after packaging, but the development environment is normal",
+      "How to locate hydration mismatch in React components",
+      "Page status lost after HMR update",
+      "Troubleshoot sporadic JS exceptions in production environments"
+    ],
+    "should_not_trigger": [
+      "Write unit tests for this module",
+      "Design a new React component",
+      "Optimize first screen loading performance",
+      "Do front-end security review",
+      "Upgrade TypeScript to the latest version",
+      "Refactor the logic of this hooks",
+      "Write a Playwright E2E test",
+      "Design type definitions for this API"
+    ]
+  },
+  "cc-doc-sync-core": {
+    "should_trigger": [
+      "Synchronize the number of skills and agents in README",
+      "Update multi-language documentation after adding a new command",
+      "Generate command list based on package.json",
+      "docs sync for runtime documentation",
+      "Update capability quantity in marketplace description",
+      "Check whether README and skills metadata are consistent",
+      "Synchronize report output table to document",
+      "Update the commands list in the project structure document"
+    ],
+    "should_not_trigger": [
+      "Write Storybook stories for components",
+      "Fix TypeScript build failure",
+      "Write login E2E test",
+      "Review XSS risks",
+      "Planning React component boundaries",
+      "Clean up unused exports",
+      "Implement PWA manifest",
+      "Optimize virtual list scrolling"
+    ]
+  },
+  "cc-drawio-studio": {
+    "should_trigger": [
+      "Generate an editable draw.io architecture diagram and export it as a PNG",
+      "Draw this microservice system as a .drawio file",
+      "Use diagrams.net to make ER diagrams, requiring the ability to edit them later.",
+      "Check out the official shape style of AWS Lambda in draw.io",
+      "Generate a module dependency graph for this TypeScript project and automatically lay it out",
+      "Generate UML class diagram and export to SVG using draw.io CLI",
+      "draw.io automatically layouts a service topology with more than 20 nodes",
+      "Generate diagrams.net editing link after layout with Graphviz",
+      "Make an editable sequence diagram and check .drawio for broken edges",
+      "create an editable drawio architecture diagram with official cloud shapes"
+    ],
+    "should_not_trigger": [
+      "Generate a product promotional poster image",
+      "Edit this photo and replace the background",
+      "Implement Three.js interactive 3D topology map",
+      "Add path stroke animation to SVG logo",
+      "Just write Mermaid into the README",
+      "Implement the page according to the Figma design draft",
+      "Check dashboard button hover state",
+      "Visual regression using Playwright screenshots",
+      "Optimize Canvas particle animation performance",
+      "Generate comic avatars and brand boards"
+    ]
+  },
+  "cc-refactoring-core": {
+    "should_trigger": [
+      "Keep observable behavior unchanged while restructuring this frontend module.",
+      "Refactor this function in small verified steps without changing its output or side effects.",
+      "Improve the structure of this React feature but preserve behavior exactly.",
+      "Clean up the architecture of this Vue composable without adding features.",
+      "Use a diff budget and rollback boundary for this behavior-preserving refactor.",
+      "Restructure this TypeScript service with a green baseline before and after each step.",
+      "Refactor this code with SAFE CAUTION DANGER risk classification.",
+      "Plan and execute a behavior-preserving refactoring with verification after every step."
+    ],
+    "should_not_trigger": [
+      "Remove unused components and dependencies from this project.",
+      "Fix this duplicate-request bug and change behavior so only one request is sent.",
+      "Migrate this Redux store to Zustand.",
+      "Review this PR and tell me whether it is safe to merge.",
+      "Debug why this page renders a blank screen.",
+      "Implement a new payment workflow using TDD.",
+      "Upgrade Vite and update all breaking configuration changes.",
+      "Add a new responsive dashboard from this Figma design."
+    ]
+  },
+  "cc-source-driven-development": {
+    "should_trigger": [
+      "For this new version of Next.js API, please check the official documentation before making a decision.",
+      "Help me confirm whether the current version of Vite configuration items is still recommended",
+      "This browser API compatibility is subject to specifications and MDN",
+      "source-driven decision for a frontend library migration",
+      "React Router version differences require checking documentation",
+      "Do not judge the ESM/CJS behavior of this package from memory.",
+      "Design public interfaces based on project source code and official docs",
+      "Verify the latest recommended usage of Nuxt useFetch"
+    ],
+    "should_not_trigger": [
+      "Write Zod validation to the form",
+      "Optimize virtual scrolling of large lists",
+      "Run npm test and fix the failure",
+      "Check button aria-label",
+      "Writing the Playwright Login Flow",
+      "Clean up unused dependencies",
+      "Design UI visual direction",
+      "Review token storage security"
+    ]
+  },
+  "cc-tdd-methodology": {
+    "should_trigger": [
+      "Implement this hook using TDD",
+      "Write the failing test first and then fix the bug",
+      "Go through the refactoring process for new components",
+      "Add a regression test and change the logic",
+      "test driven development for this frontend feature",
+      "This tool function first writes a single test and then implements it",
+      "Reproduce the test before fixing the form validation bug",
+      "Reconstruct state logic using a test-driven approach"
+    ],
+    "should_not_trigger": [
+      "Only run existing tests and fix failures",
+      "Develop a test tiering strategy",
+      "Write the complete Playwright E2E process",
+      "Synchronization document capability table",
+      "Clean up unused dependencies",
+      "Do an XSS security review",
+      "Design Vue project structure",
+      "Configure PWA offline caching"
+    ]
+  },
+  "cc-technical-diagrams": {
+    "should_trigger": [
+      "Draw the lifecycle of a backend job as an editable diagram",
+      "Export an architecture JSON source to self-contained HTML",
+      "Create a sequence diagram of an API and database transaction",
+      "Show an agent memory retrieval flow with labelled arrows",
+      "Validate text clipping in an exported technical diagram PNG",
+      "Render a workflow with decision branches and rollback edges",
+      "Make a local interactive preview of service dependencies",
+      "Preserve all data-flow labels when exporting SVG"
+    ],
+    "should_not_trigger": [
+      "Generate a product photograph",
+      "Edit a portrait background",
+      "Build a React component",
+      "Tune a database query",
+      "Fix a Rust compiler error",
+      "Review authorization logic",
+      "Write a CLI unit test",
+      "Polish marketing copy"
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.superpowers/
+*.tgz
+*.log
+.env
+.env.local
+npm-packages/
+npm-packages-*/
+skill-packages/
+reports/

@@ -1,0 +1,9 @@
+{
+  "repository":"https://github.com/bovinphang/frontend-craft",
+  "baseCommit":"e24726dc2f62c49005eecf93afd2a168bfc5a7a8",
+  "packageVersion":"3.0.0",
+  "commonVersion":"1.0.1",
+  "localAdjustments":["精确公共依赖与生成快照对齐修复版 1.0.1","生成锁资源固定 LF"],
+  "entry":"dist/bin/frontend-craft.js",
+  "scope":"真实前端 CLI；未替换产品安装/卸载实现"
+}

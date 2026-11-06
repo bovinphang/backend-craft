@@ -1,0 +1,1 @@
+{"hooks":{"SessionStart":[{"hooks":[{"type":"command","command":"node \"\u0024{CLAUDE_PLUGIN_ROOT}/dist/hooks/bec-session-start.js\"","timeout":10}]}]}}

@@ -1,0 +1,1 @@
+{"schemaVersion":1,"projects":[{"root":".","languages":["java"],"stages":[{"id":"build","phase":"build","executable":"javac","args":["-d",".build","Owned.java","OwnedTest.java"]},{"id":"test","phase":"test","executable":"java","args":["-ea","-cp",".build","OwnedTest"]}]}]}

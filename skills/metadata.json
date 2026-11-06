@@ -1,0 +1,989 @@
+[
+  {
+    "id": "bec-api-design",
+    "name": "Backend API contracts",
+    "category": "backend-engineering",
+    "tags": [
+      "api",
+      "design"
+    ],
+    "summary": "Backend API contracts",
+    "version": "1.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/backend-craft",
+    "repository": "https://github.com/bovinphang/backend-craft",
+    "keywords": [
+      "api",
+      "design"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ]
+  },
+  {
+    "id": "bec-architecture-design",
+    "name": "Backend architecture decisions",
+    "category": "backend-engineering",
+    "tags": [
+      "architecture",
+      "design"
+    ],
+    "summary": "Backend architecture decisions",
+    "version": "1.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/backend-craft",
+    "repository": "https://github.com/bovinphang/backend-craft",
+    "keywords": [
+      "architecture",
+      "design"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ]
+  },
+  {
+    "id": "bec-auth-security",
+    "name": "Server authorization and security",
+    "category": "backend-engineering",
+    "tags": [
+      "auth",
+      "security"
+    ],
+    "summary": "Server authorization and security",
+    "version": "1.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/backend-craft",
+    "repository": "https://github.com/bovinphang/backend-craft",
+    "keywords": [
+      "auth",
+      "security"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ]
+  },
+  {
+    "id": "bec-c-project-standard",
+    "name": "C project engineering",
+    "category": "project-standards",
+    "tags": [
+      "c",
+      "project",
+      "standard"
+    ],
+    "summary": "C project engineering",
+    "version": "1.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/backend-craft",
+    "repository": "https://github.com/bovinphang/backend-craft",
+    "keywords": [
+      "c",
+      "project",
+      "standard"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ]
+  },
+  {
+    "id": "bec-cache-design",
+    "name": "Cache consistency and resilience",
+    "category": "backend-engineering",
+    "tags": [
+      "cache",
+      "design"
+    ],
+    "summary": "Cache consistency and resilience",
+    "version": "1.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/backend-craft",
+    "repository": "https://github.com/bovinphang/backend-craft",
+    "keywords": [
+      "cache",
+      "design"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ]
+  },
+  {
+    "id": "bec-code-review",
+    "name": "Backend code review",
+    "category": "backend-engineering",
+    "tags": [
+      "code",
+      "review"
+    ],
+    "summary": "Backend code review",
+    "version": "1.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/backend-craft",
+    "repository": "https://github.com/bovinphang/backend-craft",
+    "keywords": [
+      "code",
+      "review"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ]
+  },
+  {
+    "id": "bec-cpp-project-standard",
+    "name": "C++ project engineering",
+    "category": "project-standards",
+    "tags": [
+      "cpp",
+      "project",
+      "standard"
+    ],
+    "summary": "C++ project engineering",
+    "version": "1.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/backend-craft",
+    "repository": "https://github.com/bovinphang/backend-craft",
+    "keywords": [
+      "cpp",
+      "project",
+      "standard"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ]
+  },
+  {
+    "id": "bec-database-design",
+    "name": "Database evolution and queries",
+    "category": "backend-engineering",
+    "tags": [
+      "database",
+      "design"
+    ],
+    "summary": "Database evolution and queries",
+    "version": "1.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/backend-craft",
+    "repository": "https://github.com/bovinphang/backend-craft",
+    "keywords": [
+      "database",
+      "design"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ]
+  },
+  {
+    "id": "bec-debug-framework",
+    "name": "Backend diagnosis workflow",
+    "category": "review-quality",
+    "tags": [
+      "debug",
+      "framework"
+    ],
+    "summary": "Backend diagnosis workflow",
+    "version": "1.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/backend-craft",
+    "repository": "https://github.com/bovinphang/backend-craft",
+    "keywords": [
+      "debug",
+      "framework"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ]
+  },
+  {
+    "id": "bec-dependency-management",
+    "name": "Backend dependency changes",
+    "category": "backend-engineering",
+    "tags": [
+      "dependency",
+      "management"
+    ],
+    "summary": "Backend dependency changes",
+    "version": "1.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/backend-craft",
+    "repository": "https://github.com/bovinphang/backend-craft",
+    "keywords": [
+      "dependency",
+      "management"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ]
+  },
+  {
+    "id": "bec-doc-sync",
+    "name": "Backend documentation synchronization",
+    "category": "review-quality",
+    "tags": [
+      "doc",
+      "sync"
+    ],
+    "summary": "Backend documentation synchronization",
+    "version": "1.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/backend-craft",
+    "repository": "https://github.com/bovinphang/backend-craft",
+    "keywords": [
+      "doc",
+      "sync"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ]
+  },
+  {
+    "id": "bec-go-concurrency",
+    "name": "Go concurrency lifecycle",
+    "category": "backend-engineering",
+    "tags": [
+      "go",
+      "concurrency"
+    ],
+    "summary": "Go concurrency lifecycle",
+    "version": "1.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/backend-craft",
+    "repository": "https://github.com/bovinphang/backend-craft",
+    "keywords": [
+      "go",
+      "concurrency"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ]
+  },
+  {
+    "id": "bec-go-project-standard",
+    "name": "Go project engineering",
+    "category": "project-standards",
+    "tags": [
+      "go",
+      "project",
+      "standard"
+    ],
+    "summary": "Go project engineering",
+    "version": "1.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/backend-craft",
+    "repository": "https://github.com/bovinphang/backend-craft",
+    "keywords": [
+      "go",
+      "project",
+      "standard"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ]
+  },
+  {
+    "id": "bec-java-project-standard",
+    "name": "Java project engineering",
+    "category": "project-standards",
+    "tags": [
+      "java",
+      "project",
+      "standard"
+    ],
+    "summary": "Java project engineering",
+    "version": "1.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/backend-craft",
+    "repository": "https://github.com/bovinphang/backend-craft",
+    "keywords": [
+      "java",
+      "project",
+      "standard"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ]
+  },
+  {
+    "id": "bec-java-runtime",
+    "name": "Java runtime diagnosis",
+    "category": "backend-engineering",
+    "tags": [
+      "java",
+      "runtime"
+    ],
+    "summary": "Java runtime diagnosis",
+    "version": "1.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/backend-craft",
+    "repository": "https://github.com/bovinphang/backend-craft",
+    "keywords": [
+      "java",
+      "runtime"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ]
+  },
+  {
+    "id": "bec-native-memory-safety",
+    "name": "Native memory and FFI safety",
+    "category": "backend-engineering",
+    "tags": [
+      "native",
+      "memory",
+      "safety"
+    ],
+    "summary": "Native memory and FFI safety",
+    "version": "1.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/backend-craft",
+    "repository": "https://github.com/bovinphang/backend-craft",
+    "keywords": [
+      "native",
+      "memory",
+      "safety"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ]
+  },
+  {
+    "id": "bec-observability",
+    "name": "Backend observability",
+    "category": "backend-engineering",
+    "tags": [
+      "observability"
+    ],
+    "summary": "Backend observability",
+    "version": "1.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/backend-craft",
+    "repository": "https://github.com/bovinphang/backend-craft",
+    "keywords": [
+      "observability"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ]
+  },
+  {
+    "id": "bec-performance-optimization",
+    "name": "Backend performance evidence",
+    "category": "backend-engineering",
+    "tags": [
+      "performance",
+      "optimization"
+    ],
+    "summary": "Backend performance evidence",
+    "version": "1.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/backend-craft",
+    "repository": "https://github.com/bovinphang/backend-craft",
+    "keywords": [
+      "performance",
+      "optimization"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ]
+  },
+  {
+    "id": "bec-project-init",
+    "name": "Backend project initialization",
+    "category": "backend-engineering",
+    "tags": [
+      "project",
+      "init"
+    ],
+    "summary": "Backend project initialization",
+    "version": "1.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/backend-craft",
+    "repository": "https://github.com/bovinphang/backend-craft",
+    "keywords": [
+      "project",
+      "init"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ]
+  },
+  {
+    "id": "bec-python-async",
+    "name": "Python async lifecycle",
+    "category": "backend-engineering",
+    "tags": [
+      "python",
+      "async"
+    ],
+    "summary": "Python async lifecycle",
+    "version": "1.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/backend-craft",
+    "repository": "https://github.com/bovinphang/backend-craft",
+    "keywords": [
+      "python",
+      "async"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ]
+  },
+  {
+    "id": "bec-python-project-standard",
+    "name": "Python project engineering",
+    "category": "project-standards",
+    "tags": [
+      "python",
+      "project",
+      "standard"
+    ],
+    "summary": "Python project engineering",
+    "version": "1.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/backend-craft",
+    "repository": "https://github.com/bovinphang/backend-craft",
+    "keywords": [
+      "python",
+      "project",
+      "standard"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ]
+  },
+  {
+    "id": "bec-refactoring",
+    "name": "Backend behavior-preserving refactoring",
+    "category": "review-quality",
+    "tags": [
+      "refactoring"
+    ],
+    "summary": "Backend behavior-preserving refactoring",
+    "version": "1.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/backend-craft",
+    "repository": "https://github.com/bovinphang/backend-craft",
+    "keywords": [
+      "refactoring"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ]
+  },
+  {
+    "id": "bec-rust-async",
+    "name": "Rust async lifecycle",
+    "category": "backend-engineering",
+    "tags": [
+      "rust",
+      "async"
+    ],
+    "summary": "Rust async lifecycle",
+    "version": "1.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/backend-craft",
+    "repository": "https://github.com/bovinphang/backend-craft",
+    "keywords": [
+      "rust",
+      "async"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ]
+  },
+  {
+    "id": "bec-rust-project-standard",
+    "name": "Rust project engineering",
+    "category": "project-standards",
+    "tags": [
+      "rust",
+      "project",
+      "standard"
+    ],
+    "summary": "Rust project engineering",
+    "version": "1.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/backend-craft",
+    "repository": "https://github.com/bovinphang/backend-craft",
+    "keywords": [
+      "rust",
+      "project",
+      "standard"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ]
+  },
+  {
+    "id": "bec-tdd-workflow",
+    "name": "Backend test-driven workflow",
+    "category": "review-quality",
+    "tags": [
+      "tdd",
+      "workflow"
+    ],
+    "summary": "Backend test-driven workflow",
+    "version": "1.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/backend-craft",
+    "repository": "https://github.com/bovinphang/backend-craft",
+    "keywords": [
+      "tdd",
+      "workflow"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ]
+  },
+  {
+    "id": "bec-testing-strategy",
+    "name": "Backend testing strategy",
+    "category": "backend-engineering",
+    "tags": [
+      "testing",
+      "strategy"
+    ],
+    "summary": "Backend testing strategy",
+    "version": "1.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/backend-craft",
+    "repository": "https://github.com/bovinphang/backend-craft",
+    "keywords": [
+      "testing",
+      "strategy"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ]
+  },
+  {
+    "id": "bec-transaction-management",
+    "name": "Transaction and side-effect consistency",
+    "category": "backend-engineering",
+    "tags": [
+      "transaction",
+      "management"
+    ],
+    "summary": "Transaction and side-effect consistency",
+    "version": "1.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/backend-craft",
+    "repository": "https://github.com/bovinphang/backend-craft",
+    "keywords": [
+      "transaction",
+      "management"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ]
+  },
+  {
+    "id": "cc-debug-methodology",
+    "name": "Evidence-driven diagnosis",
+    "category": "review-quality",
+    "tags": [
+      "debug",
+      "evidence",
+      "root-cause"
+    ],
+    "summary": "Evidence-driven diagnosis",
+    "version": "1.0.1",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/craft-common",
+    "repository": "https://github.com/bovinphang/craft-common",
+    "keywords": [
+      "review-quality",
+      "debug",
+      "evidence",
+      "root-cause"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ]
+  },
+  {
+    "id": "cc-doc-sync-core",
+    "name": "Documentation synchronization",
+    "category": "maintenance-docs",
+    "tags": [
+      "documentation",
+      "source-of-truth",
+      "i18n"
+    ],
+    "summary": "Documentation synchronization",
+    "version": "1.0.1",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/craft-common",
+    "repository": "https://github.com/bovinphang/craft-common",
+    "keywords": [
+      "maintenance-docs",
+      "documentation",
+      "source-of-truth",
+      "i18n"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ]
+  },
+  {
+    "id": "cc-drawio-studio",
+    "name": "Editable technical diagrams",
+    "category": "implementation-capability",
+    "tags": [
+      "drawio",
+      "uml",
+      "erd",
+      "architecture"
+    ],
+    "summary": "Editable technical diagrams",
+    "version": "1.0.1",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/craft-common",
+    "repository": "https://github.com/bovinphang/craft-common",
+    "keywords": [
+      "implementation-capability",
+      "drawio",
+      "uml",
+      "erd",
+      "architecture"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ]
+  },
+  {
+    "id": "cc-refactoring-core",
+    "name": "Behavior-preserving refactoring",
+    "category": "project-evolution",
+    "tags": [
+      "refactoring",
+      "behavior-preservation",
+      "baseline"
+    ],
+    "summary": "Behavior-preserving refactoring",
+    "version": "1.0.1",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/craft-common",
+    "repository": "https://github.com/bovinphang/craft-common",
+    "keywords": [
+      "project-evolution",
+      "refactoring",
+      "behavior-preservation",
+      "baseline"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ]
+  },
+  {
+    "id": "cc-source-driven-development",
+    "name": "Source-driven development",
+    "category": "project-standard",
+    "tags": [
+      "official-docs",
+      "versioning",
+      "local-knowledge"
+    ],
+    "summary": "Source-driven development",
+    "version": "1.0.1",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/craft-common",
+    "repository": "https://github.com/bovinphang/craft-common",
+    "keywords": [
+      "project-standard",
+      "official-docs",
+      "versioning",
+      "local-knowledge"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ]
+  },
+  {
+    "id": "cc-tdd-methodology",
+    "name": "Test-driven development",
+    "category": "testing",
+    "tags": [
+      "tdd",
+      "regression",
+      "red-green-refactor"
+    ],
+    "summary": "Test-driven development",
+    "version": "1.0.1",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/craft-common",
+    "repository": "https://github.com/bovinphang/craft-common",
+    "keywords": [
+      "testing",
+      "tdd",
+      "regression",
+      "red-green-refactor"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ]
+  },
+  {
+    "id": "cc-technical-diagrams",
+    "name": "Structured technical diagrams",
+    "category": "implementation-capability",
+    "tags": [
+      "architecture",
+      "sequence",
+      "workflow",
+      "png-qa"
+    ],
+    "summary": "Structured technical diagrams",
+    "version": "1.0.1",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/craft-common",
+    "repository": "https://github.com/bovinphang/craft-common",
+    "keywords": [
+      "implementation-capability",
+      "architecture",
+      "sequence",
+      "workflow",
+      "png-qa"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ]
+  }
+]

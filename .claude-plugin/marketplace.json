@@ -1,0 +1,1 @@
+{"name":"backend-craft","owner":{"name":"bovinphang"},"plugins":[{"name":"backend-craft","source":{"source":"npm","package":"@bovinphang/backend-craft","version":"1.0.0"},"description":"后端专业工程插件","version":"1.0.0"}]}

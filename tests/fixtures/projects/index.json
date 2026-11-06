@@ -1,0 +1,8 @@
+[
+  {"language":"rust","source":"src/lib.rs","good":"receiver.recv().is_ok()","bad":"{ let _ = receiver; false }"},
+  {"language":"go","source":"cancel.go","good":"return ctx.Err()","bad":"return nil"},
+  {"language":"java","source":"Owned.java","good":"public void close() { active--; }","bad":"public void close() { }"},
+  {"language":"python","source":"service.py","good":"        raise","bad":"        return 42"},
+  {"language":"c","source":"owned.c","good":"if (fail) { result = -1; goto cleanup; }","bad":"if (fail) { return -1; }"},
+  {"language":"cpp","source":"owned.cpp","good":"// KEEP_OWNER","bad":"resource.release();"}
+]

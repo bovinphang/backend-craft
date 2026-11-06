@@ -1,0 +1,410 @@
+[
+  {
+    "language": "rust",
+    "status": "missing",
+    "redExit": 2,
+    "red": {
+      "schemaVersion": 1,
+      "results": [],
+      "exitCode": 2,
+      "problems": [
+        "缺少必需工具：cargo"
+      ],
+      "warnings": []
+    },
+    "inspection": {
+      "schemaVersion": 1,
+      "workspace": "C:\\Users\\Bovin\\AppData\\Local\\Temp\\bec-language-rust-nM7aGD",
+      "projects": [
+        {
+          "root": "C:\\Users\\Bovin\\AppData\\Local\\Temp\\bec-language-rust-nM7aGD",
+          "languages": [
+            "rust"
+          ],
+          "evidence": [
+            "Cargo.toml",
+            "src/lib.rs"
+          ],
+          "buildFiles": [
+            "Cargo.toml"
+          ],
+          "ambiguous": false
+        }
+      ],
+      "warnings": [],
+      "truncated": false
+    }
+  },
+  {
+    "language": "go",
+    "status": "passed",
+    "redExit": 1,
+    "greenExit": 0,
+    "red": {
+      "schemaVersion": 1,
+      "results": [
+        {
+          "id": "build",
+          "status": "passed",
+          "exitCode": 0,
+          "durationMs": 829
+        },
+        {
+          "id": "test",
+          "status": "failed",
+          "exitCode": 1,
+          "durationMs": 2764,
+          "reason": "命令执行失败"
+        }
+      ],
+      "exitCode": 1,
+      "problems": [],
+      "warnings": []
+    },
+    "green": {
+      "schemaVersion": 1,
+      "results": [
+        {
+          "id": "build",
+          "status": "passed",
+          "exitCode": 0,
+          "durationMs": 378
+        },
+        {
+          "id": "test",
+          "status": "passed",
+          "exitCode": 0,
+          "durationMs": 2438
+        }
+      ],
+      "exitCode": 0,
+      "problems": [],
+      "warnings": []
+    },
+    "inspection": {
+      "schemaVersion": 1,
+      "workspace": "C:\\Users\\Bovin\\AppData\\Local\\Temp\\bec-language-go-iPY1Oj",
+      "projects": [
+        {
+          "root": "C:\\Users\\Bovin\\AppData\\Local\\Temp\\bec-language-go-iPY1Oj",
+          "languages": [
+            "go"
+          ],
+          "evidence": [
+            "cancel.go",
+            "cancel_test.go",
+            "go.mod"
+          ],
+          "buildFiles": [
+            "go.mod"
+          ],
+          "ambiguous": false
+        }
+      ],
+      "warnings": [],
+      "truncated": false
+    }
+  },
+  {
+    "language": "java",
+    "status": "passed",
+    "redExit": 1,
+    "greenExit": 0,
+    "red": {
+      "schemaVersion": 1,
+      "results": [
+        {
+          "id": "build",
+          "status": "passed",
+          "exitCode": 0,
+          "durationMs": 1102
+        },
+        {
+          "id": "test",
+          "status": "failed",
+          "exitCode": 1,
+          "durationMs": 186,
+          "reason": "命令执行失败"
+        }
+      ],
+      "exitCode": 1,
+      "problems": [],
+      "warnings": []
+    },
+    "green": {
+      "schemaVersion": 1,
+      "results": [
+        {
+          "id": "build",
+          "status": "passed",
+          "exitCode": 0,
+          "durationMs": 1208
+        },
+        {
+          "id": "test",
+          "status": "passed",
+          "exitCode": 0,
+          "durationMs": 177
+        }
+      ],
+      "exitCode": 0,
+      "problems": [],
+      "warnings": []
+    },
+    "inspection": {
+      "schemaVersion": 1,
+      "workspace": "C:\\Users\\Bovin\\AppData\\Local\\Temp\\bec-language-java-JmxjFp",
+      "projects": [
+        {
+          "root": "C:\\Users\\Bovin\\AppData\\Local\\Temp\\bec-language-java-JmxjFp",
+          "languages": [
+            "java"
+          ],
+          "evidence": [
+            "Owned.java",
+            "OwnedTest.java",
+            "pom.xml"
+          ],
+          "buildFiles": [
+            "pom.xml"
+          ],
+          "ambiguous": false
+        }
+      ],
+      "warnings": [],
+      "truncated": false
+    }
+  },
+  {
+    "language": "python",
+    "status": "passed",
+    "redExit": 1,
+    "greenExit": 0,
+    "red": {
+      "schemaVersion": 1,
+      "results": [
+        {
+          "id": "build",
+          "status": "passed",
+          "exitCode": 0,
+          "durationMs": 1257
+        },
+        {
+          "id": "test",
+          "status": "failed",
+          "exitCode": 1,
+          "durationMs": 827,
+          "reason": "命令执行失败"
+        }
+      ],
+      "exitCode": 1,
+      "problems": [],
+      "warnings": []
+    },
+    "green": {
+      "schemaVersion": 1,
+      "results": [
+        {
+          "id": "build",
+          "status": "passed",
+          "exitCode": 0,
+          "durationMs": 285
+        },
+        {
+          "id": "test",
+          "status": "passed",
+          "exitCode": 0,
+          "durationMs": 735
+        }
+      ],
+      "exitCode": 0,
+      "problems": [],
+      "warnings": []
+    },
+    "inspection": {
+      "schemaVersion": 1,
+      "workspace": "C:\\Users\\Bovin\\AppData\\Local\\Temp\\bec-language-python-qvpwVf",
+      "projects": [
+        {
+          "root": "C:\\Users\\Bovin\\AppData\\Local\\Temp\\bec-language-python-qvpwVf",
+          "languages": [
+            "python"
+          ],
+          "evidence": [
+            "pyproject.toml",
+            "service.py",
+            "tests/test_service.py"
+          ],
+          "buildFiles": [
+            "pyproject.toml"
+          ],
+          "ambiguous": false
+        }
+      ],
+      "warnings": [],
+      "truncated": false
+    }
+  },
+  {
+    "language": "c",
+    "status": "passed",
+    "redExit": 1,
+    "greenExit": 0,
+    "red": {
+      "schemaVersion": 1,
+      "results": [
+        {
+          "id": "prepare",
+          "status": "passed",
+          "exitCode": 0,
+          "durationMs": 97
+        },
+        {
+          "id": "build",
+          "status": "passed",
+          "exitCode": 0,
+          "durationMs": 445
+        },
+        {
+          "id": "test",
+          "status": "failed",
+          "exitCode": 3221226505,
+          "durationMs": 366,
+          "reason": "命令执行失败"
+        }
+      ],
+      "exitCode": 1,
+      "problems": [],
+      "warnings": []
+    },
+    "green": {
+      "schemaVersion": 1,
+      "results": [
+        {
+          "id": "prepare",
+          "status": "passed",
+          "exitCode": 0,
+          "durationMs": 118
+        },
+        {
+          "id": "build",
+          "status": "passed",
+          "exitCode": 0,
+          "durationMs": 328
+        },
+        {
+          "id": "test",
+          "status": "passed",
+          "exitCode": 0,
+          "durationMs": 181
+        }
+      ],
+      "exitCode": 0,
+      "problems": [],
+      "warnings": []
+    },
+    "inspection": {
+      "schemaVersion": 1,
+      "workspace": "C:\\Users\\Bovin\\AppData\\Local\\Temp\\bec-language-c-iBHRVn",
+      "projects": [
+        {
+          "root": "C:\\Users\\Bovin\\AppData\\Local\\Temp\\bec-language-c-iBHRVn",
+          "languages": [
+            "c"
+          ],
+          "evidence": [
+            "CMakeLists.txt",
+            "owned.c"
+          ],
+          "buildFiles": [
+            "CMakeLists.txt"
+          ],
+          "ambiguous": false
+        }
+      ],
+      "warnings": [],
+      "truncated": false
+    }
+  },
+  {
+    "language": "cpp",
+    "status": "passed",
+    "redExit": 1,
+    "greenExit": 0,
+    "red": {
+      "schemaVersion": 1,
+      "results": [
+        {
+          "id": "prepare",
+          "status": "passed",
+          "exitCode": 0,
+          "durationMs": 158
+        },
+        {
+          "id": "build",
+          "status": "passed",
+          "exitCode": 0,
+          "durationMs": 1298
+        },
+        {
+          "id": "test",
+          "status": "failed",
+          "exitCode": 3221226505,
+          "durationMs": 367,
+          "reason": "命令执行失败"
+        }
+      ],
+      "exitCode": 1,
+      "problems": [],
+      "warnings": []
+    },
+    "green": {
+      "schemaVersion": 1,
+      "results": [
+        {
+          "id": "prepare",
+          "status": "passed",
+          "exitCode": 0,
+          "durationMs": 107
+        },
+        {
+          "id": "build",
+          "status": "passed",
+          "exitCode": 0,
+          "durationMs": 1273
+        },
+        {
+          "id": "test",
+          "status": "passed",
+          "exitCode": 0,
+          "durationMs": 179
+        }
+      ],
+      "exitCode": 0,
+      "problems": [],
+      "warnings": []
+    },
+    "inspection": {
+      "schemaVersion": 1,
+      "workspace": "C:\\Users\\Bovin\\AppData\\Local\\Temp\\bec-language-cpp-2fcrTt",
+      "projects": [
+        {
+          "root": "C:\\Users\\Bovin\\AppData\\Local\\Temp\\bec-language-cpp-2fcrTt",
+          "languages": [
+            "cpp"
+          ],
+          "evidence": [
+            "CMakeLists.txt",
+            "owned.cpp"
+          ],
+          "buildFiles": [
+            "CMakeLists.txt"
+          ],
+          "ambiguous": false
+        }
+      ],
+      "warnings": [],
+      "truncated": false
+    }
+  }
+]

@@ -1,0 +1,1 @@
+{"schemaVersion":1,"projects":[{"root":".","languages":["rust"],"stages":[{"id":"build","phase":"build","executable":"cargo","args":["build","--offline","--locked"],"env":{"CARGO_NET_OFFLINE":"true","RUSTUP_AUTO_INSTALL":"0"}},{"id":"test","phase":"test","executable":"cargo","args":["test","--offline","--locked"],"env":{"CARGO_NET_OFFLINE":"true","RUSTUP_AUTO_INSTALL":"0"}}]}]}

@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.20)
+project(bec_owned LANGUAGES C)
+enable_testing()
+add_executable(owned owned.c)
+add_test(NAME owned COMMAND owned)

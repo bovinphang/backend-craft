@@ -1,0 +1,538 @@
+{
+  "bec-api-design": {
+    "should_trigger": [
+      "让创建订单重试具有幂等语义",
+      "兼容老客户端演进请求 schema",
+      "定义稳定 API 错误和校验边界",
+      "测试分页与并发重试契约"
+    ],
+    "should_not_trigger": [
+      "只实现 React 受控表单，不涉及后端",
+      "只设计 CSS 响应式工具栏",
+      "仅优化 SQL 查询，不改变 API 契约",
+      "仅整理内部 Rust crate"
+    ]
+  },
+  "bec-architecture-design": {
+    "should_trigger": [
+      "为现有后端划定模块边界",
+      "比较模块化单体与服务拆分",
+      "明确数据所有权和故障边界",
+      "编写包含迁移回滚的架构决策"
+    ],
+    "should_not_trigger": [
+      "只实现 React 受控表单，不涉及后端",
+      "只设计 CSS 响应式工具栏",
+      "仅调整已有架构中的一条 SQL 索引",
+      "仅修复客户端清理分支，不涉及架构调整"
+    ]
+  },
+  "bec-auth-security": {
+    "should_trigger": [
+      "修复服务端 API 租户隔离",
+      "在 JWT 校验后审查对象级授权",
+      "测试跨租户和越权负向路径",
+      "处理服务端密钥及不可信输入"
+    ],
+    "should_not_trigger": [
+      "只实现 React 受控表单，不涉及后端",
+      "只设计 CSS 响应式工具栏",
+      "仅重命名内部变量，没有安全影响",
+      "仅优化纯算术计算"
+    ]
+  },
+  "bec-c-project-standard": {
+    "should_trigger": [
+      "审查 C 分配和释放契约",
+      "保持 C ABI 修复失败清理",
+      "组织已有 C 库头文件和实现",
+      "测试 C 分配失败与非法输入"
+    ],
+    "should_not_trigger": [
+      "只实现 React 受控表单，不涉及后端",
+      "只设计 CSS 响应式工具栏",
+      "仅重构 C++ RAII 对象，不涉及 C 接口",
+      "仅解释安全 Rust 借用错误"
+    ]
+  },
+  "bec-cache-design": {
+    "should_trigger": [
+      "撤销权限后失效缓存",
+      "避免缓存击穿且不使用无界锁",
+      "规定陈旧数据上限及缓存降级",
+      "测试缓存回填与提交更新竞争"
+    ],
+    "should_not_trigger": [
+      "只实现 React 受控表单，不涉及后端",
+      "只设计 CSS 响应式工具栏",
+      "仅优化未缓存 SQL 的查询计划",
+      "仅设计 JSON 响应 schema"
+    ]
+  },
+  "bec-code-review": {
+    "should_trigger": [
+      "审查后端 PR 的事务和重试",
+      "评估 diff 中租户授权与 API 兼容",
+      "检查并发及资源回归证据",
+      "输出带位置和严重性的后端发现"
+    ],
+    "should_not_trigger": [
+      "只实现 React 受控表单，不涉及后端",
+      "只设计 CSS 响应式工具栏",
+      "仅生成可编辑架构图",
+      "仅翻译已有文案"
+    ]
+  },
+  "bec-cpp-project-standard": {
+    "should_trigger": [
+      "审查 C++ RAII 和异常安全",
+      "保持插件 ABI 并明确所有权",
+      "整理头文件与模板依赖边界",
+      "测试 C++ 析构及部分构造"
+    ],
+    "should_not_trigger": [
+      "只实现 React 受控表单，不涉及后端",
+      "只设计 CSS 响应式工具栏",
+      "仅修复纯 C99 清理，不涉及 C++",
+      "仅整理 Go 包结构"
+    ]
+  },
+  "bec-database-design": {
+    "should_trigger": [
+      "在大表分阶段上线非空列",
+      "结合真实执行计划审查索引",
+      "设计数据回填及约束校验阶段",
+      "规划 schema 兼容与迁移回滚"
+    ],
+    "should_not_trigger": [
+      "只实现 React 受控表单，不涉及后端",
+      "只设计 CSS 响应式工具栏",
+      "仅修改 HTTP 错误状态文档，不涉及数据库",
+      "仅修复 Go channel 生命周期"
+    ]
+  },
+  "bec-debug-framework": {
+    "should_trigger": [
+      "不靠猜测排查后端间歇 500",
+      "比较连接池与下游超时假设",
+      "复现后端构建或数据故障",
+      "以回归证据验证最小服务修复"
+    ],
+    "should_not_trigger": [
+      "只实现 React 受控表单，不涉及后端",
+      "只设计 CSS 响应式工具栏",
+      "仅规划新能力，没有既存故障",
+      "仅同步文档事实"
+    ]
+  },
+  "bec-dependency-management": {
+    "should_trigger": [
+      "核验传递依赖漏洞是否影响当前后端",
+      "最小化升级依赖和锁文件",
+      "保持声明工具链修复包问题",
+      "规划依赖回滚与兼容检查"
+    ],
+    "should_not_trigger": [
+      "只实现 React 受控表单，不涉及后端",
+      "只设计 CSS 响应式工具栏",
+      "仅重命名私有函数",
+      "仅设计数据库查询，不改依赖"
+    ]
+  },
+  "bec-doc-sync": {
+    "should_trigger": [
+      "请求变更后同步后端 API 文档",
+      "将迁移和配置变更映射到发布说明",
+      "从真实源更新生成 OpenAPI",
+      "按仓库事实核对后端命令示例"
+    ],
+    "should_not_trigger": [
+      "只实现 React 受控表单，不涉及后端",
+      "只设计 CSS 响应式工具栏",
+      "仅润色语法，不改变事实",
+      "仅诊断服务失败，不涉及文档"
+    ]
+  },
+  "bec-go-concurrency": {
+    "should_trigger": [
+      "终止阻塞在 channel 发送的 Go worker",
+      "明确共享 Go channel 的关闭方",
+      "限制 goroutine 并传播请求取消",
+      "复现和测试 Go 数据竞争"
+    ],
+    "should_not_trigger": [
+      "只实现 React 受控表单，不涉及后端",
+      "只设计 CSS 响应式工具栏",
+      "仅审查 Tokio select 取消",
+      "仅更新 Go 模块目录约定"
+    ]
+  },
+  "bec-go-project-standard": {
+    "should_trigger": [
+      "规划 Go 模块 internal 包边界",
+      "审查 Go 服务错误和 context 边界",
+      "避免全局数据库状态增加 repository 适配",
+      "验证 go.work 中的单个模块"
+    ],
+    "should_not_trigger": [
+      "只实现 React 受控表单，不涉及后端",
+      "只设计 CSS 响应式工具栏",
+      "仅调整 JVM GC，没有 Go 代码变更",
+      "仅设计 Python 包结构"
+    ]
+  },
+  "bec-java-project-standard": {
+    "should_trigger": [
+      "分离 Java HTTP DTO 与持久化实体",
+      "审查 Java 模块应用事务边界",
+      "遵循现有 Maven 或 Gradle wrapper",
+      "为 Java 服务增加行为测试"
+    ],
+    "should_not_trigger": [
+      "只实现 React 受控表单，不涉及后端",
+      "只设计 CSS 响应式工具栏",
+      "仅整理 Cargo workspace，没有 Java 代码",
+      "仅修复 C 分配器契约"
+    ]
+  },
+  "bec-java-runtime": {
+    "should_trigger": [
+      "诊断 Java p99 和线程池队列上涨",
+      "为 JVM 事件采集有界 JFR 与线程样本",
+      "以基线对照 JVM 堆或线程池调整",
+      "排查 Java 阻塞竞争和下游等待"
+    ],
+    "should_not_trigger": [
+      "只实现 React 受控表单，不涉及后端",
+      "只设计 CSS 响应式工具栏",
+      "仅修复 Python 事件循环阻塞",
+      "仅整理 Java 包结构，不涉及运行时问题"
+    ]
+  },
+  "bec-native-memory-safety": {
+    "should_trigger": [
+      "诊断 C/C++ FFI 边界的 use-after-free",
+      "配对动态库之间的分配和释放",
+      "测试部分初始化及重复清理",
+      "保留 sanitizer 复现销毁竞态"
+    ],
+    "should_not_trigger": [
+      "只实现 React 受控表单，不涉及后端",
+      "只设计 CSS 响应式工具栏",
+      "仅解释安全 Rust 借用，不涉及 unsafe 或 FFI",
+      "仅修改 HTTP 响应 schema"
+    ]
+  },
+  "bec-observability": {
+    "should_trigger": [
+      "关联后端追踪和数据库等待",
+      "控制指标基数及敏感字段",
+      "设计错误诊断的有界采样",
+      "端到端验证服务延迟与错误观测"
+    ],
+    "should_not_trigger": [
+      "只实现 React 受控表单，不涉及后端",
+      "只设计 CSS 响应式工具栏",
+      "仅为纯函数写单测，不涉及埋点",
+      "仅修改 API 字段名，不涉及观测"
+    ]
+  },
+  "bec-performance-optimization": {
+    "should_trigger": [
+      "定位慢服务的实测瓶颈",
+      "在等价负载下比较后端 p99 变化",
+      "剖析数据库和 CPU 的延迟贡献",
+      "设置性能回归与回滚阈值"
+    ],
+    "should_not_trigger": [
+      "只实现 React 受控表单，不涉及后端",
+      "只设计 CSS 响应式工具栏",
+      "仅设计新 API schema，没有性能任务",
+      "仅翻译文档，没有工程变更"
+    ]
+  },
+  "bec-project-init": {
+    "should_trigger": [
+      "为前后端混合仓库初始化后端规则",
+      "保留 AGENTS 增加 Go 和 native 上下文",
+      "选择按语言作用域的验证配置",
+      "报告缺失工具链但不安装"
+    ],
+    "should_not_trigger": [
+      "只实现 React 受控表单，不涉及后端",
+      "只设计 CSS 响应式工具栏",
+      "仅修复已初始化项目的一个 bug，不改规则",
+      "仅只读评审一份代码差异"
+    ]
+  },
+  "bec-python-async": {
+    "should_trigger": [
+      "隔离 async Python handler 中的阻塞客户端",
+      "在 asyncio 取消后正确归还池资源",
+      "限制 Python 线程卸载及任务并发",
+      "测试 Python 异步停机与超时收尾"
+    ],
+    "should_not_trigger": [
+      "只实现 React 受控表单，不涉及后端",
+      "只设计 CSS 响应式工具栏",
+      "仅诊断 JVM 堆压力",
+      "仅修改 Python 包元数据，不涉及异步"
+    ]
+  },
+  "bec-python-project-standard": {
+    "should_trigger": [
+      "遵循 pyproject 组织 Python 领域包",
+      "移除导入时连接数据库的副作用",
+      "审查 Python 类型和依赖边界",
+      "使用现有 Ruff mypy pytest 配置"
+    ],
+    "should_not_trigger": [
+      "只实现 React 受控表单，不涉及后端",
+      "只设计 CSS 响应式工具栏",
+      "仅修复 Go channel 泄漏，没有 Python 代码",
+      "仅审查 C++ DLL 所有权"
+    ]
+  },
+  "bec-refactoring": {
+    "should_trigger": [
+      "保持舍入规则移动计费计算",
+      "以行为基线提取后端模块",
+      "按可逆可验证步骤简化服务逻辑",
+      "证明重构保留错误及副作用行为"
+    ],
+    "should_not_trigger": [
+      "只实现 React 受控表单，不涉及后端",
+      "只设计 CSS 响应式工具栏",
+      "明确改变业务舍入语义",
+      "升级依赖并改变可观察行为"
+    ]
+  },
+  "bec-rust-async": {
+    "should_trigger": [
+      "修复 Tokio select 取消导致的部分写入",
+      "限制 Rust spawn 数量并管理 JoinHandle",
+      "设计 Rust 异步停机和取消",
+      "隔离异步执行器中的阻塞 I/O"
+    ],
+    "should_not_trigger": [
+      "只实现 React 受控表单，不涉及后端",
+      "只设计 CSS 响应式工具栏",
+      "仅修复 Go channel 取消路径",
+      "仅整理 Rust crate 边界，不涉及异步行为"
+    ]
+  },
+  "bec-rust-project-standard": {
+    "should_trigger": [
+      "规划现有 Cargo workspace 的 crate 边界",
+      "审查 Rust 公共接口所有权和 Result 边界",
+      "保持现有 edition 增加存储模块",
+      "为 Rust 库选择工程质量检查"
+    ],
+    "should_not_trigger": [
+      "只实现 React 受控表单，不涉及后端",
+      "只设计 CSS 响应式工具栏",
+      "仅修复 asyncio 取消路径",
+      "仅审查纯 C ABI，没有 Rust 代码"
+    ]
+  },
+  "bec-tdd-workflow": {
+    "should_trigger": [
+      "修复前复现并发库存缺陷",
+      "以可观察红绿实现后端行为",
+      "用真实存储建立事务 TDD 回归",
+      "缺工具链时如实报告未运行"
+    ],
+    "should_not_trigger": [
+      "只实现 React 受控表单，不涉及后端",
+      "只设计 CSS 响应式工具栏",
+      "仅输出测试策略矩阵",
+      "仅进行只读代码评审"
+    ]
+  },
+  "bec-testing-strategy": {
+    "should_trigger": [
+      "将后端付款风险映射到测试层",
+      "规划数据库回滚和重试集成测试",
+      "评估 API 兼容及失败路径覆盖",
+      "报告覆盖率之外的发布验证缺口"
+    ],
+    "should_not_trigger": [
+      "只实现 React 受控表单，不涉及后端",
+      "只设计 CSS 响应式工具栏",
+      "仅实现测试层已确定的一条回归",
+      "仅诊断运行时症状，不做测试规划"
+    ]
+  },
+  "bec-transaction-management": {
+    "should_trigger": [
+      "处理提交成功但消息发布失败",
+      "设计可安全重试的付款副作用",
+      "审查隔离级别及并发更新",
+      "测试 outbox 重放与重复投递"
+    ],
+    "should_not_trigger": [
+      "只实现 React 受控表单，不涉及后端",
+      "只设计 CSS 响应式工具栏",
+      "仅更新响应 schema，不涉及状态写入",
+      "仅修复 C++ 指针生命周期"
+    ]
+  },
+  "cc-debug-methodology": {
+    "should_trigger": [
+      "Vite 构建报错 Module not found，帮我排查",
+      "页面白屏了，控制台有 TypeError",
+      "这个组件渲染结果和预期不一致，帮我 debug",
+      "接口返回 500 但前端没展示错误信息",
+      "打包后样式丢失，开发环境正常",
+      "React 组件 hydration mismatch 怎么定位",
+      "HMR 更新后页面状态丢失",
+      "排查生产环境偶发性 JS 异常"
+    ],
+    "should_not_trigger": [
+      "给这个模块写单元测试",
+      "设计一个新的 React 组件",
+      "优化首屏加载性能",
+      "做前端安全审查",
+      "升级 TypeScript 到最新版本",
+      "重构这个 hooks 的逻辑",
+      "写一个 Playwright E2E 测试",
+      "给这个 API 设计类型定义"
+    ]
+  },
+  "cc-doc-sync-core": {
+    "should_trigger": [
+      "同步 README 中的 skill 和 agent 数量",
+      "新增命令后更新多语言文档",
+      "根据 package.json 生成命令清单",
+      "同步 runtime 文档",
+      "更新 marketplace 描述里的能力数量",
+      "检查 README 和 skills metadata 是否一致",
+      "把报告输出表同步到文档",
+      "更新项目结构文档中的 commands 列表"
+    ],
+    "should_not_trigger": [
+      "给组件写 Storybook stories",
+      "修复 TypeScript 构建失败",
+      "写登录 E2E 测试",
+      "审查 XSS 风险",
+      "规划 React 组件边界",
+      "清理未使用导出",
+      "实现 PWA manifest",
+      "优化虚拟列表滚动"
+    ]
+  },
+  "cc-drawio-studio": {
+    "should_trigger": [
+      "生成一个可编辑的 draw.io 架构图并导出 PNG",
+      "把这个微服务系统画成 .drawio 文件",
+      "用 diagrams.net 做 ER 图，要求后续能编辑",
+      "查一下 AWS Lambda 在 draw.io 里的官方 shape style",
+      "给这个 TypeScript 项目生成模块依赖图并自动布局",
+      "生成 UML 类图并用 draw.io CLI 导出 SVG",
+      "draw.io 自动布局一个超过 20 个节点的服务拓扑",
+      "用 Graphviz 布局后生成 diagrams.net 编辑链接",
+      "制作可编辑序列图并检查 .drawio 是否有断边",
+      "用官方云形状创建可编辑 draw.io 架构图"
+    ],
+    "should_not_trigger": [
+      "生成一张产品宣传海报图片",
+      "编辑这张照片并替换背景",
+      "实现 Three.js 交互式 3D 拓扑图",
+      "给 SVG logo 加路径描边动画",
+      "只写 Mermaid 到 README 中",
+      "按 Figma 设计稿实现页面",
+      "检查 dashboard 的按钮 hover 状态",
+      "用 Playwright 截图做视觉回归",
+      "优化 Canvas 粒子动画性能",
+      "生成漫画头像和品牌板"
+    ]
+  },
+  "cc-refactoring-core": {
+    "should_trigger": [
+      "保持行为不变，重构这个前端模块。",
+      "这个函数只做结构调整，每一步都验证，不改输出和副作用。",
+      "给这个 React 功能做保持行为重构，并设置差异预算。",
+      "这个 Vue composable 只优化结构，不增加新功能。",
+      "按 SAFE/CAUTION/DANGER 给这次重构分级并小步执行。",
+      "先建立绿色基线，再重构这个 TypeScript service，最后回到绿色。",
+      "为这次保持行为重构设置回滚边界。",
+      "按一次一个重构手法执行并给出最终证明。"
+    ],
+    "should_not_trigger": [
+      "删除没用的 React 组件和 npm 依赖。",
+      "修复这个会发两次请求的 bug。",
+      "把 Redux 迁移到 Zustand。",
+      "审查这个 PR 是否可以合并。",
+      "排查为什么这个页面白屏。",
+      "用 TDD 新增支付功能。",
+      "把 Vite 升级并处理 breaking changes。",
+      "按 Figma 新增一个响应式页面。"
+    ]
+  },
+  "cc-source-driven-development": {
+    "should_trigger": [
+      "这个 Next.js 新版本 API 先查官方文档再决定",
+      "帮我确认 Vite 配置项当前版本是否还推荐",
+      "这个浏览器 API 兼容性要以规范和 MDN 为准",
+      "为前端库迁移做事实源驱动决策",
+      "React Router 版本差异需要查文档",
+      "这个包的 ESM/CJS 行为不要凭记忆判断",
+      "按项目源码和官方 docs 设计公共接口",
+      "验证 Nuxt useFetch 最新推荐用法"
+    ],
+    "should_not_trigger": [
+      "给表单写 Zod 校验",
+      "优化大列表虚拟滚动",
+      "运行 npm test 并修复失败",
+      "检查按钮 aria-label",
+      "写 Playwright 登录流程",
+      "清理未使用依赖",
+      "设计 UI 视觉方向",
+      "审查 token 存储安全"
+    ]
+  },
+  "cc-tdd-methodology": {
+    "should_trigger": [
+      "用 TDD 实现这个 hook",
+      "先写失败测试再修这个 bug",
+      "为新组件走红绿重构流程",
+      "补一个回归测试再改逻辑",
+      "用测试驱动开发这个前端功能",
+      "这个工具函数先写单测再实现",
+      "修复表单校验 bug 前先复现测试",
+      "用测试驱动方式重构状态逻辑"
+    ],
+    "should_not_trigger": [
+      "只运行现有测试并修复失败",
+      "制定测试分层策略",
+      "写完整 Playwright E2E 流程",
+      "同步文档能力表",
+      "清理未使用依赖",
+      "做 XSS 安全审查",
+      "设计 Vue 项目结构",
+      "配置 PWA 离线缓存"
+    ]
+  },
+  "cc-technical-diagrams": {
+    "should_trigger": [
+      "绘制后台任务生命周期并保留可编辑源",
+      "把架构 JSON 渲染为自包含 HTML",
+      "绘制 API 和数据库事务序列图",
+      "展示 Agent 记忆检索流程并标注箭头语义",
+      "检查技术图 PNG 中的文本裁切",
+      "渲染含决策和回退边的工作流",
+      "创建服务依赖的本地交互预览",
+      "导出 SVG 时保留所有数据流标签"
+    ],
+    "should_not_trigger": [
+      "生成产品摄影图",
+      "编辑头像背景",
+      "构建 React 组件",
+      "优化数据库查询",
+      "修复 Rust 编译错误",
+      "审查权限逻辑",
+      "编写 CLI 单元测试",
+      "润色营销文案"
+    ]
+  }
+}

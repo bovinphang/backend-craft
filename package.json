@@ -1,0 +1,80 @@
+{
+  "name": "@bovinphang/backend-craft",
+  "version": "1.0.0",
+  "description": "Backend engineering skills, agents and runtime integration for Rust, Go, Java, Python, C and C++",
+  "type": "module",
+  "license": "MIT",
+  "author": {
+    "name": "bovinphang",
+    "email": "pengbaowen@msn.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bovinphang/backend-craft"
+  },
+  "homepage": "https://github.com/bovinphang/backend-craft",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "packageManager": "pnpm@12.4.1",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "skills",
+    "agents",
+    "commands",
+    "localized",
+    "templates",
+    "hooks",
+    "common-content.lock.json",
+    "docs",
+    "LICENSE",
+    "README.md",
+    "README.zh-CN.md",
+    ".claude-plugin",
+    "openclaw.plugin.json"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "lint": "eslint src bin scripts tests eslint.config.mjs --max-warnings=0 --no-error-on-unmatched-pattern",
+    "typecheck": "tsc --noEmit -p tsconfig.json",
+    "test": "tsx scripts/run-tests.ts",
+    "build": "pnpm typecheck && tsx scripts/build.ts",
+    "prepack": "pnpm build",
+    "sync:common": "tsx scripts/sync-common.ts",
+    "check:common": "tsx scripts/sync-common.ts --check",
+    "check:content": "tsx scripts/check-content.ts",
+    "verify:coexistence": "tsx scripts/verify-coexistence.ts",
+    "verify:languages": "tsx scripts/verify-language-fixtures.ts",
+    "pack:all": "tsx scripts/pack-all.ts"
+  },
+  "dependencies": {
+    "@bovinphang/craft-common": "1.0.1",
+    "cross-spawn": "7.0.6",
+    "smol-toml": "1.9.1",
+    "yaml": "2.9.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.39.5",
+    "@types/cross-spawn": "6.0.6",
+    "@types/node": "^22.19.15",
+    "esbuild": "^0.28.0",
+    "eslint": "9.39.4",
+    "globals": "17.12.0",
+    "prettier": "^3.5.0",
+    "tsx": "^4.22.3",
+    "typescript": "^5.7.3",
+    "typescript-eslint": "8.70.1"
+  },
+  "bin": {
+    "backend-craft": "dist/bin/backend-craft.js",
+    "bec": "dist/bin/backend-craft.js"
+  }
+}

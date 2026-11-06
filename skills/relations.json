@@ -1,0 +1,328 @@
+{
+  "bec-api-design": {
+    "relatedSkills": [
+      "bec-auth-security",
+      "bec-transaction-management"
+    ],
+    "capabilityTags": [
+      "api",
+      "design"
+    ]
+  },
+  "bec-architecture-design": {
+    "relatedSkills": [
+      "bec-api-design",
+      "bec-transaction-management"
+    ],
+    "capabilityTags": [
+      "architecture",
+      "design"
+    ]
+  },
+  "bec-auth-security": {
+    "relatedSkills": [
+      "bec-api-design",
+      "bec-code-review"
+    ],
+    "capabilityTags": [
+      "auth",
+      "security"
+    ]
+  },
+  "bec-c-project-standard": {
+    "relatedSkills": [
+      "bec-native-memory-safety",
+      "bec-cpp-project-standard"
+    ],
+    "capabilityTags": [
+      "c",
+      "project",
+      "standard"
+    ]
+  },
+  "bec-cache-design": {
+    "relatedSkills": [
+      "bec-transaction-management",
+      "bec-auth-security"
+    ],
+    "capabilityTags": [
+      "cache",
+      "design"
+    ]
+  },
+  "bec-code-review": {
+    "relatedSkills": [
+      "bec-auth-security",
+      "bec-testing-strategy"
+    ],
+    "capabilityTags": [
+      "code",
+      "review"
+    ]
+  },
+  "bec-cpp-project-standard": {
+    "relatedSkills": [
+      "bec-native-memory-safety",
+      "bec-c-project-standard"
+    ],
+    "capabilityTags": [
+      "cpp",
+      "project",
+      "standard"
+    ]
+  },
+  "bec-database-design": {
+    "relatedSkills": [
+      "bec-transaction-management",
+      "bec-performance-optimization"
+    ],
+    "capabilityTags": [
+      "database",
+      "design"
+    ]
+  },
+  "bec-debug-framework": {
+    "relatedSkills": [
+      "cc-debug-methodology",
+      "bec-observability"
+    ],
+    "capabilityTags": [
+      "debug",
+      "framework"
+    ]
+  },
+  "bec-dependency-management": {
+    "relatedSkills": [
+      "cc-source-driven-development",
+      "bec-testing-strategy"
+    ],
+    "capabilityTags": [
+      "dependency",
+      "management"
+    ]
+  },
+  "bec-doc-sync": {
+    "relatedSkills": [
+      "cc-doc-sync-core",
+      "bec-api-design"
+    ],
+    "capabilityTags": [
+      "doc",
+      "sync"
+    ]
+  },
+  "bec-go-concurrency": {
+    "relatedSkills": [
+      "bec-go-project-standard",
+      "bec-performance-optimization"
+    ],
+    "capabilityTags": [
+      "go",
+      "concurrency"
+    ]
+  },
+  "bec-go-project-standard": {
+    "relatedSkills": [
+      "bec-go-concurrency",
+      "bec-testing-strategy"
+    ],
+    "capabilityTags": [
+      "go",
+      "project",
+      "standard"
+    ]
+  },
+  "bec-java-project-standard": {
+    "relatedSkills": [
+      "bec-java-runtime",
+      "bec-transaction-management"
+    ],
+    "capabilityTags": [
+      "java",
+      "project",
+      "standard"
+    ]
+  },
+  "bec-java-runtime": {
+    "relatedSkills": [
+      "bec-java-project-standard",
+      "bec-observability"
+    ],
+    "capabilityTags": [
+      "java",
+      "runtime"
+    ]
+  },
+  "bec-native-memory-safety": {
+    "relatedSkills": [
+      "bec-c-project-standard",
+      "bec-cpp-project-standard"
+    ],
+    "capabilityTags": [
+      "native",
+      "memory",
+      "safety"
+    ]
+  },
+  "bec-observability": {
+    "relatedSkills": [
+      "bec-debug-framework",
+      "bec-performance-optimization"
+    ],
+    "capabilityTags": [
+      "observability"
+    ]
+  },
+  "bec-performance-optimization": {
+    "relatedSkills": [
+      "bec-observability",
+      "bec-java-runtime"
+    ],
+    "capabilityTags": [
+      "performance",
+      "optimization"
+    ]
+  },
+  "bec-project-init": {
+    "relatedSkills": [
+      "cc-source-driven-development",
+      "bec-testing-strategy"
+    ],
+    "capabilityTags": [
+      "project",
+      "init"
+    ]
+  },
+  "bec-python-async": {
+    "relatedSkills": [
+      "bec-python-project-standard",
+      "bec-observability"
+    ],
+    "capabilityTags": [
+      "python",
+      "async"
+    ]
+  },
+  "bec-python-project-standard": {
+    "relatedSkills": [
+      "bec-python-async",
+      "bec-testing-strategy"
+    ],
+    "capabilityTags": [
+      "python",
+      "project",
+      "standard"
+    ]
+  },
+  "bec-refactoring": {
+    "relatedSkills": [
+      "cc-refactoring-core",
+      "bec-testing-strategy"
+    ],
+    "capabilityTags": [
+      "refactoring"
+    ]
+  },
+  "bec-rust-async": {
+    "relatedSkills": [
+      "bec-rust-project-standard",
+      "bec-transaction-management"
+    ],
+    "capabilityTags": [
+      "rust",
+      "async"
+    ]
+  },
+  "bec-rust-project-standard": {
+    "relatedSkills": [
+      "bec-rust-async",
+      "bec-testing-strategy"
+    ],
+    "capabilityTags": [
+      "rust",
+      "project",
+      "standard"
+    ]
+  },
+  "bec-tdd-workflow": {
+    "relatedSkills": [
+      "cc-tdd-methodology",
+      "bec-testing-strategy"
+    ],
+    "capabilityTags": [
+      "tdd",
+      "workflow"
+    ]
+  },
+  "bec-testing-strategy": {
+    "relatedSkills": [
+      "bec-tdd-workflow",
+      "bec-code-review"
+    ],
+    "capabilityTags": [
+      "testing",
+      "strategy"
+    ]
+  },
+  "bec-transaction-management": {
+    "relatedSkills": [
+      "bec-api-design",
+      "bec-database-design"
+    ],
+    "capabilityTags": [
+      "transaction",
+      "management"
+    ]
+  },
+  "cc-debug-methodology": {
+    "capabilityTags": [
+      "debug",
+      "evidence",
+      "root-cause"
+    ]
+  },
+  "cc-doc-sync-core": {
+    "capabilityTags": [
+      "documentation",
+      "source-of-truth",
+      "i18n"
+    ]
+  },
+  "cc-drawio-studio": {
+    "capabilityTags": [
+      "drawio",
+      "uml",
+      "erd",
+      "architecture"
+    ]
+  },
+  "cc-refactoring-core": {
+    "capabilityTags": [
+      "refactoring",
+      "behavior-preservation",
+      "baseline"
+    ]
+  },
+  "cc-source-driven-development": {
+    "capabilityTags": [
+      "official-docs",
+      "versioning",
+      "local-knowledge"
+    ]
+  },
+  "cc-tdd-methodology": {
+    "capabilityTags": [
+      "tdd",
+      "regression",
+      "red-green-refactor"
+    ]
+  },
+  "cc-technical-diagrams": {
+    "capabilityTags": [
+      "architecture",
+      "sequence",
+      "workflow",
+      "png-qa"
+    ]
+  }
+}
