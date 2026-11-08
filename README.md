@@ -27,4 +27,8 @@ Choose either CLI installation or a native Claude/OpenClaw plugin for a runtime.
 
 [Language guides](docs/languages/README.md), [coexistence](docs/coexistence.md), [extending languages](docs/extending-languages.md), [acceptance evidence](docs/verification/acceptance.md).
 
-Development: `pnpm install`, `pnpm lint`, `pnpm typecheck`, `pnpm test`, `pnpm build`, `pnpm run pack:all`. The last command builds, tests, creates native and 34 standalone skill packages, and verifies their content. No publishing command runs automatically.
+Development: `pnpm install`, `pnpm lint`, `pnpm typecheck`, `pnpm build`, `pnpm test`, `pnpm run pack:all`. The last command builds, tests, creates native and 34 standalone skill packages, and verifies their content. No publishing command runs automatically.
+
+[Project structure and maintenance](docs/project-structure.md) (Simplified Chinese) describes source modules, generated common content and validation commands. The CLI does not support self-update or self-uninstall; use the original package manager to manage the CLI and `bec runtime update/uninstall` for runtime resources.
+
+Run `pnpm build` before `pnpm test` in a fresh checkout: packaging tests execute the generated CLI, native hooks and OpenClaw bundle from `dist/`. Unlike frontend-craft, backend-craft does not build automatically in its `test` script.

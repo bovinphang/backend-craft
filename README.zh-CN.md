@@ -25,3 +25,7 @@ CLI 与原生插件渠道二选一。CLI 通过版本、语言、摘要共享公
 参见：[平台契约](docs/research/runtime-contracts.md)、[语言指南](docs/languages/README.md)、[验证配置](docs/validation-config.md)、[共存与迁移](docs/coexistence.md)、[扩展语言](docs/extending-languages.md)、[验收证据](docs/verification/acceptance.md)。
 
 开发使用 pnpm：lint、typecheck、test、build、check:common；pack:all 按构建、测试、原生与独立包构建、包核验顺序执行，产出 npm CLI、OpenClaw 包与 34 个独立 Skill 包，不自动发布。
+
+[工程结构与维护入口](docs/project-structure.md)列出源码模块、公共内容生成边界与校验命令。首版 CLI 不提供自升级、自卸载；使用原包管理器管理 CLI，使用 `bec runtime update/uninstall` 管理运行时资源。
+
+首次检出应先运行 `pnpm build`，再运行 `pnpm test`；分发测试依赖 `dist/` 中的 CLI、原生 Hook 和 OpenClaw bundle。后端的 `test` 脚本不会自动构建。
