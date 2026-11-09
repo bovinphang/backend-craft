@@ -2,34 +2,25 @@ import fs from "node:fs";
 import path from "node:path";
 import { parseDocument } from "yaml";
 import { stringify } from "smol-toml";
-import type { InstallContext } from "../types.js";
+
 import type { RuntimeAdapter } from "../registry.js";
 import { readProductCatalog } from "../../content/catalog.js";
-import {
-  writeManaged,
-  previousSharedEntry,
-  recordSharedEntry,
-  preserveShared,
-} from "../manifest.js";
-import { existsPlanned, writePlanned } from "../product-plan.js";
-import { entryHash, planSharedEntry } from "../shared-config/index.js";
+import { writeManaged } from "../manifest.js";
+import { entryHash } from "../shared-config/index.js";
 import { getRuntimeTarget } from "../paths.js";
-export function sharedText(file: string, value: string): void {
-  const previous = previousSharedEntry(file, "backend-craft"),
-    draft = {
-      kind: "text-marker" as const,
-      id: "backend-craft",
-      value,
-      createdFile: previous?.createdFile ?? !existsPlanned(file),
-    },
-    entry = { ...draft, hash: entryHash(draft) },
-    change = planSharedEntry(file, entry, "upsert", previous);
-  if (!change) {
-    preserveShared(file);
-    return;
-  }
-  writePlanned(file, change.after);
-  recordSharedEntry(file, entry);
+import type { PlanningInstallContext } from "../types.js";
+export function sharedText(
+  ctx: PlanningInstallContext,
+  file: string,
+  value: string,
+): void {
+  const draft = {
+    kind: "text-marker" as const,
+    id: "backend-craft",
+    value,
+    createdFile: !ctx.session.exists(file),
+  };
+  ctx.session.editShared(file, { ...draft, hash: entryHash(draft) });
 }
 export function document(raw: string): {
   name: string;
@@ -44,7 +35,7 @@ export function document(raw: string): {
   return { ...data, body: raw.slice(match[0].length).trim() };
 }
 export async function planCore(
-  ctx: InstallContext,
+  ctx: PlanningInstallContext,
   adapter: RuntimeAdapter,
 ): Promise<void> {
   const catalog = readProductCatalog(ctx.productRoot, ctx.language),
@@ -52,9 +43,12 @@ export async function planCore(
   const referenceDir =
     skillsDir ?? path.join(ctx.baseDir, "backend-craft/reference-skills");
   if (referenceDir)
-    for (const skill of catalog.skills.filter((s) => s.id.startsWith("bec-")))
+    for (const skill of catalog.skills.filter(
+      (s) => !skillsDir || s.id.startsWith("bec-"),
+    ))
       for (const file of skill.files)
         writeManaged(
+          ctx,
           path.join(referenceDir, skill.id, file.relativePath),
           fs.readFileSync(
             path.join(ctx.contentRoot, "skills", skill.id, file.relativePath),
@@ -69,6 +63,7 @@ export async function planCore(
       if (ctx.runtime === "codex") {
         const { name, description, body } = document(raw);
         writeManaged(
+          ctx,
           path.join(ctx.baseDir, "agents", id + ".toml"),
           Buffer.from(
             stringify({ name, description, developer_instructions: body }),
@@ -76,6 +71,7 @@ export async function planCore(
         );
       } else
         writeManaged(
+          ctx,
           path.join(ctx.baseDir, "agents", id + ".md"),
           Buffer.from(raw),
         );
@@ -101,6 +97,7 @@ export async function planCore(
         if (catalog.skills.some((skill) => skill.id === id)) continue;
         const parsed = document(raw);
         writeManaged(
+          ctx,
           path.join(referenceDir, id, "SKILL.md"),
           Buffer.from(
             "---\nname: " +
@@ -115,6 +112,7 @@ export async function planCore(
         continue;
       }
       writeManaged(
+        ctx,
         path.join(
           ctx.baseDir,
           dir,
@@ -142,7 +140,6 @@ export async function planCore(
           : "These are reference documents, not native Skills. Select only the nearest project language and relevant domain methods.") +
         "\n\n" +
         catalog.skills
-          .filter((s) => s.id.startsWith("bec-"))
           .map(
             (s) =>
               "- [" +
@@ -173,7 +170,11 @@ export async function planCore(
           .join("\n") +
         "\n";
       if (ctx.runtime === "copilot" && ctx.isGlobal)
-        sharedText(path.join(ctx.baseDir, "copilot-instructions.md"), guide);
+        sharedText(
+          ctx,
+          path.join(ctx.baseDir, "copilot-instructions.md"),
+          guide,
+        );
       else {
         const dest =
           ctx.runtime === "cline"
@@ -193,6 +194,7 @@ export async function planCore(
                   "instructions/backend-craft.instructions.md",
                 );
         writeManaged(
+          ctx,
           dest,
           Buffer.from(
             (ctx.runtime === "copilot" ? '---\napplyTo: "**"\n---\n\n' : "") +
@@ -234,6 +236,7 @@ export async function planCore(
                   "---\n\n"
                 : "";
         writeManaged(
+          ctx,
           path.join(
             ctx.baseDir,
             "rules",
@@ -257,7 +260,7 @@ export async function planCore(
       path.join(ctx.contentRoot, "templates/shared/rules/bec-core.md"),
       "utf8",
     );
-    sharedText(context, body.trim());
+    sharedText(ctx, context, body.trim());
   }
 }
 export function adapterFor(

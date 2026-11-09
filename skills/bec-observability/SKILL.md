@@ -17,3 +17,7 @@ Start from operational questions and service objectives; identify the entry, dep
 ## Task boundary
 
 Telemetry is evidence for diagnosis, not a substitute for reproduction or a guaranteed root cause; avoid unbounded labels and secrets.
+
+## Engineering practices
+
+Read the [local engineering decisions](references/engineering-practices.md) for this task and follow their links to relevant shared principles. Apply levels and exceptions against actual project contracts; product frontend/backend labels do not constrain language or role.

@@ -77,8 +77,14 @@ for (const runtime of ["claude", "codex"])
         assert.deepEqual(fs.readFileSync(native), before);
         assert.ok(
           fs.existsSync(
-            path.join(target.skillsDir!, "bec-go-project-standard/SKILL.md"),
+            path.join(target.skillsDir!, "cc-go-project-standard/SKILL.md"),
           ),
+        );
+        assert.equal(
+          fs.existsSync(
+            path.join(target.skillsDir!, "bec-go-project-standard"),
+          ),
+          false,
         );
         assert.equal(
           fs.readdirSync(path.join(ctx.baseDir, "agents")).length,

@@ -25,7 +25,18 @@
       "opencode",
       "openclaw",
       "generic-skill-runtime"
-    ]
+    ],
+    "applicability": {
+      "roles": [
+        "service"
+      ],
+      "taskKinds": [
+        "api",
+        "data",
+        "build",
+        "review"
+      ]
+    }
   },
   {
     "id": "bec-architecture-design",
@@ -53,7 +64,18 @@
       "opencode",
       "openclaw",
       "generic-skill-runtime"
-    ]
+    ],
+    "applicability": {
+      "roles": [
+        "service"
+      ],
+      "taskKinds": [
+        "api",
+        "data",
+        "build",
+        "review"
+      ]
+    }
   },
   {
     "id": "bec-auth-security",
@@ -81,26 +103,38 @@
       "opencode",
       "openclaw",
       "generic-skill-runtime"
-    ]
+    ],
+    "applicability": {
+      "roles": [
+        "service"
+      ],
+      "taskKinds": [
+        "api",
+        "data",
+        "build",
+        "review"
+      ]
+    }
   },
   {
-    "id": "bec-c-project-standard",
-    "name": "C 工程规范",
-    "category": "project-standards",
+    "id": "bec-axum-project-standard",
+    "name": "Axum 服务工程",
+    "category": "backend-engineering",
     "tags": [
-      "c",
-      "project",
-      "standard"
+      "axum",
+      "rust",
+      "service"
     ],
-    "summary": "C 工程规范",
+    "summary": "Axum 服务工程",
     "version": "1.0.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
     "keywords": [
-      "c",
-      "project",
-      "standard"
+      "backend-engineering",
+      "axum",
+      "rust",
+      "service"
     ],
     "platforms": [
       "skills-cli",
@@ -111,7 +145,24 @@
       "opencode",
       "openclaw",
       "generic-skill-runtime"
-    ]
+    ],
+    "applicability": {
+      "languages": [
+        "rust"
+      ],
+      "frameworks": [
+        "axum"
+      ],
+      "roles": [
+        "service"
+      ],
+      "taskKinds": [
+        "api",
+        "data",
+        "build",
+        "review"
+      ]
+    }
   },
   {
     "id": "bec-cache-design",
@@ -139,7 +190,18 @@
       "opencode",
       "openclaw",
       "generic-skill-runtime"
-    ]
+    ],
+    "applicability": {
+      "roles": [
+        "service"
+      ],
+      "taskKinds": [
+        "api",
+        "data",
+        "build",
+        "review"
+      ]
+    }
   },
   {
     "id": "bec-code-review",
@@ -167,37 +229,15 @@
       "opencode",
       "openclaw",
       "generic-skill-runtime"
-    ]
-  },
-  {
-    "id": "bec-cpp-project-standard",
-    "name": "C++ 工程规范",
-    "category": "project-standards",
-    "tags": [
-      "cpp",
-      "project",
-      "standard"
     ],
-    "summary": "C++ 工程规范",
-    "version": "1.0.0",
-    "license": "MIT",
-    "homepage": "https://github.com/bovinphang/backend-craft",
-    "repository": "https://github.com/bovinphang/backend-craft",
-    "keywords": [
-      "cpp",
-      "project",
-      "standard"
-    ],
-    "platforms": [
-      "skills-cli",
-      "skillreg",
-      "claude-code",
-      "codex",
-      "cursor",
-      "opencode",
-      "openclaw",
-      "generic-skill-runtime"
-    ]
+    "applicability": {
+      "roles": [
+        "service"
+      ],
+      "taskKinds": [
+        "review"
+      ]
+    }
   },
   {
     "id": "bec-database-design",
@@ -225,7 +265,18 @@
       "opencode",
       "openclaw",
       "generic-skill-runtime"
-    ]
+    ],
+    "applicability": {
+      "roles": [
+        "service"
+      ],
+      "taskKinds": [
+        "api",
+        "data",
+        "build",
+        "review"
+      ]
+    }
   },
   {
     "id": "bec-debug-framework",
@@ -253,7 +304,18 @@
       "opencode",
       "openclaw",
       "generic-skill-runtime"
-    ]
+    ],
+    "applicability": {
+      "roles": [
+        "service"
+      ],
+      "taskKinds": [
+        "api",
+        "data",
+        "build",
+        "review"
+      ]
+    }
   },
   {
     "id": "bec-dependency-management",
@@ -281,7 +343,18 @@
       "opencode",
       "openclaw",
       "generic-skill-runtime"
-    ]
+    ],
+    "applicability": {
+      "roles": [
+        "service"
+      ],
+      "taskKinds": [
+        "api",
+        "data",
+        "build",
+        "review"
+      ]
+    }
   },
   {
     "id": "bec-doc-sync",
@@ -309,24 +382,38 @@
       "opencode",
       "openclaw",
       "generic-skill-runtime"
-    ]
+    ],
+    "applicability": {
+      "roles": [
+        "service"
+      ],
+      "taskKinds": [
+        "api",
+        "data",
+        "build",
+        "review"
+      ]
+    }
   },
   {
-    "id": "bec-go-concurrency",
-    "name": "Go 并发生命周期",
+    "id": "bec-drogon-project-standard",
+    "name": "Drogon 服务工程",
     "category": "backend-engineering",
     "tags": [
-      "go",
-      "concurrency"
+      "drogon",
+      "cpp",
+      "service"
     ],
-    "summary": "Go 并发生命周期",
+    "summary": "Drogon 服务工程",
     "version": "1.0.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
     "keywords": [
-      "go",
-      "concurrency"
+      "backend-engineering",
+      "drogon",
+      "cpp",
+      "service"
     ],
     "platforms": [
       "skills-cli",
@@ -337,84 +424,44 @@
       "opencode",
       "openclaw",
       "generic-skill-runtime"
-    ]
+    ],
+    "applicability": {
+      "languages": [
+        "cpp"
+      ],
+      "frameworks": [
+        "drogon"
+      ],
+      "roles": [
+        "service"
+      ],
+      "taskKinds": [
+        "api",
+        "data",
+        "build",
+        "review"
+      ]
+    }
   },
   {
-    "id": "bec-go-project-standard",
-    "name": "Go 工程规范",
-    "category": "project-standards",
-    "tags": [
-      "go",
-      "project",
-      "standard"
-    ],
-    "summary": "Go 工程规范",
-    "version": "1.0.0",
-    "license": "MIT",
-    "homepage": "https://github.com/bovinphang/backend-craft",
-    "repository": "https://github.com/bovinphang/backend-craft",
-    "keywords": [
-      "go",
-      "project",
-      "standard"
-    ],
-    "platforms": [
-      "skills-cli",
-      "skillreg",
-      "claude-code",
-      "codex",
-      "cursor",
-      "opencode",
-      "openclaw",
-      "generic-skill-runtime"
-    ]
-  },
-  {
-    "id": "bec-java-project-standard",
-    "name": "Java 工程规范",
-    "category": "project-standards",
-    "tags": [
-      "java",
-      "project",
-      "standard"
-    ],
-    "summary": "Java 工程规范",
-    "version": "1.0.0",
-    "license": "MIT",
-    "homepage": "https://github.com/bovinphang/backend-craft",
-    "repository": "https://github.com/bovinphang/backend-craft",
-    "keywords": [
-      "java",
-      "project",
-      "standard"
-    ],
-    "platforms": [
-      "skills-cli",
-      "skillreg",
-      "claude-code",
-      "codex",
-      "cursor",
-      "opencode",
-      "openclaw",
-      "generic-skill-runtime"
-    ]
-  },
-  {
-    "id": "bec-java-runtime",
-    "name": "Java 运行时诊断",
+    "id": "bec-fastapi-project-standard",
+    "name": "FastAPI 服务工程",
     "category": "backend-engineering",
     "tags": [
-      "java",
-      "runtime"
+      "fastapi",
+      "python",
+      "service"
     ],
-    "summary": "Java 运行时诊断",
+    "summary": "FastAPI 服务工程",
     "version": "1.0.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
     "keywords": [
-      "java",
-      "runtime"
+      "backend-engineering",
+      "fastapi",
+      "python",
+      "service"
     ],
     "platforms": [
       "skills-cli",
@@ -425,26 +472,44 @@
       "opencode",
       "openclaw",
       "generic-skill-runtime"
-    ]
+    ],
+    "applicability": {
+      "languages": [
+        "python"
+      ],
+      "frameworks": [
+        "fastapi"
+      ],
+      "roles": [
+        "service"
+      ],
+      "taskKinds": [
+        "api",
+        "data",
+        "build",
+        "review"
+      ]
+    }
   },
   {
-    "id": "bec-native-memory-safety",
-    "name": "原生内存与 FFI 安全",
+    "id": "bec-gin-project-standard",
+    "name": "Gin 服务工程",
     "category": "backend-engineering",
     "tags": [
-      "native",
-      "memory",
-      "safety"
+      "gin",
+      "go",
+      "service"
     ],
-    "summary": "原生内存与 FFI 安全",
+    "summary": "Gin 服务工程",
     "version": "1.0.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
     "keywords": [
-      "native",
-      "memory",
-      "safety"
+      "backend-engineering",
+      "gin",
+      "go",
+      "service"
     ],
     "platforms": [
       "skills-cli",
@@ -455,7 +520,24 @@
       "opencode",
       "openclaw",
       "generic-skill-runtime"
-    ]
+    ],
+    "applicability": {
+      "languages": [
+        "go"
+      ],
+      "frameworks": [
+        "gin"
+      ],
+      "roles": [
+        "service"
+      ],
+      "taskKinds": [
+        "api",
+        "data",
+        "build",
+        "review"
+      ]
+    }
   },
   {
     "id": "bec-observability",
@@ -481,7 +563,18 @@
       "opencode",
       "openclaw",
       "generic-skill-runtime"
-    ]
+    ],
+    "applicability": {
+      "roles": [
+        "service"
+      ],
+      "taskKinds": [
+        "api",
+        "data",
+        "build",
+        "review"
+      ]
+    }
   },
   {
     "id": "bec-performance-optimization",
@@ -509,7 +602,18 @@
       "opencode",
       "openclaw",
       "generic-skill-runtime"
-    ]
+    ],
+    "applicability": {
+      "roles": [
+        "service"
+      ],
+      "taskKinds": [
+        "api",
+        "data",
+        "build",
+        "review"
+      ]
+    }
   },
   {
     "id": "bec-project-init",
@@ -537,65 +641,18 @@
       "opencode",
       "openclaw",
       "generic-skill-runtime"
-    ]
-  },
-  {
-    "id": "bec-python-async",
-    "name": "Python 异步生命周期",
-    "category": "backend-engineering",
-    "tags": [
-      "python",
-      "async"
     ],
-    "summary": "Python 异步生命周期",
-    "version": "1.0.0",
-    "license": "MIT",
-    "homepage": "https://github.com/bovinphang/backend-craft",
-    "repository": "https://github.com/bovinphang/backend-craft",
-    "keywords": [
-      "python",
-      "async"
-    ],
-    "platforms": [
-      "skills-cli",
-      "skillreg",
-      "claude-code",
-      "codex",
-      "cursor",
-      "opencode",
-      "openclaw",
-      "generic-skill-runtime"
-    ]
-  },
-  {
-    "id": "bec-python-project-standard",
-    "name": "Python 工程规范",
-    "category": "project-standards",
-    "tags": [
-      "python",
-      "project",
-      "standard"
-    ],
-    "summary": "Python 工程规范",
-    "version": "1.0.0",
-    "license": "MIT",
-    "homepage": "https://github.com/bovinphang/backend-craft",
-    "repository": "https://github.com/bovinphang/backend-craft",
-    "keywords": [
-      "python",
-      "project",
-      "standard"
-    ],
-    "platforms": [
-      "skills-cli",
-      "skillreg",
-      "claude-code",
-      "codex",
-      "cursor",
-      "opencode",
-      "openclaw",
-      "generic-skill-runtime"
-    ]
+    "applicability": {
+      "roles": [
+        "service"
+      ],
+      "taskKinds": [
+        "api",
+        "data",
+        "build",
+        "review"
+      ]
+    }
   },
   {
     "id": "bec-refactoring",
@@ -621,24 +678,38 @@
       "opencode",
       "openclaw",
       "generic-skill-runtime"
-    ]
+    ],
+    "applicability": {
+      "roles": [
+        "service"
+      ],
+      "taskKinds": [
+        "api",
+        "data",
+        "build",
+        "review"
+      ]
+    }
   },
   {
-    "id": "bec-rust-async",
-    "name": "Rust 异步生命周期",
+    "id": "bec-spring-boot-project-standard",
+    "name": "Spring Boot 服务工程",
     "category": "backend-engineering",
     "tags": [
-      "rust",
-      "async"
+      "spring-boot",
+      "java",
+      "service"
     ],
-    "summary": "Rust 异步生命周期",
+    "summary": "Spring Boot 服务工程",
     "version": "1.0.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
     "keywords": [
-      "rust",
-      "async"
+      "backend-engineering",
+      "spring-boot",
+      "java",
+      "service"
     ],
     "platforms": [
       "skills-cli",
@@ -649,37 +720,24 @@
       "opencode",
       "openclaw",
       "generic-skill-runtime"
-    ]
-  },
-  {
-    "id": "bec-rust-project-standard",
-    "name": "Rust 工程规范",
-    "category": "project-standards",
-    "tags": [
-      "rust",
-      "project",
-      "standard"
     ],
-    "summary": "Rust 工程规范",
-    "version": "1.0.0",
-    "license": "MIT",
-    "homepage": "https://github.com/bovinphang/backend-craft",
-    "repository": "https://github.com/bovinphang/backend-craft",
-    "keywords": [
-      "rust",
-      "project",
-      "standard"
-    ],
-    "platforms": [
-      "skills-cli",
-      "skillreg",
-      "claude-code",
-      "codex",
-      "cursor",
-      "opencode",
-      "openclaw",
-      "generic-skill-runtime"
-    ]
+    "applicability": {
+      "languages": [
+        "java"
+      ],
+      "frameworks": [
+        "spring-boot"
+      ],
+      "roles": [
+        "service"
+      ],
+      "taskKinds": [
+        "api",
+        "data",
+        "build",
+        "review"
+      ]
+    }
   },
   {
     "id": "bec-tdd-workflow",
@@ -707,7 +765,18 @@
       "opencode",
       "openclaw",
       "generic-skill-runtime"
-    ]
+    ],
+    "applicability": {
+      "roles": [
+        "service"
+      ],
+      "taskKinds": [
+        "api",
+        "data",
+        "build",
+        "review"
+      ]
+    }
   },
   {
     "id": "bec-testing-strategy",
@@ -735,7 +804,18 @@
       "opencode",
       "openclaw",
       "generic-skill-runtime"
-    ]
+    ],
+    "applicability": {
+      "roles": [
+        "service"
+      ],
+      "taskKinds": [
+        "api",
+        "data",
+        "build",
+        "review"
+      ]
+    }
   },
   {
     "id": "bec-transaction-management",
@@ -763,7 +843,90 @@
       "opencode",
       "openclaw",
       "generic-skill-runtime"
-    ]
+    ],
+    "applicability": {
+      "roles": [
+        "service"
+      ],
+      "taskKinds": [
+        "api",
+        "data",
+        "build",
+        "review"
+      ]
+    }
+  },
+  {
+    "id": "cc-c-project-standard",
+    "name": "C 工程规范",
+    "category": "project-standard",
+    "tags": [
+      "c",
+      "project",
+      "standard"
+    ],
+    "summary": "C 工程规范",
+    "version": "2.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/craft-common",
+    "repository": "https://github.com/bovinphang/craft-common",
+    "keywords": [
+      "project-standard",
+      "c",
+      "project",
+      "standard"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ],
+    "applicability": {
+      "languages": [
+        "c"
+      ]
+    }
+  },
+  {
+    "id": "cc-cpp-project-standard",
+    "name": "C++ 工程规范",
+    "category": "project-standard",
+    "tags": [
+      "cpp",
+      "project",
+      "standard"
+    ],
+    "summary": "C++ 工程规范",
+    "version": "2.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/craft-common",
+    "repository": "https://github.com/bovinphang/craft-common",
+    "keywords": [
+      "project-standard",
+      "cpp",
+      "project",
+      "standard"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ],
+    "applicability": {
+      "languages": [
+        "cpp"
+      ]
+    }
   },
   {
     "id": "cc-debug-methodology",
@@ -775,7 +938,7 @@
       "root-cause"
     ],
     "summary": "证据驱动诊断",
-    "version": "1.0.1",
+    "version": "2.0.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/craft-common",
     "repository": "https://github.com/bovinphang/craft-common",
@@ -806,7 +969,7 @@
       "i18n"
     ],
     "summary": "文档事实同步",
-    "version": "1.0.1",
+    "version": "2.0.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/craft-common",
     "repository": "https://github.com/bovinphang/craft-common",
@@ -838,7 +1001,7 @@
       "architecture"
     ],
     "summary": "可编辑技术图",
-    "version": "1.0.1",
+    "version": "2.0.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/craft-common",
     "repository": "https://github.com/bovinphang/craft-common",
@@ -861,6 +1024,309 @@
     ]
   },
   {
+    "id": "cc-electron-project-standard",
+    "name": "Electron 应用工程",
+    "category": "project-standard",
+    "tags": [
+      "electron",
+      "desktop",
+      "ipc"
+    ],
+    "summary": "Electron 应用工程",
+    "version": "2.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/craft-common",
+    "repository": "https://github.com/bovinphang/craft-common",
+    "keywords": [
+      "project-standard",
+      "electron",
+      "desktop",
+      "ipc"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ],
+    "applicability": {
+      "languages": [
+        "javascript",
+        "typescript"
+      ],
+      "frameworks": [
+        "electron"
+      ],
+      "roles": [
+        "ui",
+        "desktop-core"
+      ],
+      "taskKinds": [
+        "ipc",
+        "build",
+        "review",
+        "native-memory"
+      ]
+    }
+  },
+  {
+    "id": "cc-go-concurrency",
+    "name": "Go 并发生命周期",
+    "category": "implementation-capability",
+    "tags": [
+      "go",
+      "concurrency"
+    ],
+    "summary": "Go 并发生命周期",
+    "version": "2.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/craft-common",
+    "repository": "https://github.com/bovinphang/craft-common",
+    "keywords": [
+      "implementation-capability",
+      "go",
+      "concurrency"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ],
+    "applicability": {
+      "languages": [
+        "go"
+      ]
+    }
+  },
+  {
+    "id": "cc-go-project-standard",
+    "name": "Go 工程规范",
+    "category": "project-standard",
+    "tags": [
+      "go",
+      "project",
+      "standard"
+    ],
+    "summary": "Go 工程规范",
+    "version": "2.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/craft-common",
+    "repository": "https://github.com/bovinphang/craft-common",
+    "keywords": [
+      "project-standard",
+      "go",
+      "project",
+      "standard"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ],
+    "applicability": {
+      "languages": [
+        "go"
+      ]
+    }
+  },
+  {
+    "id": "cc-java-project-standard",
+    "name": "Java 工程规范",
+    "category": "project-standard",
+    "tags": [
+      "java",
+      "project",
+      "standard"
+    ],
+    "summary": "Java 工程规范",
+    "version": "2.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/craft-common",
+    "repository": "https://github.com/bovinphang/craft-common",
+    "keywords": [
+      "project-standard",
+      "java",
+      "project",
+      "standard"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ],
+    "applicability": {
+      "languages": [
+        "java"
+      ]
+    }
+  },
+  {
+    "id": "cc-java-runtime",
+    "name": "Java 运行时诊断",
+    "category": "implementation-capability",
+    "tags": [
+      "java",
+      "runtime"
+    ],
+    "summary": "Java 运行时诊断",
+    "version": "2.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/craft-common",
+    "repository": "https://github.com/bovinphang/craft-common",
+    "keywords": [
+      "implementation-capability",
+      "java",
+      "runtime"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ],
+    "applicability": {
+      "languages": [
+        "java"
+      ]
+    }
+  },
+  {
+    "id": "cc-native-memory-safety",
+    "name": "原生内存与 FFI 安全",
+    "category": "implementation-capability",
+    "tags": [
+      "native",
+      "memory",
+      "safety"
+    ],
+    "summary": "原生内存与 FFI 安全",
+    "version": "2.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/craft-common",
+    "repository": "https://github.com/bovinphang/craft-common",
+    "keywords": [
+      "implementation-capability",
+      "native",
+      "memory",
+      "safety"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ],
+    "applicability": {
+      "languages": [
+        "c",
+        "cpp",
+        "rust"
+      ],
+      "taskKinds": [
+        "native-memory",
+        "ipc",
+        "review"
+      ]
+    }
+  },
+  {
+    "id": "cc-python-async",
+    "name": "Python 异步生命周期",
+    "category": "implementation-capability",
+    "tags": [
+      "python",
+      "async"
+    ],
+    "summary": "Python 异步生命周期",
+    "version": "2.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/craft-common",
+    "repository": "https://github.com/bovinphang/craft-common",
+    "keywords": [
+      "implementation-capability",
+      "python",
+      "async"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ],
+    "applicability": {
+      "languages": [
+        "python"
+      ]
+    }
+  },
+  {
+    "id": "cc-python-project-standard",
+    "name": "Python 工程规范",
+    "category": "project-standard",
+    "tags": [
+      "python",
+      "project",
+      "standard"
+    ],
+    "summary": "Python 工程规范",
+    "version": "2.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/craft-common",
+    "repository": "https://github.com/bovinphang/craft-common",
+    "keywords": [
+      "project-standard",
+      "python",
+      "project",
+      "standard"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ],
+    "applicability": {
+      "languages": [
+        "python"
+      ]
+    }
+  },
+  {
     "id": "cc-refactoring-core",
     "name": "保持行为的重构",
     "category": "project-evolution",
@@ -870,7 +1336,7 @@
       "baseline"
     ],
     "summary": "保持行为的重构",
-    "version": "1.0.1",
+    "version": "2.0.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/craft-common",
     "repository": "https://github.com/bovinphang/craft-common",
@@ -892,6 +1358,76 @@
     ]
   },
   {
+    "id": "cc-rust-async",
+    "name": "Rust 异步生命周期",
+    "category": "implementation-capability",
+    "tags": [
+      "rust",
+      "async"
+    ],
+    "summary": "Rust 异步生命周期",
+    "version": "2.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/craft-common",
+    "repository": "https://github.com/bovinphang/craft-common",
+    "keywords": [
+      "implementation-capability",
+      "rust",
+      "async"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ],
+    "applicability": {
+      "languages": [
+        "rust"
+      ]
+    }
+  },
+  {
+    "id": "cc-rust-project-standard",
+    "name": "Rust 工程规范",
+    "category": "project-standard",
+    "tags": [
+      "rust",
+      "project",
+      "standard"
+    ],
+    "summary": "Rust 工程规范",
+    "version": "2.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/craft-common",
+    "repository": "https://github.com/bovinphang/craft-common",
+    "keywords": [
+      "project-standard",
+      "rust",
+      "project",
+      "standard"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ],
+    "applicability": {
+      "languages": [
+        "rust"
+      ]
+    }
+  },
+  {
     "id": "cc-source-driven-development",
     "name": "以事实来源驱动开发",
     "category": "project-standard",
@@ -901,7 +1437,7 @@
       "local-knowledge"
     ],
     "summary": "以事实来源驱动开发",
-    "version": "1.0.1",
+    "version": "2.0.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/craft-common",
     "repository": "https://github.com/bovinphang/craft-common",
@@ -923,6 +1459,57 @@
     ]
   },
   {
+    "id": "cc-tauri-project-standard",
+    "name": "Tauri 应用工程",
+    "category": "project-standard",
+    "tags": [
+      "tauri",
+      "desktop",
+      "ipc"
+    ],
+    "summary": "Tauri 应用工程",
+    "version": "2.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/craft-common",
+    "repository": "https://github.com/bovinphang/craft-common",
+    "keywords": [
+      "project-standard",
+      "tauri",
+      "desktop",
+      "ipc"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ],
+    "applicability": {
+      "languages": [
+        "rust",
+        "typescript",
+        "javascript"
+      ],
+      "frameworks": [
+        "tauri"
+      ],
+      "roles": [
+        "ui",
+        "desktop-core"
+      ],
+      "taskKinds": [
+        "ipc",
+        "build",
+        "review",
+        "native-memory"
+      ]
+    }
+  },
+  {
     "id": "cc-tdd-methodology",
     "name": "测试驱动开发",
     "category": "testing",
@@ -932,7 +1519,7 @@
       "red-green-refactor"
     ],
     "summary": "测试驱动开发",
-    "version": "1.0.1",
+    "version": "2.0.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/craft-common",
     "repository": "https://github.com/bovinphang/craft-common",
@@ -964,7 +1551,7 @@
       "png-qa"
     ],
     "summary": "结构化技术图表",
-    "version": "1.0.1",
+    "version": "2.0.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/craft-common",
     "repository": "https://github.com/bovinphang/craft-common",
@@ -985,5 +1572,47 @@
       "openclaw",
       "generic-skill-runtime"
     ]
+  },
+  {
+    "id": "cc-typescript-project-standard",
+    "name": "TypeScript 项目规范",
+    "category": "project-standard",
+    "tags": [
+      "typescript",
+      "project-standard",
+      "type-safety",
+      "tsconfig",
+      "declarations"
+    ],
+    "summary": "用于创建、配置、审查或调试前端应用、库、SDK、CLI、monorepo 包中的 TypeScript 项目规范，包括 tsconfig、strictness、module/moduleResolution、路径别名、project references、声明文件、package exports、公共 API 类型、DTO、高级泛型、判别联合、类型守卫、类型收窄或类型级回归。React/Vue/Next/Nuxt 组件架构优先使用框架项目 skill。",
+    "version": "2.0.0",
+    "license": "MIT",
+    "homepage": "https://github.com/bovinphang/craft-common",
+    "repository": "https://github.com/bovinphang/craft-common",
+    "keywords": [
+      "project-standard",
+      "typescript",
+      "type-safety",
+      "tsconfig",
+      "declarations",
+      "generics",
+      "dto"
+    ],
+    "platforms": [
+      "skills-cli",
+      "skillreg",
+      "claude-code",
+      "codex",
+      "cursor",
+      "opencode",
+      "openclaw",
+      "generic-skill-runtime"
+    ],
+    "applicability": {
+      "languages": [
+        "typescript",
+        "javascript"
+      ]
+    }
   }
 ]

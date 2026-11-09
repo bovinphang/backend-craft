@@ -17,3 +17,7 @@ description: "Use when 需要后端代码评审，包括审查后端 PR 的事�
 ## 任务边界
 
 按[参考中的边界与案例](references/practice.md#scope)区分相邻能力，不扩展成未要求的框架迁移或全栈重写。
+
+## 工程实践
+
+按当前任务读取[本入口工程细则](references/engineering-practices.md)，再按链接选择公共原则。规则级别与例外以实际项目契约为准；不因产品前后端标签限制语言或职责。

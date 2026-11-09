@@ -17,10 +17,25 @@ function temporary(t: { after(fn: () => void): void }) {
   t.after(() => fs.rmSync(out, { recursive: true, force: true }));
   return out;
 }
-test("34 个技能包的双语完整资源与来源、许可证，不依赖相邻仓库", (t) => {
+test("42 个技能包的双语完整资源与来源、许可证，不依赖相邻仓库", (t) => {
   const out = temporary(t),
     packages = packSkills(root, out);
-  assert.equal(packages.length, 34);
+  assert.equal(packages.length, 42);
+  for (const prefix of ["", "localized/zh-CN/"])
+    for (const file of [
+      "references/engineering-practices.md",
+      "references/common/engineering-practices.md",
+      "references/common/engineering-practices.sources.json",
+      "references/common/engineering-practices.rules.json",
+      "examples/engineering/server.go",
+      "examples/engineering/server_test.go",
+      "examples/engineering/go.mod",
+    ]) {
+      assert.deepEqual(
+        fs.readFileSync(path.join(out, "bec-api-design", prefix, file)),
+        fs.readFileSync(path.join(root, prefix, "skills/bec-api-design", file)),
+      );
+    }
   for (const language of ["en", "zh-CN"] as const)
     for (const skill of readProductCatalog(root, language).skills) {
       const pkg = packages.find((p) => p.id === skill.id)!;
@@ -35,6 +50,17 @@ test("34 个技能包的双语完整资源与来源、许可证，不依赖相�
         assert.equal(hashBytes(fs.readFileSync(output)), file.hash);
       }
       assert.ok(fs.existsSync(path.join(pkg.packagePath, "LICENSE")));
+      if (
+        skill.files.some((file) => file.relativePath.startsWith("examples/"))
+      ) {
+        const manifest = JSON.parse(
+          fs.readFileSync(path.join(pkg.packagePath, "package.json"), "utf8"),
+        );
+        assert.ok(
+          manifest.files.includes("examples"),
+          "framework examples must survive npm packing",
+        );
+      }
     }
   assert.ok(
     fs.existsSync(
@@ -58,6 +84,21 @@ test("CLI 真实 npm tarball 脱离源码和 node_modules，包含双语与原�
     0,
   );
   const extracted = path.join(extractRoot, "package");
+  const packedManifestFile = path.join(extracted, "package.json"),
+    packedManifest = fs.readFileSync(packedManifestFile, "utf8");
+  const parsedManifest = JSON.parse(packedManifest);
+  for (const invalid of [
+    "^" + parsedManifest.dependencies["@bovinphang/craft-common"],
+    "file:../craft-common",
+    "9.9.9",
+  ]) {
+    const invalidManifest = structuredClone(parsedManifest);
+    invalidManifest.dependencies["@bovinphang/craft-common"] = invalid;
+    fs.writeFileSync(packedManifestFile, JSON.stringify(invalidManifest));
+    assert.throws(() => checkPackages(extracted), /公共依赖必须精确/);
+  }
+  fs.writeFileSync(packedManifestFile, packedManifest);
+  checkPackages(extracted);
   const cli = spawnSync(
     process.execPath,
     [path.join(extracted, "dist/bin/backend-craft.js"), "--version"],
@@ -96,7 +137,7 @@ test("CLI 真实 npm tarball 脱离源码和 node_modules，包含双语与原�
   );
   assert.equal(removed.status, 0, removed.stderr);
   for (const lang of ["en", "zh-CN"] as const)
-    assert.equal(readProductCatalog(extracted, lang).skills.length, 34);
+    assert.equal(readProductCatalog(extracted, lang).skills.length, 42);
   const render = spawnSync(
     process.execPath,
     [

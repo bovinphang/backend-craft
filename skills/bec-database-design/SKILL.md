@@ -17,3 +17,7 @@ Confirm engine/version, data volume/distribution, critical queries, constraints 
 ## Task boundary
 
 Do not issue universal production DDL without the actual database/version and operational constraints; transaction orchestration is a separate focus.
+
+## Engineering practices
+
+Read the [local engineering decisions](references/engineering-practices.md) for this task and follow their links to relevant shared principles. Apply levels and exceptions against actual project contracts; product frontend/backend labels do not constrain language or role.

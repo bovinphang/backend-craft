@@ -35,3 +35,9 @@ A local database transaction does not provide atomicity with an external service
 ## Primary reference
 
 [Relevant official/project documentation](https://www.postgresql.org/docs/current/transaction-iso.html) (checked 2026-11-06). Match the actual project version before applying version-sensitive details; the page version does not authorize an upgrade.
+
+## Java service domain boundaries
+
+3. Place transaction scope around the actual consistency unit, not arbitrary controller methods. Specify rollback behavior and avoid unmanaged external effects inside a local transaction.
+
+5. Test use-case invariants, absent records, repeated operations and repository failures. Only a real database test supports claims about isolation/rollback.

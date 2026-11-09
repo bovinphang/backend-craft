@@ -2,7 +2,7 @@ import type { LanguageModule } from "./types.js";
 import { stage } from "./shared.js";
 export const go: LanguageModule = {
   id: "go",
-  skillIds: ["bec-go-project-standard", "bec-go-concurrency"],
+  skillIds: ["cc-go-project-standard", "cc-go-concurrency"],
   suggest: (p) => {
     const env = { GOPROXY: "off", GOSUMDB: "off", GOTOOLCHAIN: "local" };
     return [

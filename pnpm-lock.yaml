@@ -167,8 +167,8 @@ importers:
   .:
     dependencies:
       '@bovinphang/craft-common':
-        specifier: 1.0.1
-        version: 1.0.1
+        specifier: 2.0.0
+        version: 2.0.0
       cross-spawn:
         specifier: 7.0.6
         version: 7.0.6
@@ -212,8 +212,8 @@ importers:
 
 packages:
 
-  '@bovinphang/craft-common@1.0.1':
-    resolution: {integrity: sha512-If8IDZ4r77j3XZGkF4tRYBj2ZRH2PlbiKq118VJyHPS99NbpeSsNz+U67dvyFOq/9ghBfTaUgr5/Ftes4n+8Ig==}
+  '@bovinphang/craft-common@2.0.0':
+    resolution: {integrity: sha512-WX1ql10CdU6gz4w1+TZHG9w541GI/wOArxaEEPzc/+ylGJ1UDsj+hW/R1zNXzr+bTrJ2hwyXk+YohylHPL2gTA==}
     engines: {node: '>=22.0.0'}
 
   '@esbuild/aix-ppc64@0.28.2':
@@ -378,8 +378,8 @@ packages:
     peerDependencies:
       eslint: ^6.0.0 || ^7.0.0 || >=8.0.0
 
-  '@eslint-community/regexpp@4.12.2':
-    resolution: {integrity: sha512-EriSTlt5OC9/7SXkRSCAhfSxxoSUgBm33OH+IkwbdpgoqsSsUg7y3uh+IICI/Qg4BBWr3U2i39RpmycbxMq4ew==}
+  '@eslint-community/regexpp@4.12.3':
+    resolution: {integrity: sha512-R76UKbvsqI68DJJVTVyqFKqU98CN4+B+acxNfEA2IFarSzP0SjtKf/3+fFiXzTyv5Fj3PxLkGHe2wnVWWMxobQ==}
     engines: {node: ^12.0.0 || ^14.0.0 || >=16.0.0}
 
   '@eslint/config-array@0.21.2':
@@ -601,6 +601,7 @@ packages:
   eslint@9.39.4:
     resolution: {integrity: sha512-XoMjdBOwe/esVgEvLmNsD3IRHkm7fbKIUGvrleloJXUZgDHig2IPWNniv+GwjyJXzuNqVjlr5+4yVUZjycJwfQ==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
+    deprecated: This version is no longer supported. Please see https://eslint.org/version-support for other options.
     hasBin: true
     peerDependencies:
       jiti: '*'
@@ -876,7 +877,10 @@ packages:
 
 snapshots:
 
-  '@bovinphang/craft-common@1.0.1': {}
+  '@bovinphang/craft-common@2.0.0':
+    dependencies:
+      smol-toml: 1.9.1
+      yaml: 2.9.0
 
   '@esbuild/aix-ppc64@0.28.2':
     optional: true
@@ -961,7 +965,7 @@ snapshots:
       eslint: 9.39.4(supports-color@7.2.0)
       eslint-visitor-keys: 3.4.3
 
-  '@eslint-community/regexpp@4.12.2': {}
+  '@eslint-community/regexpp@4.12.3': {}
 
   '@eslint/config-array@0.21.2(supports-color@7.2.0)':
     dependencies:
@@ -1034,7 +1038,7 @@ snapshots:
 
   '@typescript-eslint/eslint-plugin@8.70.1(@typescript-eslint/parser@8.70.1(eslint@9.39.4(supports-color@7.2.0))(supports-color@7.2.0)(typescript@5.9.3))(eslint@9.39.4(supports-color@7.2.0))(supports-color@7.2.0)(typescript@5.9.3)':
     dependencies:
-      '@eslint-community/regexpp': 4.12.2
+      '@eslint-community/regexpp': 4.12.3
       '@typescript-eslint/parser': 8.70.1(eslint@9.39.4(supports-color@7.2.0))(supports-color@7.2.0)(typescript@5.9.3)
       '@typescript-eslint/scope-manager': 8.70.1
       '@typescript-eslint/type-utils': 8.70.1(eslint@9.39.4(supports-color@7.2.0))(supports-color@7.2.0)(typescript@5.9.3)
@@ -1229,7 +1233,7 @@ snapshots:
   eslint@9.39.4(supports-color@7.2.0):
     dependencies:
       '@eslint-community/eslint-utils': 4.10.1(eslint@9.39.4(supports-color@7.2.0))
-      '@eslint-community/regexpp': 4.12.2
+      '@eslint-community/regexpp': 4.12.3
       '@eslint/config-array': 0.21.2(supports-color@7.2.0)
       '@eslint/config-helpers': 0.4.2
       '@eslint/core': 0.17.0

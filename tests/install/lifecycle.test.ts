@@ -20,15 +20,9 @@ import {
   writeManaged,
   manifestPath,
   readManifest,
-  recordSharedEntry,
-  previousSharedEntry,
-  preserveShared,
 } from "../../src/install/manifest.js";
-import {
-  entryHash,
-  planSharedEntry,
-} from "../../src/install/shared-config/index.js";
-import { writePlanned } from "../../src/install/product-plan.js";
+import { entryHash } from "../../src/install/shared-config/index.js";
+
 import type { InstallContext } from "../../src/install/types.js";
 import type { RuntimeAdapter } from "../../src/install/registry.js";
 const productRoot = path.resolve(".");
@@ -58,29 +52,48 @@ const adapter: RuntimeAdapter = {
     rules: true,
   },
   async plan(ctx) {
-    writeManaged(path.join(ctx.baseDir, "bec-test.md"), Buffer.from("owned"));
-    const file = path.join(ctx.cwd, "AGENTS.md"),
-      draft = {
-        kind: "text-marker" as const,
-        id: "backend-craft",
-        value: "backend-context",
-        createdFile: !fs.existsSync(file),
-      },
-      old = previousSharedEntry(file, draft.id),
-      entry = {
-        ...draft,
-        createdFile: old?.createdFile ?? draft.createdFile,
-        hash: entryHash(draft),
-      },
-      mutation = planSharedEntry(file, entry, "upsert", old);
-    if (mutation) {
-      writePlanned(file, mutation.after);
-      recordSharedEntry(file, entry);
-    } else preserveShared(file);
+    writeManaged(
+      ctx,
+      path.join(ctx.baseDir, "bec-test.md"),
+      Buffer.from("owned"),
+    );
+    const file = path.join(ctx.cwd, "AGENTS.md");
+    const draft = {
+      kind: "text-marker" as const,
+      id: "backend-craft",
+      value: "backend-context",
+      createdFile: !fs.existsSync(file),
+    };
+    ctx.session.editShared(file, { ...draft, hash: entryHash(draft) });
   },
 };
 const commonFile = (ctx: InstallContext) =>
   path.join(ctx.baseDir, "skills/cc-source-driven-development/SKILL.md");
+
+test("adapters receive a common session that owns their writes explicitly", async (t) => {
+  const ctx = fixture(t);
+  ctx.runtime = "cline";
+  const file = path.join(ctx.baseDir, "bec-explicit-session.md");
+  await installRuntime(ctx, {
+    ...adapter,
+    id: "cline",
+    capabilities: { ...adapter.capabilities, skills: false },
+    async plan(planning) {
+      const session = (
+        planning as InstallContext & {
+          session?: { writeManaged(file: string, bytes: Buffer): void };
+        }
+      ).session;
+      assert.equal(
+        typeof session?.writeManaged,
+        "function",
+        "product adapter receives its explicit common session",
+      );
+      session!.writeManaged(file, Buffer.from("explicit"));
+    },
+  });
+  assert.equal(fs.readFileSync(file, "utf8"), "explicit");
+});
 test("真实安装共享 common 与独立清单、幂等及无 Skill 分支", async (t) => {
   const ctx = fixture(t);
   const result = await installRuntime(ctx, adapter);
@@ -139,8 +152,16 @@ test("公共版本语言及摘要冲突零写入", async (t) => {
       catalog = readCommonCatalog(productRoot, "en");
     if (mode === "version" || mode === "digest") {
       const { digest: _digest, root: _root, ...body } = catalog;
-      if (mode === "version") body.packageVersion = "2.0.0";
+      if (mode === "version")
+        body.packageVersion =
+          catalog.packageVersion === "2.0.0" ? "1.0.1" : "2.0.0";
       else body.skills = [...body.skills].reverse();
+      if (mode === "version")
+        assert.notEqual(
+          body.packageVersion,
+          catalog.packageVersion,
+          "fixture must represent a different common version",
+        );
       const { hashBytes } = await import("../../src/content/snapshot.js");
       Object.assign(catalog, body, { digest: hashBytes(JSON.stringify(body)) });
     }
@@ -260,12 +281,13 @@ for (const update of [false, true])
       if (update)
         await installRuntime(ctx, {
           ...adapter,
-          async plan() {
+          async plan(ctx) {
             writeManaged(
+              ctx,
               path.join(ctx.baseDir, "bec-obsolete.md"),
               Buffer.from("obsolete"),
             );
-            sharedText(path.join(ctx.cwd, "AGENTS.md"), "old context");
+            sharedText(ctx, path.join(ctx.cwd, "AGENTS.md"), "old context");
           },
         });
       const child = spawn(
@@ -353,15 +375,16 @@ for (const edited of [false, true])
     const first: RuntimeAdapter = {
         ...adapter,
         capabilities: { ...adapter.capabilities, skills: false },
-        async plan() {
-          writeManaged(file, Buffer.from("owned"));
-          sharedText(context, "old backend");
+        async plan(ctx) {
+          writeManaged(ctx, file, Buffer.from("owned"));
+          sharedText(ctx, context, "old backend");
         },
       },
       next: RuntimeAdapter = {
         ...first,
-        async plan() {
+        async plan(ctx) {
           writeManaged(
+            ctx,
             path.join(ctx.baseDir, "bec-renamed.md"),
             Buffer.from("new"),
           );
@@ -401,9 +424,9 @@ test("过期删除与新写入属于同一事务，清单写入失败恢复旧�
   const first: RuntimeAdapter = {
     ...adapter,
     capabilities: { ...adapter.capabilities, skills: false },
-    async plan() {
-      writeManaged(old, Buffer.from("owned"));
-      sharedText(context, "old backend");
+    async plan(ctx) {
+      writeManaged(ctx, old, Buffer.from("owned"));
+      sharedText(ctx, context, "old backend");
     },
   };
   await installRuntime(ctx, first);
@@ -418,8 +441,9 @@ test("过期删除与新写入属于同一事务，清单写入失败恢复旧�
       { ...ctx, mode: "update" },
       {
         ...first,
-        async plan() {
+        async plan(ctx) {
           writeManaged(
+            ctx,
             path.join(ctx.baseDir, "bec-renamed.md"),
             Buffer.from("new"),
           );
@@ -432,3 +456,128 @@ test("过期删除与新写入属于同一事务，清单写入失败恢复旧�
   assert.deepEqual(fs.readFileSync(context), before);
   assert.equal(fs.existsSync(path.join(ctx.baseDir, "bec-renamed.md")), false);
 });
+test("no-Skill hosts keep complete common language references in private material, without a common consumer", async (t) => {
+  const ctx = fixture(t);
+  ctx.runtime = "cline";
+  ctx.baseDir = path.join(ctx.cwd, ".clinerules-home");
+  await installRuntime(ctx);
+  const ref = path.join(
+    ctx.baseDir,
+    "backend-craft/reference-skills/cc-rust-project-standard/SKILL.md",
+  );
+  assert.ok(fs.existsSync(ref));
+  assert.ok(
+    fs.existsSync(
+      path.join(
+        ctx.baseDir,
+        "backend-craft/reference-skills/cc-rust-async/references/practice.md",
+      ),
+    ),
+  );
+  assert.match(
+    fs.readFileSync(
+      path.join(ctx.baseDir, ".clinerules/backend-craft.md"),
+      "utf8",
+    ),
+    /cc-rust-project-standard/,
+  );
+  assert.equal(readManifest(manifestPath(ctx))?.common, undefined);
+  await uninstallRuntime(ctx);
+  assert.equal(fs.existsSync(ref), false);
+});
+for (const runtime of ["cline", "trae", "copilot"])
+  for (const isGlobal of [false, true])
+    for (const language of ["en", "zh-CN"] as const)
+      test(`private common references: ${runtime} ${isGlobal ? "global" : "local"} ${language}`, async (t) => {
+        const ctx = fixture(t);
+        ctx.runtime = runtime;
+        ctx.isGlobal = isGlobal;
+        ctx.language = language;
+        ctx.contentRoot =
+          language === "en"
+            ? ctx.productRoot
+            : path.join(ctx.productRoot, "localized/zh-CN");
+        ctx.baseDir = path.join(isGlobal ? ctx.home : ctx.cwd, "." + runtime);
+        await installRuntime(ctx);
+        const root = path.join(ctx.baseDir, "backend-craft/reference-skills"),
+          file = path.join(root, "cc-cpp-project-standard/SKILL.md");
+        assert.ok(fs.existsSync(file));
+        for (const id of ["cc-cpp-project-standard", "bec-api-design"]) {
+          for (const relative of [
+            "references/engineering-practices.md",
+            "references/common/engineering-practices.md",
+            "references/common/engineering-practices.sources.json",
+            "references/common/engineering-practices.rules.json",
+          ]) {
+            const delivered = path.join(root, id, relative),
+              source = path.join(ctx.contentRoot, "skills", id, relative);
+            assert.deepEqual(
+              fs.readFileSync(delivered),
+              fs.readFileSync(source),
+            );
+          }
+          const local = fs.readFileSync(
+            path.join(root, id, "references/engineering-practices.md"),
+            "utf8",
+          );
+          assert.match(local, /common\/engineering-practices\.md/);
+          assert.match(local, /common\/engineering-practices\.sources\.json/);
+        }
+        const sourceVersion = JSON.parse(
+          fs.readFileSync(
+            path.join(ctx.productRoot, "common-content.lock.json"),
+            "utf8",
+          ),
+        ).packageVersion;
+        const pinnedVersion = JSON.parse(
+          fs.readFileSync(path.join(ctx.productRoot, "package.json"), "utf8"),
+        ).dependencies["@bovinphang/craft-common"];
+        assert.equal(sourceVersion, pinnedVersion);
+        assert.ok(
+          fs.existsSync(
+            path.join(root, "cc-rust-async/references/practice.md"),
+          ),
+        );
+        assert.equal(
+          fs.readdirSync(root).filter((id) => id.startsWith("cc-")).length,
+          21,
+        );
+        const guide =
+          runtime === "cline"
+            ? path.join(
+                ctx.baseDir,
+                isGlobal ? "Rules" : ".clinerules",
+                "backend-craft.md",
+              )
+            : runtime === "trae"
+              ? path.join(
+                  ctx.baseDir,
+                  isGlobal ? "user_rules" : "rules",
+                  "backend-craft.md",
+                )
+              : isGlobal
+                ? path.join(ctx.baseDir, "copilot-instructions.md")
+                : path.join(
+                    ctx.baseDir,
+                    "instructions/backend-craft.instructions.md",
+                  );
+        assert.match(fs.readFileSync(guide, "utf8"), /cc-cpp-project-standard/);
+        assert.equal(readManifest(manifestPath(ctx))?.common, undefined);
+        if (runtime === "cline" && !isGlobal && language === "en") {
+          const editedRule = path.join(
+            root,
+            "bec-api-design/references/engineering-practices.md",
+          );
+          const bytes = fs.readFileSync(editedRule);
+          fs.appendFileSync(editedRule, "USER_EDIT");
+          await installRuntime({ ...ctx, mode: "update" });
+          assert.match(fs.readFileSync(editedRule, "utf8"), /USER_EDIT/);
+          const partial = await uninstallRuntime(ctx);
+          assert.equal(partial.status, "partial");
+          assert.ok(readManifest(manifestPath(ctx)));
+          assert.match(fs.readFileSync(editedRule, "utf8"), /USER_EDIT/);
+          fs.writeFileSync(editedRule, bytes);
+        }
+        await uninstallRuntime(ctx);
+        assert.equal(fs.existsSync(file), false);
+      });

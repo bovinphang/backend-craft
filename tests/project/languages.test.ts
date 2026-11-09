@@ -29,7 +29,7 @@ test("六语言注册表与各自规范入口准确", () => {
     "rust",
   ]);
   for (const module of Object.values(LANGUAGES))
-    assert.ok(module.skillIds.includes(`bec-${module.id}-project-standard`));
+    assert.ok(module.skillIds.includes(`cc-${module.id}-project-standard`));
 });
 test("Cargo 候选禁止联网、改锁和自动安装工具链", (t) => {
   const p = project(t, { "Cargo.toml": "[package]" }),

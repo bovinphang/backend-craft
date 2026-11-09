@@ -37,7 +37,9 @@
     "README.md",
     "README.zh-CN.md",
     ".claude-plugin",
-    "openclaw.plugin.json"
+    "openclaw.plugin.json",
+    "CHANGELOG.md",
+    "CHANGELOG.zh-CN.md"
   ],
   "publishConfig": {
     "access": "public"
@@ -53,10 +55,12 @@
     "check:content": "tsx scripts/check-content.ts",
     "verify:coexistence": "tsx scripts/verify-coexistence.ts",
     "verify:languages": "tsx scripts/verify-language-fixtures.ts",
-    "pack:all": "tsx scripts/pack-all.ts"
+    "verify:frameworks": "tsx scripts/verify-frameworks.ts",
+    "pack:all": "tsx scripts/pack-all.ts",
+    "verify:engineering": "tsx scripts/verify-engineering.ts"
   },
   "dependencies": {
-    "@bovinphang/craft-common": "1.0.1",
+    "@bovinphang/craft-common": "2.0.0",
     "cross-spawn": "7.0.6",
     "smol-toml": "1.9.1",
     "yaml": "2.9.0"

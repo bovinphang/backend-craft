@@ -17,3 +17,7 @@ List durable state, consistency invariants, transaction owner and every external
 ## Task boundary
 
 A local database transaction does not provide atomicity with an external service; use API and database workflows for their narrower contract details.
+
+## Engineering practices
+
+Read the [local engineering decisions](references/engineering-practices.md) for this task and follow their links to relevant shared principles. Apply levels and exceptions against actual project contracts; product frontend/backend labels do not constrain language or role.

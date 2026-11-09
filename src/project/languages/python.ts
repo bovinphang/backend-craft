@@ -9,7 +9,7 @@ const record = (value: unknown): Record<string, unknown> =>
     : {};
 export const python: LanguageModule = {
   id: "python",
-  skillIds: ["bec-python-project-standard", "bec-python-async"],
+  skillIds: ["cc-python-project-standard", "cc-python-async"],
   suggest: (p) => {
     const raw = readOptional(p.root, "pyproject.toml");
     const config = raw ? parse(raw) : {};

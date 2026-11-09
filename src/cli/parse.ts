@@ -1,6 +1,9 @@
+import { TASK_KINDS, type TaskKind } from "@bovinphang/craft-common";
 export interface Arguments {
   positionals: string[];
   json: boolean;
+  taskPath?: string;
+  taskKind?: TaskKind;
   dryRun: boolean;
   global: boolean;
   language: "en" | "zh-CN";
@@ -22,7 +25,17 @@ export function parse(argv: string[], allowed: string[]): Arguments {
       continue;
     }
     if (!allowed.includes(arg)) throw new Error("未知参数：" + arg);
-    if (arg === "--json") result.json = true;
+    if (arg === "--task-path" || arg === "--task-kind") {
+      const value = argv[++i];
+      if (!value || value.startsWith("-") || value.includes("\0"))
+        throw new Error("任务参数缺少值");
+      if (arg === "--task-path") result.taskPath = value;
+      else {
+        if (!TASK_KINDS.includes(value as TaskKind))
+          throw new Error("任务类型无效");
+        result.taskKind = value as TaskKind;
+      }
+    } else if (arg === "--json") result.json = true;
     else if (arg === "--dry-run") result.dryRun = true;
     else if (arg === "--global") result.global = true;
     else if (arg === "--local") local = true;

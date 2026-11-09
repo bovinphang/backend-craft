@@ -17,3 +17,7 @@ Read manifest, lock, resolver/toolchain versions and actual dependency graph; di
 ## Task boundary
 
 Do not replace all dependencies with latest versions, delete every lock or weaken package-source policies to make installation pass.
+
+## Engineering practices
+
+Read the [local engineering decisions](references/engineering-practices.md) for this task and follow their links to relevant shared principles. Apply levels and exceptions against actual project contracts; product frontend/backend labels do not constrain language or role.

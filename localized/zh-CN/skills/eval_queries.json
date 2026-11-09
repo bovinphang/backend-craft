@@ -41,18 +41,26 @@
       "仅优化纯算术计算"
     ]
   },
-  "bec-c-project-standard": {
+  "bec-axum-project-standard": {
     "should_trigger": [
-      "审查 C 分配和释放契约",
-      "保持 C ABI 修复失败清理",
-      "组织已有 C 库头文件和实现",
-      "测试 C 分配失败与非法输入"
+      "审查或修复JsonRejection 状态保持",
+      "审查或修复Router State 归属",
+      "审查或修复body extractor 顺序",
+      "审查或修复Tower layer 位置",
+      "审查或修复body 大小限制",
+      "审查或修复handler 外的阻塞工作",
+      "审查或修复请求取消边界",
+      "审查或修复Tokio 与 Axum 优雅退出"
     ],
     "should_not_trigger": [
-      "只实现 React 受控表单，不涉及后端",
-      "只设计 CSS 响应式工具栏",
-      "仅重构 C++ RAII 对象，不涉及 C 接口",
-      "仅解释安全 Rust 借用错误"
+      "只整理没有该框架的语言库",
+      "只修改前端 CSS 间距",
+      "翻译产品标题",
+      "生成海报图片",
+      "为无关新项目选择另一个框架",
+      "只改数据库索引而无框架代码",
+      "格式化无关配置文件",
+      "设计没有 HTTP 框架依赖的普通 CLI"
     ]
   },
   "bec-cache-design": {
@@ -81,20 +89,6 @@
       "只设计 CSS 响应式工具栏",
       "仅生成可编辑架构图",
       "仅翻译已有文案"
-    ]
-  },
-  "bec-cpp-project-standard": {
-    "should_trigger": [
-      "审查 C++ RAII 和异常安全",
-      "保持插件 ABI 并明确所有权",
-      "整理头文件与模板依赖边界",
-      "测试 C++ 析构及部分构造"
-    ],
-    "should_not_trigger": [
-      "只实现 React 受控表单，不涉及后端",
-      "只设计 CSS 响应式工具栏",
-      "仅修复纯 C99 清理，不涉及 C++",
-      "仅整理 Go 包结构"
     ]
   },
   "bec-database-design": {
@@ -153,74 +147,70 @@
       "仅诊断服务失败，不涉及文档"
     ]
   },
-  "bec-go-concurrency": {
+  "bec-drogon-project-standard": {
     "should_trigger": [
-      "终止阻塞在 channel 发送的 Go worker",
-      "明确共享 Go channel 的关闭方",
-      "限制 goroutine 并传播请求取消",
-      "复现和测试 Go 数据竞争"
+      "审查或修复Filter 拒绝后的后续链",
+      "审查或修复Controller 路由注册",
+      "审查或修复异步回调资源归属",
+      "审查或修复事件循环阻塞边界",
+      "审查或修复ORM 事务生命周期",
+      "审查或修复重复回调完成",
+      "审查或修复协程版本兼容",
+      "审查或修复CMake 与运行时链接"
     ],
     "should_not_trigger": [
-      "只实现 React 受控表单，不涉及后端",
-      "只设计 CSS 响应式工具栏",
-      "仅审查 Tokio select 取消",
-      "仅更新 Go 模块目录约定"
+      "只整理没有该框架的语言库",
+      "只修改前端 CSS 间距",
+      "翻译产品标题",
+      "生成海报图片",
+      "为无关新项目选择另一个框架",
+      "只改数据库索引而无框架代码",
+      "格式化无关配置文件",
+      "设计没有 HTTP 框架依赖的普通 CLI"
     ]
   },
-  "bec-go-project-standard": {
+  "bec-fastapi-project-standard": {
     "should_trigger": [
-      "规划 Go 模块 internal 包边界",
-      "审查 Go 服务错误和 context 边界",
-      "避免全局数据库状态增加 repository 适配",
-      "验证 go.work 中的单个模块"
+      "审查或修复lifespan 初始化和清理",
+      "审查或修复请求依赖资源归属",
+      "审查或修复响应模型边界",
+      "审查或修复异步 handler 中的阻塞 client",
+      "审查或修复依赖替换恢复",
+      "审查或修复TestClient 启动生命周期",
+      "审查或修复异常状态码映射",
+      "审查或修复后台任务退出"
     ],
     "should_not_trigger": [
-      "只实现 React 受控表单，不涉及后端",
-      "只设计 CSS 响应式工具栏",
-      "仅调整 JVM GC，没有 Go 代码变更",
-      "仅设计 Python 包结构"
+      "只整理没有该框架的语言库",
+      "只修改前端 CSS 间距",
+      "翻译产品标题",
+      "生成海报图片",
+      "为无关新项目选择另一个框架",
+      "只改数据库索引而无框架代码",
+      "格式化无关配置文件",
+      "设计没有 HTTP 框架依赖的普通 CLI"
     ]
   },
-  "bec-java-project-standard": {
+  "bec-gin-project-standard": {
     "should_trigger": [
-      "分离 Java HTTP DTO 与持久化实体",
-      "审查 Java 模块应用事务边界",
-      "遵循现有 Maven 或 Gradle wrapper",
-      "为 Java 服务增加行为测试"
+      "审查或修复ShouldBindJSON 错误后的控制流",
+      "审查或修复Gin Abort 与显式 return",
+      "审查或修复中间件顺序",
+      "审查或修复请求 Context 复用",
+      "审查或修复错误状态和重复写入",
+      "审查或修复请求取消",
+      "审查或修复httptest 负向路由覆盖",
+      "审查或修复服务优雅退出"
     ],
     "should_not_trigger": [
-      "只实现 React 受控表单，不涉及后端",
-      "只设计 CSS 响应式工具栏",
-      "仅整理 Cargo workspace，没有 Java 代码",
-      "仅修复 C 分配器契约"
-    ]
-  },
-  "bec-java-runtime": {
-    "should_trigger": [
-      "诊断 Java p99 和线程池队列上涨",
-      "为 JVM 事件采集有界 JFR 与线程样本",
-      "以基线对照 JVM 堆或线程池调整",
-      "排查 Java 阻塞竞争和下游等待"
-    ],
-    "should_not_trigger": [
-      "只实现 React 受控表单，不涉及后端",
-      "只设计 CSS 响应式工具栏",
-      "仅修复 Python 事件循环阻塞",
-      "仅整理 Java 包结构，不涉及运行时问题"
-    ]
-  },
-  "bec-native-memory-safety": {
-    "should_trigger": [
-      "诊断 C/C++ FFI 边界的 use-after-free",
-      "配对动态库之间的分配和释放",
-      "测试部分初始化及重复清理",
-      "保留 sanitizer 复现销毁竞态"
-    ],
-    "should_not_trigger": [
-      "只实现 React 受控表单，不涉及后端",
-      "只设计 CSS 响应式工具栏",
-      "仅解释安全 Rust 借用，不涉及 unsafe 或 FFI",
-      "仅修改 HTTP 响应 schema"
+      "只整理没有该框架的语言库",
+      "只修改前端 CSS 间距",
+      "翻译产品标题",
+      "生成海报图片",
+      "为无关新项目选择另一个框架",
+      "只改数据库索引而无框架代码",
+      "格式化无关配置文件",
+      "设计没有 HTTP 框架依赖的普通 CLI"
     ]
   },
   "bec-observability": {
@@ -265,34 +255,6 @@
       "仅只读评审一份代码差异"
     ]
   },
-  "bec-python-async": {
-    "should_trigger": [
-      "隔离 async Python handler 中的阻塞客户端",
-      "在 asyncio 取消后正确归还池资源",
-      "限制 Python 线程卸载及任务并发",
-      "测试 Python 异步停机与超时收尾"
-    ],
-    "should_not_trigger": [
-      "只实现 React 受控表单，不涉及后端",
-      "只设计 CSS 响应式工具栏",
-      "仅诊断 JVM 堆压力",
-      "仅修改 Python 包元数据，不涉及异步"
-    ]
-  },
-  "bec-python-project-standard": {
-    "should_trigger": [
-      "遵循 pyproject 组织 Python 领域包",
-      "移除导入时连接数据库的副作用",
-      "审查 Python 类型和依赖边界",
-      "使用现有 Ruff mypy pytest 配置"
-    ],
-    "should_not_trigger": [
-      "只实现 React 受控表单，不涉及后端",
-      "只设计 CSS 响应式工具栏",
-      "仅修复 Go channel 泄漏，没有 Python 代码",
-      "仅审查 C++ DLL 所有权"
-    ]
-  },
   "bec-refactoring": {
     "should_trigger": [
       "保持舍入规则移动计费计算",
@@ -307,32 +269,26 @@
       "升级依赖并改变可观察行为"
     ]
   },
-  "bec-rust-async": {
+  "bec-spring-boot-project-standard": {
     "should_trigger": [
-      "修复 Tokio select 取消导致的部分写入",
-      "限制 Rust spawn 数量并管理 JoinHandle",
-      "设计 Rust 异步停机和取消",
-      "隔离异步执行器中的阻塞 I/O"
+      "审查或修复MVC 非法输入与副作用顺序",
+      "审查或修复构造器依赖注入",
+      "审查或修复配置属性绑定与校验",
+      "审查或修复事务代理与自调用",
+      "审查或修复Spring MVC 测试切片边界",
+      "审查或修复启动和退出资源归属",
+      "审查或修复Actuator 暴露策略",
+      "审查或修复数据库回滚测试范围"
     ],
     "should_not_trigger": [
-      "只实现 React 受控表单，不涉及后端",
-      "只设计 CSS 响应式工具栏",
-      "仅修复 Go channel 取消路径",
-      "仅整理 Rust crate 边界，不涉及异步行为"
-    ]
-  },
-  "bec-rust-project-standard": {
-    "should_trigger": [
-      "规划现有 Cargo workspace 的 crate 边界",
-      "审查 Rust 公共接口所有权和 Result 边界",
-      "保持现有 edition 增加存储模块",
-      "为 Rust 库选择工程质量检查"
-    ],
-    "should_not_trigger": [
-      "只实现 React 受控表单，不涉及后端",
-      "只设计 CSS 响应式工具栏",
-      "仅修复 asyncio 取消路径",
-      "仅审查纯 C ABI，没有 Rust 代码"
+      "只整理没有该框架的语言库",
+      "只修改前端 CSS 间距",
+      "翻译产品标题",
+      "生成海报图片",
+      "为无关新项目选择另一个框架",
+      "只改数据库索引而无框架代码",
+      "格式化无关配置文件",
+      "设计没有 HTTP 框架依赖的普通 CLI"
     ]
   },
   "bec-tdd-workflow": {
@@ -375,6 +331,54 @@
       "只设计 CSS 响应式工具栏",
       "仅更新响应 schema，不涉及状态写入",
       "仅修复 C++ 指针生命周期"
+    ]
+  },
+  "cc-c-project-standard": {
+    "should_trigger": [
+      "审查或修复C 分配失败清理路径",
+      "审查或修复C 库 ABI 兼容性",
+      "审查或修复C 失败输出初始化",
+      "审查或修复C 缓冲区长度校验",
+      "审查或修复C 分配时整数溢出",
+      "审查或修复纯 C 所有权转移",
+      "审查或修复C 头文件与实现边界",
+      "审查或修复C 失败注入测试",
+      "评审纯C分配大小及分配器配对，不迁移C++"
+    ],
+    "should_not_trigger": [
+      "只调整 CSS 间距，不改程序契约",
+      "翻译产品文案，不涉及程序",
+      "生成海报插图",
+      "推荐晚餐餐厅",
+      "只修改数据库索引，没有语言代码",
+      "只设计框架组件路由，不改语言配置",
+      "重写营销标题",
+      "生成音频配乐",
+      "只翻译包含该技术名称的说明文字，不修改或评审任何程序"
+    ]
+  },
+  "cc-cpp-project-standard": {
+    "should_trigger": [
+      "审查或修复C++ 库 RAII 所有权",
+      "审查或修复C++ 异常保证",
+      "审查或修复C++ 桌面插件 ABI",
+      "审查或修复C++ 部分构造清理",
+      "审查或修复C++ 回调生命周期",
+      "审查或修复保持 C++ 编译标准",
+      "审查或修复C++ 自定义 deleter 配对",
+      "审查或修复C++ 模块退出同步",
+      "评审C++插件借用指针清理，保留禁异常政策"
+    ],
+    "should_not_trigger": [
+      "只调整 CSS 间距，不改程序契约",
+      "翻译产品文案，不涉及程序",
+      "生成海报插图",
+      "推荐晚餐餐厅",
+      "只修改数据库索引，没有语言代码",
+      "只设计框架组件路由，不改语言配置",
+      "重写营销标题",
+      "生成音频配乐",
+      "只翻译包含该技术名称的说明文字，不修改或评审任何程序"
     ]
   },
   "cc-debug-methodology": {
@@ -447,6 +451,198 @@
       "生成漫画头像和品牌板"
     ]
   },
+  "cc-electron-project-standard": {
+    "should_trigger": [
+      "在副作用前校验 Electron IPC sender",
+      "限制 contextBridge 的逐项接口",
+      "审查 main/preload/renderer 契约",
+      "核验 Electron sandbox 边界",
+      "限制导航和新窗口",
+      "审查安全自定义协议资源",
+      "检查原生模块 ABI 与打包",
+      "管理退出时 IPC handler 生命周期",
+      "评审Electron窗口关闭后IPC准备迟到的副作用"
+    ],
+    "should_not_trigger": [
+      "实现没有 Electron 的 Node HTTP API",
+      "整理普通 Rust 库",
+      "只改 Vue CSS 颜色",
+      "设计 Tauri capabilities",
+      "调整 Go worker channel",
+      "翻译营销标题",
+      "审查数据库隔离级别",
+      "生成图表而不改程序",
+      "只翻译包含该技术名称的说明文字，不修改或评审任何程序"
+    ]
+  },
+  "cc-go-concurrency": {
+    "should_trigger": [
+      "审查或修复Go worker 取消",
+      "审查或修复Go channel 关闭归属",
+      "审查或修复接收方退出后 Go 发送阻塞",
+      "审查或修复Go goroutine 数量上限",
+      "审查或修复Go 同步先行关系",
+      "审查或修复Go 并发退出竞态",
+      "审查或修复Go 队列饱和测试",
+      "审查或修复Go worker 退出完成证据",
+      "评审Go通道阻塞关闭及两个工作者完成"
+    ],
+    "should_not_trigger": [
+      "只调整 CSS 间距，不改程序契约",
+      "翻译产品文案，不涉及程序",
+      "生成海报插图",
+      "推荐晚餐餐厅",
+      "只修改数据库索引，没有语言代码",
+      "只设计框架组件路由，不改语言配置",
+      "重写营销标题",
+      "生成音频配乐",
+      "只翻译包含该技术名称的说明文字，不修改或评审任何程序"
+    ]
+  },
+  "cc-go-project-standard": {
+    "should_trigger": [
+      "审查或修复go.work 子模块边界",
+      "审查或修复Go internal 包组织",
+      "审查或修复Go CLI 错误包装",
+      "审查或修复阻塞操作的 context 所有者",
+      "审查或修复Go 资源工厂清理",
+      "审查或修复Go 模块导入兼容性",
+      "审查或修复当前模块的 vet 与 test 命令",
+      "审查或修复Go 公共接口设计",
+      "评审Go库context和错误边界，不添加HTTP分层"
+    ],
+    "should_not_trigger": [
+      "只调整 CSS 间距，不改程序契约",
+      "翻译产品文案，不涉及程序",
+      "生成海报插图",
+      "推荐晚餐餐厅",
+      "只修改数据库索引，没有语言代码",
+      "只设计框架组件路由，不改语言配置",
+      "重写营销标题",
+      "生成音频配乐",
+      "只翻译包含该技术名称的说明文字，不修改或评审任何程序"
+    ]
+  },
+  "cc-java-project-standard": {
+    "should_trigger": [
+      "审查或修复Java 库的公共模块边界",
+      "审查或修复Java CLI 异常原因",
+      "审查或修复Swing 模块线程池关闭",
+      "审查或修复JavaFX 阻塞工作归属",
+      "审查或修复Maven wrapper 版本保持",
+      "审查或修复Gradle 模块依赖边界",
+      "审查或修复Java 文件句柄关闭",
+      "审查或修复Java 库行为测试",
+      "评审Java库部分初始化及cause，不加入Web框架"
+    ],
+    "should_not_trigger": [
+      "只调整 CSS 间距，不改程序契约",
+      "翻译产品文案，不涉及程序",
+      "生成海报插图",
+      "推荐晚餐餐厅",
+      "只修改数据库索引，没有语言代码",
+      "只设计框架组件路由，不改语言配置",
+      "重写营销标题",
+      "生成音频配乐",
+      "只翻译包含该技术名称的说明文字，不修改或评审任何程序"
+    ]
+  },
+  "cc-java-runtime": {
+    "should_trigger": [
+      "审查或修复JVM 线程池队列增长",
+      "审查或修复Java 桌面线程竞争",
+      "审查或修复有界 JFR 取证",
+      "审查或修复Java GC 分配压力",
+      "审查或修复Java 操作期限与过载",
+      "审查或修复Java 堆配置受控对照",
+      "审查或修复Java 重复线程栈采样",
+      "审查或修复Java 运行时恢复阈值",
+      "诊断所属Java执行器请求关闭后不退出"
+    ],
+    "should_not_trigger": [
+      "只调整 CSS 间距，不改程序契约",
+      "翻译产品文案，不涉及程序",
+      "生成海报插图",
+      "推荐晚餐餐厅",
+      "只修改数据库索引，没有语言代码",
+      "只设计框架组件路由，不改语言配置",
+      "重写营销标题",
+      "生成音频配乐",
+      "只翻译包含该技术名称的说明文字，不修改或评审任何程序"
+    ]
+  },
+  "cc-native-memory-safety": {
+    "should_trigger": [
+      "审查或修复C/C++ FFI 分配释放配对",
+      "审查或修复Rust 原生借用缓冲区生命周期",
+      "审查或修复卸载后的原生回调",
+      "审查或修复C 部分初始化失败",
+      "审查或修复C++ 跨 DLL 异常边界",
+      "审查或修复原生重复关闭行为",
+      "审查或修复原生并发析构竞态",
+      "审查或修复地址检查工具的复现证据",
+      "评审原生插件分配器释放及卸载前回调完成"
+    ],
+    "should_not_trigger": [
+      "只调整 CSS 间距，不改程序契约",
+      "翻译产品文案，不涉及程序",
+      "生成海报插图",
+      "推荐晚餐餐厅",
+      "只修改数据库索引，没有语言代码",
+      "只设计框架组件路由，不改语言配置",
+      "重写营销标题",
+      "生成音频配乐",
+      "只翻译包含该技术名称的说明文字，不修改或评审任何程序"
+    ]
+  },
+  "cc-python-async": {
+    "should_trigger": [
+      "审查或修复Python task 取消清理",
+      "审查或修复Python 阻塞 client 转移",
+      "审查或修复Python 异步 executor 上限",
+      "审查或修复Python 异步池归属",
+      "审查或修复Python TaskGroup 错误传播",
+      "审查或修复Python 协程退出期限",
+      "审查或修复取消后的 Python 线程生命周期",
+      "审查或修复Python 异步资源获取超时",
+      "评审asyncio等待方取消后底层阻塞操作仍运行"
+    ],
+    "should_not_trigger": [
+      "只调整 CSS 间距，不改程序契约",
+      "翻译产品文案，不涉及程序",
+      "生成海报插图",
+      "推荐晚餐餐厅",
+      "只修改数据库索引，没有语言代码",
+      "只设计框架组件路由，不改语言配置",
+      "重写营销标题",
+      "生成音频配乐",
+      "只翻译包含该技术名称的说明文字，不修改或评审任何程序"
+    ]
+  },
+  "cc-python-project-standard": {
+    "should_trigger": [
+      "审查或修复Python CLI 包布局",
+      "审查或修复pyproject 环境约定",
+      "审查或修复Python 库类型边界",
+      "审查或修复Python 导入时副作用",
+      "审查或修复Python 资源上下文管理器",
+      "审查或修复既有 Ruff、mypy、pytest 命令",
+      "审查或修复Python 公共包导入",
+      "审查或修复Python 非法输入行为",
+      "消除Python库导入时外部初始化并保留清理"
+    ],
+    "should_not_trigger": [
+      "只调整 CSS 间距，不改程序契约",
+      "翻译产品文案，不涉及程序",
+      "生成海报插图",
+      "推荐晚餐餐厅",
+      "只修改数据库索引，没有语言代码",
+      "只设计框架组件路由，不改语言配置",
+      "重写营销标题",
+      "生成音频配乐",
+      "只翻译包含该技术名称的说明文字，不修改或评审任何程序"
+    ]
+  },
   "cc-refactoring-core": {
     "should_trigger": [
       "保持行为不变，重构这个前端模块。",
@@ -469,6 +665,54 @@
       "按 Figma 新增一个响应式页面。"
     ]
   },
+  "cc-rust-async": {
+    "should_trigger": [
+      "审查或修复Rust future 取消安全",
+      "审查或修复Tokio 部分写入取消",
+      "审查或修复Rust spawn 任务数量上限",
+      "审查或修复Rust JoinHandle 退出归属",
+      "审查或修复Rust 阻塞 I/O 边界",
+      "审查或修复Rust 异步队列背压",
+      "审查或修复Rust 资源获取期间的取消",
+      "审查或修复Rust 异步超时恢复",
+      "评审桌面窗口关闭后既有Rust异步任务取消及等待"
+    ],
+    "should_not_trigger": [
+      "只调整 CSS 间距，不改程序契约",
+      "翻译产品文案，不涉及程序",
+      "生成海报插图",
+      "推荐晚餐餐厅",
+      "只修改数据库索引，没有语言代码",
+      "只设计框架组件路由，不改语言配置",
+      "重写营销标题",
+      "生成音频配乐",
+      "只翻译包含该技术名称的说明文字，不修改或评审任何程序"
+    ]
+  },
+  "cc-rust-project-standard": {
+    "should_trigger": [
+      "审查或修复Cargo workspace 的 crate 边界",
+      "审查或修复Rust MSRV 与 edition 配置",
+      "审查或修复Rust 库借用契约",
+      "审查或修复Rust CLI 的 Result 传播",
+      "审查或修复Rust 公共模块可见性",
+      "审查或修复Rust 库发布检查",
+      "审查或修复Rust 适配器依赖方向",
+      "审查或修复Rust 资源所有权转移",
+      "评审桌面核心Rust Result原因及部分获取清理"
+    ],
+    "should_not_trigger": [
+      "只调整 CSS 间距，不改程序契约",
+      "翻译产品文案，不涉及程序",
+      "生成海报插图",
+      "推荐晚餐餐厅",
+      "只修改数据库索引，没有语言代码",
+      "只设计框架组件路由，不改语言配置",
+      "重写营销标题",
+      "生成音频配乐",
+      "只翻译包含该技术名称的说明文字，不修改或评审任何程序"
+    ]
+  },
   "cc-source-driven-development": {
     "should_trigger": [
       "这个 Next.js 新版本 API 先查官方文档再决定",
@@ -489,6 +733,30 @@
       "清理未使用依赖",
       "设计 UI 视觉方向",
       "审查 token 存储安全"
+    ]
+  },
+  "cc-tauri-project-standard": {
+    "should_trigger": [
+      "审查 Tauri command 输入校验",
+      "将 Tauri 2 capability 限制到指定窗口",
+      "检查应用 command 的权限生成",
+      "设计 invoke 错误契约",
+      "管理 Tauri 托管状态退出",
+      "限制 Tauri 核心阻塞工作",
+      "验证目标平台资源打包",
+      "审查插件和 sidecar 权限",
+      "评审Tauri2实际选中capability与应用命令权限边界"
+    ],
+    "should_not_trigger": [
+      "整理没有 Tauri 的普通 Rust 库",
+      "优化没有 WebView 的 Node HTTP 服务",
+      "只改 React CSS 间距",
+      "设计 Go CLI 参数",
+      "修改 Electron preload",
+      "翻译海报文案",
+      "审查 SQL 执行计划",
+      "格式化无关 Python 文件",
+      "只翻译包含该技术名称的说明文字，不修改或评审任何程序"
     ]
   },
   "cc-tdd-methodology": {
@@ -533,6 +801,30 @@
       "审查权限逻辑",
       "编写 CLI 单元测试",
       "润色营销文案"
+    ]
+  },
+  "cc-typescript-project-standard": {
+    "should_trigger": [
+      "审查或修复TypeScript SDK 声明导出",
+      "审查或修复TypeScript CLI 的 NodeNext 解析",
+      "审查或修复TypeScript 桌面 preload 契约",
+      "审查或修复TypeScript unknown 输入收窄",
+      "审查或修复TypeScript 判别联合 API",
+      "审查或修复TypeScript monorepo 项目引用",
+      "审查或修复TypeScript 泛型库约束",
+      "审查或修复TypeScript 消费方类型测试",
+      "评审TypeScript库unknown输入副作用边界，保持模块模式"
+    ],
+    "should_not_trigger": [
+      "只调整 CSS 间距，不改程序契约",
+      "翻译产品文案，不涉及程序",
+      "生成海报插图",
+      "推荐晚餐餐厅",
+      "只修改数据库索引，没有语言代码",
+      "只设计框架组件路由，不改语言配置",
+      "重写营销标题",
+      "生成音频配乐",
+      "只翻译包含该技术名称的说明文字，不修改或评审任何程序"
     ]
   }
 }

@@ -10,11 +10,8 @@ import {
   planSharedEntry,
 } from "../../src/install/shared-config/index.js";
 import type { OwnedEntry } from "../../src/install/shared-config/types.js";
-import {
-  planProductWrites,
-  readPlanned,
-  writePlanned,
-} from "../../src/install/product-plan.js";
+import { planForFile as planProductWrites } from "./session-fixture.js";
+import type { InstallSession } from "@bovinphang/craft-common";
 function fixture(
   t: { after(fn: () => void): void },
   name: string,
@@ -48,13 +45,14 @@ function entry(kind: OwnedEntry["kind"], value: unknown): OwnedEntry {
   return { ...draft, hash: entryHash(draft) } as OwnedEntry;
 }
 function stage(
+  session: InstallSession,
   file: string,
   e: OwnedEntry,
   action: "upsert" | "remove",
   previous?: OwnedEntry,
 ) {
-  const change = planSharedEntry(file, e, action, previous);
-  if (change) writePlanned(file, change.after);
+  const change = planSharedEntry(file, e, action, previous, session);
+  if (change) session.stage(file, change.after);
   return change;
 }
 test("文本共享片段安装/卸载保留用户和前端字节，overlay 连续可读", async (t) => {
@@ -62,11 +60,11 @@ test("文本共享片段安装/卸载保留用户和前端字节，overlay 连�
       "用户正文\r\n<!-- frontend-craft:start -->\nF\n<!-- frontend-craft:end -->\n尾部\n",
     file = fixture(t, "AGENTS.md", body),
     e = entry("text-marker", "后端规范");
-  const changes = await planProductWrites(async () => {
-    assert.ok(stage(file, e, "upsert"));
-    assert.match(readPlanned(file).toString(), /backend-craft:start/);
-    assert.ok(stage(file, e, "remove", e));
-    assert.equal(readPlanned(file).toString(), body);
+  const changes = await planProductWrites(file, async (session) => {
+    assert.ok(stage(session, file, e, "upsert"));
+    assert.match(session.read(file).toString(), /backend-craft:start/);
+    assert.ok(stage(session, file, e, "remove", e));
+    assert.equal(session.read(file).toString(), body);
   });
   assert.equal(changes.length, 0);
   assert.equal(fs.readFileSync(file, "utf8"), body);
@@ -80,9 +78,9 @@ test("未知同名、重复、损坏或被修改的文本片段均保留", async
     "<!-- backend-craft:start -->\n标准\n<!-- backend-craft:end -->\n<!-- backend-craft:start -->",
   ]) {
     const file = fixture(t, "CLAUDE.md", body);
-    await planProductWrites(async () => {
-      assert.equal(stage(file, e, "upsert", e), undefined);
-      assert.equal(stage(file, e, "remove", e), undefined);
+    await planProductWrites(file, async (session) => {
+      assert.equal(stage(session, file, e, "upsert", e), undefined);
+      assert.equal(stage(session, file, e, "remove", e), undefined);
     });
     assert.equal(fs.readFileSync(file, "utf8"), body);
   }
@@ -98,15 +96,15 @@ test("JSON 只维护本产品键，用户增补键和其他插件 hook 保留", 
     ),
     e = entry("json-path", { enabled: true }),
     h = entry("json-hook", { command: "backend-craft" });
-  await planProductWrites(async () => {
-    stage(file, e, "upsert");
-    stage(file, h, "upsert");
-    const current = JSON.parse(readPlanned(file).toString());
+  await planProductWrites(file, async (session) => {
+    stage(session, file, e, "upsert");
+    stage(session, file, h, "upsert");
+    const current = JSON.parse(session.read(file).toString());
     current.extra = 42;
-    writePlanned(file, Buffer.from(JSON.stringify(current)));
-    stage(file, e, "remove", e);
-    stage(file, h, "remove", h);
-    const actual = JSON.parse(readPlanned(file).toString());
+    session.stage(file, Buffer.from(JSON.stringify(current)));
+    stage(session, file, e, "remove", e);
+    stage(session, file, h, "remove", h);
+    const actual = JSON.parse(session.read(file).toString());
     assert.equal(actual.user, true);
     assert.equal(actual.extra, 42);
     assert.deepEqual(actual.hooks.SessionStart, [
@@ -150,20 +148,20 @@ test("TOML 保留注释未知表字节，只移除有摘要证明的追加片段
   const body = '# 用户注释\n[other]\nvalue = "前端"\n',
     file = fixture(t, "config.toml", body),
     e = entry("toml-key", { model: "local" });
-  await planProductWrites(async () => {
-    stage(file, e, "upsert");
+  await planProductWrites(file, async (session) => {
+    stage(session, file, e, "upsert");
     assert.equal(
       (
-        parseToml(readPlanned(file).toString()).profiles as Record<
+        parseToml(session.read(file).toString()).profiles as Record<
           string,
           unknown
         >
       )["backend-craft"] !== undefined,
       true,
     );
-    assert.ok(readPlanned(file).toString().startsWith(body));
-    stage(file, e, "remove", e);
-    assert.equal(readPlanned(file).toString(), body);
+    assert.ok(session.read(file).toString().startsWith(body));
+    stage(session, file, e, "remove", e);
+    assert.equal(session.read(file).toString(), body);
   });
 });
 test("TOML 未知同名表不接管，用户改片段或坏格式不覆盖", async (t) => {
@@ -193,17 +191,17 @@ test("共享 JSON/TOML 健康检查只比较本产品条目，用户配置变动
           ? { command: "backend-craft" }
           : { model: "local" },
       );
-    await planProductWrites(async () => {
-      stage(file, e, "upsert");
-      assert.equal(sharedEntryStatus(file, e), "healthy");
-      let body = readPlanned(file).toString();
+    await planProductWrites(file, async (session) => {
+      stage(session, file, e, "upsert");
+      assert.equal(sharedEntryStatus(file, e, session), "healthy");
+      let body = session.read(file).toString();
       body =
         kind === "toml-key"
           ? body + "\n# 用户新增注释\n"
           : body.replace('"user": true', '"user": false');
-      writePlanned(file, Buffer.from(body));
-      assert.equal(sharedEntryStatus(file, e), "healthy");
-      writePlanned(
+      session.stage(file, Buffer.from(body));
+      assert.equal(sharedEntryStatus(file, e, session), "healthy");
+      session.stage(
         file,
         Buffer.from(
           body.replace(
@@ -212,7 +210,7 @@ test("共享 JSON/TOML 健康检查只比较本产品条目，用户配置变动
           ),
         ),
       );
-      assert.notEqual(sharedEntryStatus(file, e), "healthy");
+      assert.notEqual(sharedEntryStatus(file, e, session), "healthy");
     });
   }
 });
@@ -221,8 +219,8 @@ test("移除已缺失的共享入口不会重新创建空文件", async (t) => {
     const file = fixture(t, "entry-" + kind, kind === "toml-key" ? "" : "{}");
     fs.unlinkSync(file);
     const e = entry(kind, kind === "text-marker" ? "body" : { enabled: true });
-    const mutations = await planProductWrites(async () => {
-      stage(file, e, "remove", e);
+    const mutations = await planProductWrites(file, async (session) => {
+      stage(session, file, e, "remove", e);
     });
     assert.equal(mutations.length, 0);
     assert.equal(fs.existsSync(file), false);
@@ -236,18 +234,19 @@ test("用户改写的 JSON hook 在退役或卸载时保留并报告冲突", asy
       '{"hooks":{"SessionStart":[{"command":"frontend-craft"}]}}',
     ),
     e = entry("json-hook", { command: "backend-craft" });
-  await planProductWrites(async () => {
-    stage(file, e, "upsert");
-    writePlanned(
+  await planProductWrites(file, async (session) => {
+    stage(session, file, e, "upsert");
+    session.stage(
       file,
       Buffer.from(
-        readPlanned(file)
+        session
+          .read(file)
           .toString()
           .replace('"backend-craft"', '"user-custom-command"'),
       ),
     );
-    const before = readPlanned(file);
-    assert.equal(stage(file, e, "remove", e), undefined);
-    assert.deepEqual(readPlanned(file), before);
+    const before = session.read(file);
+    assert.equal(stage(session, file, e, "remove", e), undefined);
+    assert.deepEqual(session.read(file), before);
   });
 });

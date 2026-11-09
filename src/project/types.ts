@@ -1,3 +1,4 @@
+import type { ProjectUnit } from "@bovinphang/craft-common";
 export type LanguageId = "rust" | "go" | "java" | "python" | "c" | "cpp";
 export type Phase = "format" | "lint" | "typecheck" | "test" | "build";
 export interface StageSpec {
@@ -23,6 +24,7 @@ export interface Inspection {
   schemaVersion: 1;
   workspace: string;
   projects: Project[];
+  units?: ProjectUnit[];
   warnings: string[];
   truncated: boolean;
 }

@@ -1,5 +1,5 @@
 # rust
 
-仅在最近工程证据确认此语言时读取 bec-rust-project-standard。
+仅在最近工程证据确认此语言时读取 cc-rust-project-standard。
 
 遵循工程锁定的工具链及构建模式，验证错误、并发和资源边界，不运行无关兄弟工程。

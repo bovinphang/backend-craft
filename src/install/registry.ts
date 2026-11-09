@@ -11,7 +11,7 @@ import { codebuddy } from "./adapters/codebuddy.js";
 import { cline } from "./adapters/cline.js";
 import { openclaw } from "./adapters/openclaw.js";
 import { qoder } from "./adapters/qoder.js";
-import type { InstallContext } from "./types.js";
+import type { InstallContext, PlanningInstallContext } from "./types.js";
 import { claude } from "./adapters/claude.js";
 import { codex } from "./adapters/codex.js";
 export interface RuntimeCapabilities {
@@ -25,7 +25,8 @@ export interface RuntimeAdapter {
   discovery?: "documented" | "manual";
   id: string;
   capabilities: RuntimeCapabilities;
-  plan(ctx: InstallContext): Promise<void>;
+  plan(ctx: PlanningInstallContext): Promise<void>;
+  configurationFiles?(ctx: InstallContext): string[];
   manualSteps?: string[];
 }
 export const RUNTIMES: Record<string, RuntimeAdapter> = {

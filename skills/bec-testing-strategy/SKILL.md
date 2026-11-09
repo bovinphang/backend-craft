@@ -17,3 +17,7 @@ Enumerate business invariants, trust boundaries, side effects and important fail
 ## Task boundary
 
 This plans test coverage; use TDD for implementing a particular behavior and debugging for explaining an existing failure.
+
+## Engineering practices
+
+Read the [local engineering decisions](references/engineering-practices.md) for this task and follow their links to relevant shared principles. Apply levels and exceptions against actual project contracts; product frontend/backend labels do not constrain language or role.

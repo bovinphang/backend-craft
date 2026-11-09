@@ -1,6 +1,7 @@
-import type { InstallLanguage } from "@bovinphang/craft-common";
+import type { InstallLanguage, InstallSession } from "@bovinphang/craft-common";
 import type { OwnedEntry } from "./shared-config/types.js";
 export interface InstallContext {
+  session?: InstallSession;
   productRoot: string;
   contentRoot: string;
   cwd: string;
@@ -12,6 +13,9 @@ export interface InstallContext {
   mode: "install" | "update";
   dryRun: boolean;
   allowedRoots?: string[];
+}
+export interface PlanningInstallContext extends InstallContext {
+  session: InstallSession;
 }
 export type ManifestRoot = "baseDir" | "cwd" | "home";
 export interface FileReference {

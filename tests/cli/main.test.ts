@@ -289,3 +289,45 @@ test("doctor 检查共享入口自身片段，用户及前端正文变动不误�
   );
   assert.equal(doctor(ctx).filesHealthy, true);
 });
+test("inspect scoped flags return real service recommendations and reject invalid paths without writing", async (t) => {
+  const f = fixture(t);
+  fs.writeFileSync(
+    path.join(f.cwd, "go.mod"),
+    "module test\nrequire github.com/gin-gonic/gin v1.11.0",
+  );
+  const before = fs.readdirSync(f.cwd);
+  assert.equal(
+    await main(
+      [
+        "project",
+        "inspect",
+        ".",
+        "--task-path",
+        "main.go",
+        "--task-kind",
+        "api",
+        "--json",
+      ],
+      f.io,
+    ),
+    0,
+  );
+  const value = JSON.parse(f.output.join(""));
+  assert.ok(
+    value.recommendations.some(
+      (r: { id: string }) => r.id === "bec-gin-project-standard",
+    ),
+  );
+  for (const args of [
+    ["--task-path", "../outside"],
+    ["--task-kind", "bogus"],
+    ["--task-path"],
+  ]) {
+    f.output.length = 0;
+    assert.equal(
+      await main(["project", "inspect", ...args, "--json"], f.io),
+      2,
+    );
+  }
+  assert.deepEqual(fs.readdirSync(f.cwd), before);
+});

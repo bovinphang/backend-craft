@@ -1,9 +1,10 @@
+import { checkMigration } from "./install/migration.js";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { PRODUCT } from "./product.js";
 import { parse } from "./cli/parse.js";
 import { publicPlan } from "./cli/output.js";
-import { inspect } from "./cli/inspect.js";
+import { inspectCapabilities } from "./cli/inspect.js";
 import { validationPlan } from "./cli/validate.js";
 import { doctor, createInstallContext } from "./cli/runtime.js";
 import { RUNTIMES, getRuntime } from "./install/registry.js";
@@ -20,7 +21,7 @@ export interface CliIO {
   signal?: AbortSignal;
 }
 const help =
-  "backend-craft / bec 1.0.0\n\nbec project inspect [path] [--json]\nbec validate [path] [--dry-run] [--json]\nbec runtime install|update|uninstall <runtime> [--local|--global] [--lang en|zh-CN] [--dry-run] [--json]\nbec runtime list [--local|--global] [--json]\nbec doctor <runtime> [--local|--global] [--json]\nbec matrix [--json]\n\n默认 local；自动格式/验证关闭。首版不提供 CLI 自升级或自卸载。\n";
+  "backend-craft / bec 1.0.0\n\nbec project inspect [path] [--task-path relative] [--task-kind kind] [--json]\nbec validate [path] [--dry-run] [--json]\nbec runtime check-migration [runtime] [--local|--global] [--json]\nbec runtime install|update|uninstall <runtime> [--local|--global] [--lang en|zh-CN] [--dry-run] [--json]\nbec runtime list [--local|--global] [--json]\nbec doctor <runtime> [--local|--global] [--json]\nbec matrix [--json]\n\n默认 local；自动格式/验证关闭。首版不提供 CLI 自升级或自卸载。\n";
 export async function main(argv: string[], io: CliIO): Promise<0 | 1 | 2> {
   const emit = (value: unknown) =>
     io.stdout(JSON.stringify(value, null, 2) + "\n");
@@ -40,6 +41,21 @@ export async function main(argv: string[], io: CliIO): Promise<0 | 1 | 2> {
       productRoot =
         io.productRoot ??
         path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+    if (argv[0] === "runtime" && argv[1] === "check-migration") {
+      const args = parse(argv.slice(2), ["--json", "--local", "--global"]);
+      if (args.positionals.length > 1)
+        throw new Error("迁移检查最多接受一个 Runtime");
+      const report = checkMigration({
+        cwd,
+        productRoot,
+        home: io.home,
+        env: io.env,
+        runtime: args.positionals[0],
+        isGlobal: args.global,
+      });
+      emit(report);
+      return report.exitCode;
+    }
     if (argv[0] === "matrix") {
       const args = parse(argv.slice(1), ["--json"]);
       if (args.positionals.length) throw new Error("matrix 无位置参数");
@@ -54,10 +70,22 @@ export async function main(argv: string[], io: CliIO): Promise<0 | 1 | 2> {
       return 0;
     }
     if (argv[0] === "project" && argv[1] === "inspect") {
-      const args = parse(argv.slice(2), ["--json"]);
+      const args = parse(argv.slice(2), [
+        "--json",
+        "--task-path",
+        "--task-kind",
+      ]);
       if (args.positionals.length > 1)
         throw new Error("inspect 仅接受一个路径");
-      emit(inspect(cwd, args.positionals[0]));
+      emit(
+        inspectCapabilities(
+          cwd,
+          args.positionals[0],
+          productRoot,
+          args.taskPath,
+          args.taskKind,
+        ),
+      );
       return 0;
     }
     if (argv[0] === "validate") {

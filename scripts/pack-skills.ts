@@ -81,6 +81,7 @@ export function packSkills(
             "data",
             "styles",
             "assets",
+            "examples",
             "localized",
             "origin.json",
             "README.md",

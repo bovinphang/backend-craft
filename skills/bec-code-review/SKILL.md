@@ -17,3 +17,7 @@ Establish diff scope, owning projects, contracts and actual verification results
 ## Task boundary
 
 Review is read-only unless fixes are explicitly requested. Do not bury confirmed correctness/security defects under stylistic preferences.
+
+## Engineering practices
+
+Read the [local engineering decisions](references/engineering-practices.md) for this task and follow their links to relevant shared principles. Apply levels and exceptions against actual project contracts; product frontend/backend labels do not constrain language or role.

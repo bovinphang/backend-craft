@@ -17,3 +17,7 @@ Start from actual operations, clients, trust boundaries and deployed contract ve
 ## Task boundary
 
 Frontend data-fetching integration and product requirement handoff are separate; API shape does not replace authorization or database consistency.
+
+## Engineering practices
+
+Read the [local engineering decisions](references/engineering-practices.md) for this task and follow their links to relevant shared principles. Apply levels and exceptions against actual project contracts; product frontend/backend labels do not constrain language or role.

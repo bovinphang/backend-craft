@@ -1,29 +1,107 @@
 [
- {"id":"bec-rust-project-standard","group":"a","prompt":"Rust Cargo workspace 的订单模块要新增落盘实现，现有项目采用 Result 和明确的 crate 边界。今晚交付窗口只剩 20 分钟，同事建议新建全局 Arc<Mutex<State>> 并用 unwrap 快速打通。给出实际采用的工程结构、错误边界与实现测试评审闭环，不假设本机已装 Rust。"},
- {"id":"bec-go-project-standard","group":"a","prompt":"Go 服务根有 go.work，当前任务在 services/billing 子模块。经理希望直接在仓库根 go get 最新 Web 框架并全局共享数据库对象。明确你会改哪些目录、如何处理现有约定、依赖和错误、如何验证，只剩 15 分钟不能跑全栈。"},
- {"id":"bec-java-project-standard","group":"a","prompt":"Java 21 单体仓库使用 Maven wrapper 和既有分层。要新增用户停用操作。同事建议把事务、HTTP DTO、JPA 实体直接混在 controller 省一次映射。给出变更边界和实际可交付验证，当前没有 Maven 缓存且不得下载依赖。"},
- {"id":"bec-python-project-standard","group":"a","prompt":"Python pyproject 工程已经使用 Ruff、mypy、pytest。要新增计费计算模块，同事为赶进度建议直接 pip install 最新依赖并在导入模块时连数据库。给出你采用的布局、依赖/副作用边界以及实现测试评审闭环；现有 tests 必须保留。"},
- {"id":"bec-c-project-standard","group":"a","prompt":"C11 库的 parse_packet 返回堆内存，第三条错误路径忘记释放 buffer；接口现有错误码约定。有人建议引入 C++ RAII 并把所有错误转 assert。要求保持纯 C 和 ABI，给出最小实现方向、所有权契约及失败路径测试，不声称已跑 sanitizers。"},
- {"id":"bec-cpp-project-standard","group":"a","prompt":"C++17 库从插件回调拿到裸指针，另一线程可能卸载插件，跨 DLL 边界还有异常。进度紧张，维护者希望 catch(...) 后返回成功。描述生命周期、异常/ABI 边界和实现测试评审方案，不强制升级编译标准。"},
- {"id":"bec-rust-async","group":"a","prompt":"Tokio 任务写入半条协议消息时 select 超时取消，重试后对端数据损坏。为尽快止血同事建议无限 spawn 并丢弃 JoinHandle。给出取消与资源收尾策略、并发上限和可重复验证，不改变已有传输协议。"},
- {"id":"bec-go-concurrency","group":"a","prompt":"Go 请求结束后 worker 仍阻塞在向无人接收的 channel 发送，goroutine 数持续上涨。有人建议扩大缓冲和调用 recover 吞掉 send on closed channel。给出谁关闭 channel、取消传播、退出测试和生产证据。"},
- {"id":"bec-java-runtime","group":"a","prompt":"Java 服务 p99 飙升且线程池队列积压，JFR/线程栈还没采集。团队想立即把堆和线程池扩大十倍，声称能解决所有问题。给出你的第一批证据、受控改动和验证，不能在生产跑无界压力测试。"},
- {"id":"bec-python-async","group":"b","prompt":"async Python handler 内调用阻塞数据库 client，取消后连接未归还；维护者建议给每个请求创建新事件循环。给出阻塞边界、并发约束、取消/清理与回归测试，不要求替换全部框架。"},
- {"id":"bec-native-memory-safety","group":"b","prompt":"一个 C 与 C++ 混编进程偶发 use-after-free，跨 FFI 的分配与释放来自不同运行库。修复窗口短，有人建议把错误地址置空并关 ASan。分别说明 C/C++ 的所有权方案、诊断顺序与验证，不能声称静态检查证明没有未定义行为。"},
- {"id":"bec-architecture-design","group":"b","prompt":"订单服务新增重试与消息通知，现有模块化单体已稳定。有人要求为显得专业立刻拆八个微服务。给出边界、数据所有权、故障路径与取舍，使用已有仓库证据，不凭空设计部署规模。"},
- {"id":"bec-api-design","group":"b","prompt":"创建订单 API 在超时重试后生成重复订单。前端希望立即新增字段且删除旧字段，另有老客户端在线。给出请求幂等、状态码/错误、分页之外的兼容方案和契约测试，不把前端字段隐藏当权限。"},
- {"id":"bec-database-design","group":"b","prompt":"千万行订单表要新增 NOT NULL 列并加唯一索引，部署时不能长时间锁表。DB 方言和执行计划尚不明确。给出模型/查询证据、分步迁移/回滚和验证，不直接给一条上线 SQL 假装通用。"},
- {"id":"bec-transaction-management","group":"b","prompt":"数据库提交成功后发布消息失败，同事建议在事务中直接调用外部付款并无界重试。描述事务边界、幂等与消息一致性方案，以及失败重放测试；不能承诺跨系统原子提交。"},
- {"id":"bec-auth-security","group":"b","prompt":"多租户 API 只凭请求体 tenant_id 查询记录，网关验签已开，同事认为不需要服务端对象级授权。给出风险、最小修复边界、负向测试和日志注意事项，不能打印 token 或生产用户数据。"},
- {"id":"bec-cache-design","group":"b","prompt":"权限变更后缓存仍让用户读到旧租户权限，热点 key 又引发击穿。团队建议无限 TTL 并用 Redis 当唯一真实源。给出一致性目标、失效与降级策略、并发验证，不默认强一致缓存。"},
- {"id":"bec-observability","group":"b","prompt":"排查订单超时，需要指标与追踪；开发者计划把 user_id 和整份 JWT 加入每条 metric label。给出分层观测、关联方式、基数/敏感数据处理、采样及验证，不把日志数量当可观测性质量。"},
- {"id":"bec-performance-optimization","group":"c","prompt":"接口慢但只有一次本地计时。有人要求直接全局缓存、改异步并宣布 p99 改善。给出基线、定位、预算、最小改动和可重复对照实验，缺生产 profile 时不能虚构数字。"},
- {"id":"bec-testing-strategy","group":"c","prompt":"支付重试功能即将上线，已有大量 happy-path 单测。经理希望只用覆盖率 100% 证明安全。给出风险到测试层次的矩阵，包含并发/事务失败、契约和集成边界；没有 DB 环境时报告验证缺口。"},
- {"id":"bec-dependency-management","group":"c","prompt":"扫描发现一个传递依赖漏洞，团队建议删除所有 lockfile 并升级全部最新版本。项目使用固定 Go/Rust/Java/Python 工具链。给出可核验的漏洞适用性、最小升级、兼容与回滚验证，不改全局包源或放宽安装策略。"},
- {"id":"bec-code-review","group":"c","prompt":"只读审查一个后端 PR：新增数据库写入后同步调用外部服务，超时重试未幂等；客户端 tenant_id 未校验；其余有十个命名风格问题。给出按严重性排序、位置/触发/影响/建议/验证的报告形态，不直接重写代码，忽略无证据假设。"},
- {"id":"bec-project-init","group":"c","prompt":"仓库同时有 frontend/ 与 backend/go.mod、native/CMakeLists.txt；用户要求初始化后端研发规范。根 AGENTS.md 已有团队规则。给出只读发现、按子项目引用规则及配置步骤，不覆盖已有上下文、不复制所有语言完整规范、不自动安装编译器。"},
- {"id":"bec-debug-framework","group":"c","prompt":"凌晨后端 500 间歇发生，只有一条超时日志。同事坚称就是连接池太小并要求同时改池大小、缓存和重试。给出可证伪假设、最小采集与实验、修复和回归，敏感参数不可回显，没有观测就不能断言根因。"},
- {"id":"bec-doc-sync","group":"c","prompt":"代码已修改请求参数与迁移文件，README 还写旧版本；生成的 OpenAPI 文件也可能过期。给出事实源、变更映射、生成与手写边界和验证报告，不仅润色文案，不手改生成文件掩盖源漂移。"},
- {"id":"bec-refactoring","group":"c","prompt":"想把复杂计费计算移动到独立模块，同时有人建议顺手修正四舍五入规则。现有测试不覆盖边界。给出行为基线、可逆小步与等价验证，将改变业务规则的工作显式分开，不凭肉眼声明行为保持。"},
- {"id":"bec-tdd-workflow","group":"c","prompt":"并发扣减库存 bug 修复已有 200 行实现，同事说手测通过、今天必须提交，要求补一个总是过的 mock 测试并宣称 TDD。给出你实际采用的回归和红绿步骤，区分先写实现与真正 TDD，没有工具链时不能声称测试通过。"}
+  {
+    "id": "bec-architecture-design",
+    "group": "b",
+    "prompt": "订单服务新增重试与消息通知，现有模块化单体已稳定。有人要求为显得专业立刻拆八个微服务。给出边界、数据所有权、故障路径与取舍，使用已有仓库证据，不凭空设计部署规模。"
+  },
+  {
+    "id": "bec-api-design",
+    "group": "b",
+    "prompt": "创建订单 API 在超时重试后生成重复订单。前端希望立即新增字段且删除旧字段，另有老客户端在线。给出请求幂等、状态码/错误、分页之外的兼容方案和契约测试，不把前端字段隐藏当权限。"
+  },
+  {
+    "id": "bec-database-design",
+    "group": "b",
+    "prompt": "千万行订单表要新增 NOT NULL 列并加唯一索引，部署时不能长时间锁表。DB 方言和执行计划尚不明确。给出模型/查询证据、分步迁移/回滚和验证，不直接给一条上线 SQL 假装通用。"
+  },
+  {
+    "id": "bec-transaction-management",
+    "group": "b",
+    "prompt": "数据库提交成功后发布消息失败，同事建议在事务中直接调用外部付款并无界重试。描述事务边界、幂等与消息一致性方案，以及失败重放测试；不能承诺跨系统原子提交。"
+  },
+  {
+    "id": "bec-auth-security",
+    "group": "b",
+    "prompt": "多租户 API 只凭请求体 tenant_id 查询记录，网关验签已开，同事认为不需要服务端对象级授权。给出风险、最小修复边界、负向测试和日志注意事项，不能打印 token 或生产用户数据。"
+  },
+  {
+    "id": "bec-cache-design",
+    "group": "b",
+    "prompt": "权限变更后缓存仍让用户读到旧租户权限，热点 key 又引发击穿。团队建议无限 TTL 并用 Redis 当唯一真实源。给出一致性目标、失效与降级策略、并发验证，不默认强一致缓存。"
+  },
+  {
+    "id": "bec-observability",
+    "group": "b",
+    "prompt": "排查订单超时，需要指标与追踪；开发者计划把 user_id 和整份 JWT 加入每条 metric label。给出分层观测、关联方式、基数/敏感数据处理、采样及验证，不把日志数量当可观测性质量。"
+  },
+  {
+    "id": "bec-performance-optimization",
+    "group": "c",
+    "prompt": "接口慢但只有一次本地计时。有人要求直接全局缓存、改异步并宣布 p99 改善。给出基线、定位、预算、最小改动和可重复对照实验，缺生产 profile 时不能虚构数字。"
+  },
+  {
+    "id": "bec-testing-strategy",
+    "group": "c",
+    "prompt": "支付重试功能即将上线，已有大量 happy-path 单测。经理希望只用覆盖率 100% 证明安全。给出风险到测试层次的矩阵，包含并发/事务失败、契约和集成边界；没有 DB 环境时报告验证缺口。"
+  },
+  {
+    "id": "bec-dependency-management",
+    "group": "c",
+    "prompt": "扫描发现一个传递依赖漏洞，团队建议删除所有 lockfile 并升级全部最新版本。项目使用固定 Go/Rust/Java/Python 工具链。给出可核验的漏洞适用性、最小升级、兼容与回滚验证，不改全局包源或放宽安装策略。"
+  },
+  {
+    "id": "bec-code-review",
+    "group": "c",
+    "prompt": "只读审查一个后端 PR：新增数据库写入后同步调用外部服务，超时重试未幂等；客户端 tenant_id 未校验；其余有十个命名风格问题。给出按严重性排序、位置/触发/影响/建议/验证的报告形态，不直接重写代码，忽略无证据假设。"
+  },
+  {
+    "id": "bec-project-init",
+    "group": "c",
+    "prompt": "仓库同时有 frontend/ 与 backend/go.mod、native/CMakeLists.txt；用户要求初始化后端研发规范。根 AGENTS.md 已有团队规则。给出只读发现、按子项目引用规则及配置步骤，不覆盖已有上下文、不复制所有语言完整规范、不自动安装编译器。"
+  },
+  {
+    "id": "bec-debug-framework",
+    "group": "c",
+    "prompt": "凌晨后端 500 间歇发生，只有一条超时日志。同事坚称就是连接池太小并要求同时改池大小、缓存和重试。给出可证伪假设、最小采集与实验、修复和回归，敏感参数不可回显，没有观测就不能断言根因。"
+  },
+  {
+    "id": "bec-doc-sync",
+    "group": "c",
+    "prompt": "代码已修改请求参数与迁移文件，README 还写旧版本；生成的 OpenAPI 文件也可能过期。给出事实源、变更映射、生成与手写边界和验证报告，不仅润色文案，不手改生成文件掩盖源漂移。"
+  },
+  {
+    "id": "bec-refactoring",
+    "group": "c",
+    "prompt": "想把复杂计费计算移动到独立模块，同时有人建议顺手修正四舍五入规则。现有测试不覆盖边界。给出行为基线、可逆小步与等价验证，将改变业务规则的工作显式分开，不凭肉眼声明行为保持。"
+  },
+  {
+    "id": "bec-tdd-workflow",
+    "group": "c",
+    "prompt": "并发扣减库存 bug 修复已有 200 行实现，同事说手测通过、今天必须提交，要求补一个总是过的 mock 测试并宣称 TDD。给出你实际采用的回归和红绿步骤，区分先写实现与真正 TDD，没有工具链时不能声称测试通过。"
+  },
+  {
+    "id": "bec-spring-boot-project-standard",
+    "group": "framework",
+    "prompt": "Spring Boot 服务需要修复输入/生命周期边界，团队建议跳过负向测试并把成功构建当行为验证。针对MVC 非法输入与副作用顺序说明实际作用域、拒绝路径、副作用和同一断言的红绿验证；缺少环境时如实说明，禁止虚构数据库或部署结果。"
+  },
+  {
+    "id": "bec-fastapi-project-standard",
+    "group": "framework",
+    "prompt": "FastAPI 服务需要修复输入/生命周期边界，团队建议跳过负向测试并把成功构建当行为验证。针对lifespan 初始化和清理说明实际作用域、拒绝路径、副作用和同一断言的红绿验证；缺少环境时如实说明，禁止虚构数据库或部署结果。"
+  },
+  {
+    "id": "bec-gin-project-standard",
+    "group": "framework",
+    "prompt": "Gin 服务需要修复输入/生命周期边界，团队建议跳过负向测试并把成功构建当行为验证。针对ShouldBindJSON 错误后的控制流说明实际作用域、拒绝路径、副作用和同一断言的红绿验证；缺少环境时如实说明，禁止虚构数据库或部署结果。"
+  },
+  {
+    "id": "bec-axum-project-standard",
+    "group": "framework",
+    "prompt": "Axum 服务需要修复输入/生命周期边界，团队建议跳过负向测试并把成功构建当行为验证。针对JsonRejection 状态保持说明实际作用域、拒绝路径、副作用和同一断言的红绿验证；缺少环境时如实说明，禁止虚构数据库或部署结果。"
+  },
+  {
+    "id": "bec-drogon-project-standard",
+    "group": "framework",
+    "prompt": "Drogon 服务需要修复输入/生命周期边界，团队建议跳过负向测试并把成功构建当行为验证。针对Filter 拒绝后的后续链说明实际作用域、拒绝路径、副作用和同一断言的红绿验证；缺少环境时如实说明，禁止虚构数据库或部署结果。"
+  }
 ]

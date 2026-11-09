@@ -1,162 +1,66 @@
+import { inspectLegacyInstall } from "./migration.js";
 import {
-  executeSharedPlan,
-  recoverSharedTransaction,
-  type FileMutation,
+  runProductLifecycle,
+  type ProductInstallResult,
 } from "@bovinphang/craft-common";
-import type {
-  InstallContext,
-  ProductSessionResult,
-  SharedEntryRecord,
-} from "./types.js";
+import { PRODUCT_DEFINITION, toProductContext } from "../product.js";
+import type { InstallContext } from "./types.js";
 import { getRuntime, type RuntimeAdapter } from "./registry.js";
-import {
-  allowedRoots,
-  manifestPath,
-  beginManifestSession,
-  endManifestSession,
-  discardManifestSession,
-  readManifest,
-  uninstallManagedFiles,
-  resolveReference,
-  assertManifestIdentity,
-} from "./manifest.js";
-import { planProductWrites, writePlanned } from "./product-plan.js";
-import { planSharedEntry } from "./shared-config/index.js";
-import {
-  executeProductPlan,
-  recoverProductTransaction,
-} from "./transaction.js";
+import { MANIFEST_CODEC } from "./manifest-codec.js";
 import { getRuntimeTarget } from "./paths.js";
 import { commonContext } from "./common.js";
-export interface InstallResult {
-  changed: string[];
-  preserved: string[];
-  conflicts: string[];
-  common: "shared" | "none" | "retained";
-  status: "complete" | "partial" | "planned";
+import path from "node:path";
+import { backendInstallError } from "./errors.js";
+export type InstallResult = ProductInstallResult;
+function configurationFiles(ctx: InstallContext): string[] {
+  if (ctx.runtime === "claude") return [path.join(ctx.baseDir, "CLAUDE.md")];
+  if (ctx.runtime === "codex")
+    return [path.join(ctx.isGlobal ? ctx.baseDir : ctx.cwd, "AGENTS.md")];
+  if (ctx.runtime === "gemini")
+    return [path.join(ctx.isGlobal ? ctx.baseDir : ctx.cwd, "GEMINI.md")];
+  if (ctx.runtime === "copilot" && ctx.isGlobal)
+    return [path.join(ctx.baseDir, "copilot-instructions.md")];
+  return [];
 }
-async function prepare(ctx: InstallContext, adapter: RuntimeAdapter) {
+async function run(
+  ctx: InstallContext,
+  adapter: RuntimeAdapter,
+  action: "install" | "update" | "uninstall",
+): Promise<InstallResult> {
   if (ctx.runtime !== adapter.id) throw new Error("Runtime 适配身份不匹配");
-  const { skillsDir } = getRuntimeTarget(ctx, adapter),
-    common = skillsDir ? commonContext(ctx, skillsDir) : undefined;
-  if (!ctx.dryRun) {
-    if (common)
-      await recoverSharedTransaction(common.pointer.target, allowedRoots(ctx));
-    else await recoverProductTransaction(ctx);
-  }
-  return common;
-}
-async function commit(
-  ctx: InstallContext,
-  common: ReturnType<typeof commonContext> | undefined,
-  mutations: FileMutation[],
-  remove = false,
-  retainConsumer = false,
-): Promise<string[]> {
-  if (common) {
-    const plan = await executeSharedPlan(
-      {
-        ...common.request,
-        ...(remove ? { action: "uninstall" as const, retainConsumer } : {}),
+  const { skillsDir } = getRuntimeTarget(ctx, adapter);
+  const common = skillsDir ? commonContext(ctx, skillsDir) : undefined;
+  return runProductLifecycle({
+    action,
+    definition: PRODUCT_DEFINITION,
+    context: toProductContext(ctx),
+    codec: MANIFEST_CODEC,
+    ...(common ? { common: common.request } : {}),
+    adapter: {
+      configurationFiles: () =>
+        adapter.configurationFiles?.(ctx) ?? configurationFiles(ctx),
+      plan: async (_context, session) => {
+        const legacy = inspectLegacyInstall(ctx);
+        if (legacy.findings.some((f) => f.kind === "conflict"))
+          throw new Error(
+            "旧入口退役冲突；请运行 bec runtime check-migration 并处理用户文件",
+          );
+        for (const root of legacy.roots)
+          session.retireTree(root, { rejectUnknown: true });
+        await adapter.plan({ ...ctx, session });
       },
-      {
-        dryRun: ctx.dryRun,
-        productMutations: mutations,
-        allowedProductRoots: allowedRoots(ctx),
-      },
-    );
-    return [...plan.mutations, ...mutations].map((m) => m.path);
-  }
-  await executeProductPlan(ctx, mutations, { dryRun: ctx.dryRun });
-  return mutations.map((m) => m.path);
+    },
+  });
 }
-export async function installRuntime(
+export function installRuntime(
   ctx: InstallContext,
   adapter: RuntimeAdapter = getRuntime(ctx.runtime),
 ): Promise<InstallResult> {
-  const common = await prepare(ctx, adapter);
-  let result: ProductSessionResult | undefined;
-  const mutations = await planProductWrites(async () => {
-    try {
-      beginManifestSession(ctx, common?.pointer);
-      await adapter.plan(ctx);
-      result = endManifestSession();
-    } finally {
-      discardManifestSession();
-    }
-  });
-  const changed = await commit(ctx, common, mutations),
-    preserved = result!.preserved;
-  return {
-    changed,
-    preserved,
-    conflicts: [],
-    common: common ? "shared" : "none",
-    status: ctx.dryRun ? "planned" : preserved.length ? "partial" : "complete",
-  };
+  return run(ctx, adapter, ctx.mode).catch(backendInstallError);
 }
-export async function uninstallRuntime(
+export function uninstallRuntime(
   ctx: InstallContext,
   adapter: RuntimeAdapter = getRuntime(ctx.runtime),
 ): Promise<InstallResult> {
-  const common = await prepare(ctx, adapter),
-    manifest = readManifest(manifestPath(ctx));
-  if (!manifest)
-    return {
-      changed: [],
-      preserved: [],
-      conflicts: [],
-      common: "none",
-      status: ctx.dryRun ? "planned" : "complete",
-    };
-  assertManifestIdentity(ctx, manifest);
-  if (
-    manifest.common &&
-    (!common ||
-      manifest.common.target !== common.pointer.target ||
-      manifest.common.ledgerDir !== common.pointer.ledgerDir)
-  )
-    throw new Error("公共目标身份不匹配");
-  const preserved: string[] = [];
-  let retain = false;
-  const mutations = await planProductWrites(async () => {
-    const files = uninstallManagedFiles(ctx, manifest);
-    preserved.push(...files.preserved);
-    const sharedEntries: SharedEntryRecord[] = [];
-    for (const record of manifest.sharedEntries) {
-      const file = resolveReference(ctx, record);
-      const mutation = planSharedEntry(
-        file,
-        record.entry,
-        "remove",
-        record.entry,
-      );
-      if (mutation) writePlanned(file, mutation.after);
-      else {
-        sharedEntries.push(record);
-        preserved.push(file);
-      }
-    }
-    retain = files.remaining.length > 0 || sharedEntries.length > 0;
-    writePlanned(
-      manifestPath(ctx),
-      retain
-        ? Buffer.from(
-            JSON.stringify(
-              { ...manifest, files: files.remaining, sharedEntries },
-              null,
-              2,
-            ) + "\n",
-          )
-        : null,
-    );
-  });
-  const changed = await commit(ctx, common, mutations, true, retain);
-  return {
-    changed,
-    preserved,
-    conflicts: [],
-    common: common ? (retain ? "retained" : "shared") : "none",
-    status: ctx.dryRun ? "planned" : retain ? "partial" : "complete",
-  };
+  return run(ctx, adapter, "uninstall").catch(backendInstallError);
 }

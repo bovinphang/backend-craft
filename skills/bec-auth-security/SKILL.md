@@ -17,3 +17,7 @@ Map entry points, trusted identity, tenant/object boundaries and sensitive opera
 ## Task boundary
 
 Gateway authentication or frontend hiding is not object authorization; do not disclose secrets or execute unapproved production attack tests.
+
+## Engineering practices
+
+Read the [local engineering decisions](references/engineering-practices.md) for this task and follow their links to relevant shared principles. Apply levels and exceptions against actual project contracts; product frontend/backend labels do not constrain language or role.

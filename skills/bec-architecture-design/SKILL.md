@@ -17,3 +17,7 @@ Read actual modules, call paths, deployment constraints and ownership before pro
 ## Task boundary
 
 Do not turn an existing modular monolith into microservices without evidence; detailed API, database and runtime incidents have narrower workflows.
+
+## Engineering practices
+
+Read the [local engineering decisions](references/engineering-practices.md) for this task and follow their links to relevant shared principles. Apply levels and exceptions against actual project contracts; product frontend/backend labels do not constrain language or role.

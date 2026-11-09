@@ -30,6 +30,39 @@ const ids = [
     "qoder",
   ],
   productRoot = path.resolve(".");
+test("local runtime targets match the captured installation contract", () => {
+  const contract = JSON.parse(
+    fs.readFileSync(
+      new URL("../fixtures/installation-contract.json", import.meta.url),
+      "utf8",
+    ),
+  ) as {
+    runtimes: Array<{ id: string; localDirectory: string; skills: string }>;
+  };
+  const cwd = path.resolve("contract-project");
+  for (const entry of contract.runtimes) {
+    const ctx = createInstallContext({
+      productRoot,
+      cwd,
+      runtime: entry.id,
+      env: {},
+    });
+    assert.equal(ctx.baseDir, path.join(cwd, entry.localDirectory));
+    const expected =
+      entry.skills === "none"
+        ? undefined
+        : entry.skills === "agents"
+          ? path.join(cwd, ".agents", "skills")
+          : entry.skills === "workspace"
+            ? path.join(cwd, "skills")
+            : path.join(ctx.baseDir, "skills");
+    assert.equal(
+      getRuntimeTarget(ctx, getRuntime(entry.id)).skillsDir,
+      expected,
+      entry.id,
+    );
+  }
+});
 test("15 Runtime 集合及不支持的标准 Skill，不回退未知平台", () => {
   assert.deepEqual(Object.keys(RUNTIMES), ids);
   assert.throws(() => getRuntime("unknown"), /未知/);
@@ -66,7 +99,7 @@ for (const runtime of ids)
         if (skillsDir) {
           assert.ok(
             fs.existsSync(
-              path.join(skillsDir, "bec-rust-project-standard/SKILL.md"),
+              path.join(skillsDir, "cc-rust-project-standard/SKILL.md"),
             ),
           );
           assert.ok(

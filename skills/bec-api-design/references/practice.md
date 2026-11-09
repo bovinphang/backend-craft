@@ -35,3 +35,7 @@ Frontend data-fetching integration and product requirement handoff are separate;
 ## Primary reference
 
 [Relevant official/project documentation](https://www.rfc-editor.org/rfc/rfc9110.html) (checked 2026-11-06). Match the actual project version before applying version-sensitive details; the page version does not authorize an upgrade.
+
+## Java service domain boundaries
+
+2. Keep HTTP validation/DTO mapping at adapters, use cases at application boundaries and persistence mapping in the existing data layer.

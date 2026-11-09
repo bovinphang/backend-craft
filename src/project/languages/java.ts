@@ -4,7 +4,7 @@ import type { LanguageModule } from "./types.js";
 import { stage } from "./shared.js";
 export const java: LanguageModule = {
   id: "java",
-  skillIds: ["bec-java-project-standard", "bec-java-runtime"],
+  skillIds: ["cc-java-project-standard", "cc-java-runtime"],
   suggest: (p) => {
     const result = [];
     // Never bootstrap a wrapper: its distribution needs explicit preparation/configuration.

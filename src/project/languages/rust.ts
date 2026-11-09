@@ -2,7 +2,7 @@ import type { LanguageModule } from "./types.js";
 import { stage } from "./shared.js";
 export const rust: LanguageModule = {
   id: "rust",
-  skillIds: ["bec-rust-project-standard", "bec-rust-async"],
+  skillIds: ["cc-rust-project-standard", "cc-rust-async"],
   suggest: (p) => {
     const env = { RUSTUP_AUTO_INSTALL: "0", CARGO_NET_OFFLINE: "true" };
     return [

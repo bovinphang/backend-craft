@@ -43,7 +43,7 @@ await installRuntime(ctx, {
     rules: false,
     hooks: false,
   },
-  async plan() {
-    writeManaged(file, Buffer.from("owned"));
+  async plan(planning) {
+    writeManaged(planning, file, Buffer.from("owned"));
   },
 });

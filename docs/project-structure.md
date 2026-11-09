@@ -18,7 +18,7 @@ backend-craft/
 │   ├── openclaw/             # 原生插件入口
 │   ├── product.ts            # 产品标识及版本
 │   └── index.ts              # 对外 API
-├── skills/                   # 27 个 bec-* + 7 个 cc-*，以及能力索引
+├── skills/                   # 21 个 bec-* + 21 个 cc-*，以及能力索引
 ├── agents/                   # 8 个后端 Agent
 ├── commands/                 # 8 个命令工作流
 ├── localized/zh-CN/          # 中文内容镜像
@@ -34,12 +34,14 @@ backend-craft/
 
 `dist/` 由 `pnpm build` 生成，包含 CLI、Hook、OpenClaw 入口与声明，不手工修改。`package.json` 的 `exports` 指向 `dist/index.js` 和 `dist/index.d.ts`；命令别名 `bec` 与 `backend-craft` 指向同一个构建入口。
 
-领域内容在本仓库维护。七个 `cc-*` Skill 与内嵌公共方法由精确依赖 `@bovinphang/craft-common@1.0.1` 生成；先修改公共源，再运行 `pnpm run sync:common`，用 `pnpm run check:common` 只读比对，不直接修改公共副本。领域内容变化需要同步中文镜像、能力索引及相关文档。
+领域内容在本仓库维护。21 个 `cc-*` Skill 与内嵌公共方法由精确依赖 `@bovinphang/craft-common@2.0.0` 生成；先修改公共源，再运行 `pnpm run sync:common`，用 `pnpm run check:common` 只读比对，不直接修改公共副本。领域内容变化需要同步中文镜像、能力索引及相关文档。
 
 日常校验使用 `pnpm lint`、`pnpm typecheck`、`pnpm build`、`pnpm test` 和 `pnpm run check:content`。`pnpm run verify:coexistence --frontend-root ../frontend-craft`、`pnpm run verify:languages` 分别验证真实前后端共存与本地语言夹具；环境要求及结果边界见 [共存证据](verification/coexistence.md) 和 [工具链证据](verification/toolchains.md)。
 
-`pnpm run pack:all` 构建、测试、核验并生成 npm CLI、OpenClaw 及 34 个独立 Skill 包，共 36 个归档；输出到脚本创建的 `npm-packages-*` 目录，不执行发布。
+`pnpm run pack:all` 构建、测试、核验并生成 npm CLI、OpenClaw 及 42 个独立 Skill 包，共 44 个归档；输出到脚本创建的 `npm-packages-*` 目录，不执行发布。
 
 [验证配置](validation-config.md) · [扩展语言](extending-languages.md) · [Runtime 安装与启用](runtimes/README.md) · [共存与迁移](coexistence.md)
 
 首次检出或修改运行时代码后，先执行 `pnpm build`，再执行 `pnpm test`。后端测试脚本仅启动测试发现与执行，分发测试需要已生成的 `dist/bin/backend-craft.js`、`dist/hooks/` 和 `dist/openclaw/`。
+
+`src/project/` keeps product framework declarations and inspect integration. Bounded discovery and task recommendation live in craft-common; backend retains the six-language validation projection. 产品不复制扫描器或公共安装算法。

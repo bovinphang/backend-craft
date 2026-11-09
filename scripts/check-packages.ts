@@ -4,15 +4,16 @@ import { readProductCatalog } from "../src/content/catalog.js";
 import { readCommonCatalog } from "../src/content/common.js";
 import { PRODUCT } from "../src/product.js";
 export function checkPackages(productRoot: string): void {
+  const commonVersions=new Set<string>();
   for (const language of ["en", "zh-CN"] as const) {
     const catalog = readProductCatalog(productRoot, language);
     if (
-      catalog.skills.length !== 34 ||
+      catalog.skills.length !== 42 ||
       catalog.agents.length !== 8 ||
       catalog.commands.length !== 8
     )
       throw new Error("分发内容数量不完整");
-    readCommonCatalog(productRoot, language);
+    commonVersions.add(readCommonCatalog(productRoot, language).packageVersion);
   }
   for (const file of [
     "dist/bin/backend-craft.js",
@@ -31,8 +32,9 @@ export function checkPackages(productRoot: string): void {
   const pkg = JSON.parse(
     fs.readFileSync(path.join(productRoot, "package.json"), "utf8"),
   );
-  if (pkg.dependencies["@bovinphang/craft-common"] !== "1.0.1")
-    throw new Error("公共依赖必须精确为 1.0.1");
+  const declared=pkg.dependencies?.["@bovinphang/craft-common"];
+  if(typeof declared!=="string" || !/^\d+\.\d+\.\d+(?:-[0-9A-Za-z.-]+)?(?:\+[0-9A-Za-z.-]+)?$/.test(declared) || commonVersions.size!==1 || !commonVersions.has(declared))
+    throw new Error("公共依赖必须精确匹配已校验的双语公共来源版本");
   for (const file of [".claude-plugin/plugin.json", "openclaw.plugin.json"]) {
     const metadata = JSON.parse(
       fs.readFileSync(path.join(productRoot, file), "utf8"),
