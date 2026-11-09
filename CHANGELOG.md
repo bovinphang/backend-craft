@@ -4,7 +4,7 @@
 
 ## [1.0.0] - 2026-11-09
 
-This product version remains 1.0.0. Preparing common 2.0.0 does not publish backend or change its version.
+Backend 1.0.0 was published on 2026-11-09 (Asia/Shanghai), using common 2.0.0.
 
 ### Added
 
@@ -17,6 +17,6 @@ This product version remains 1.0.0. Preparing common 2.0.0 does not publish back
 ### Changed
 
 - Promote the shared dependency from the local development candidate to final version number 2.0.0 and regenerate bilingual snapshots/provenance from the same verified archive used by frontend 3.0.0.
-- Synchronize current documentation and release prerequisites. Both product versions remain unreleased; publish and verify common first, then perform public-registry clean installation and separately authorize product releases.
+- Synchronize current documentation and release prerequisites. Both product versions are published. Public-registry installation, complete regression testing and native-host activation remain separate verification activities.
 
 See [coexistence and migration](docs/coexistence.md) and the [release gates](docs/verification/release-gates.md). Earlier dated verification reports describe their original artifacts and are not rewritten as new release results.

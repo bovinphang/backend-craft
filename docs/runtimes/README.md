@@ -1,6 +1,6 @@
 # 安装与启用
 
-Claude marketplace 元数据从 Git 读取目录，但插件来源精确指向 npm 的 @bovinphang/backend-craft@1.0.0；发布包包含原生 Hook 的 dist 构建产物。不能把未构建的 Git 根目录当作完整插件目录加载。正式发布后，可在 Claude 中添加 bovinphang/backend-craft marketplace 并安装 backend-craft@backend-craft；也可将已解包的完整 npm 插件目录交给 --plugin-dir 测试。公开包尚未发布时，该原生安装入口同样未完成公开源验收。
+Claude marketplace 元数据从 Git 读取目录，但插件来源精确指向 npm 的 @bovinphang/backend-craft@1.0.0；发布包包含原生 Hook 的 dist 构建产物。不能把未构建的 Git 根目录当作完整插件目录加载。backend1.0.0已发布，可在 Claude 中添加 bovinphang/backend-craft marketplace 并安装 backend-craft@backend-craft；也可将已解包的完整 npm 插件目录交给 --plugin-dir 测试。公开包已可下载；真实宿主信任、发现和激活仍需分别验收。
 
 使用 bec matrix --json 查看实际能力与手动步骤，[已核验路径和来源](../research/runtime-contracts.md) 为当前实现依据。
 

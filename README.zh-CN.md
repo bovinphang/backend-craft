@@ -1,11 +1,11 @@
 # Backend Craft
 
-> 发布状态更新（2026-11-09）：craft-common 2.0.0 已发布至 npm。frontend 3.0.0、backend 1.0.0 继续未发布，产品版本号不变；下方原发布准备说明保留当时状态。
+> 发布状态更新：craft-common 2.0.0、frontend-craft 3.0.0、backend-craft 1.0.0 均已于2026-11-09（Asia/Shanghai）发布至 npm，版本号不变。
 
 
 面向 Rust、Go、Java、Python、C、C++ 的后端专业 AI Coding 插件。包含 21 个服务领域 Skill、21 个公共 cc-* Skill、8 个 Agent 与 8 个命令工作流，提供英文与简体中文内容。
 
-要求 Node.js 22+。精确依赖 craft-common@2.0.0；该正式版本号当前待发布，公开发布前，干净公开源安装尚不能完成。目前使用本地构建包验证，不以本地成功冒充公开发布。
+要求 Node.js 22+。精确依赖 craft-common@2.0.0；三包均已发布，可通过公开源安装对应版本；发布本身不等于所有环境安装或原生宿主激活均已验证。
 
 ```sh
 npm install -g @bovinphang/backend-craft@1.0.0
@@ -51,4 +51,4 @@ CLI 与原生插件渠道二选一。CLI 通过版本、语言、摘要共享公
 
 [HTTP重放样例](skills/bec-api-design/examples/engineering/README.md)通过真实HTTP客户端验证提交后响应失败、意图变化与并发重复。源码仓的`pnpm run verify:engineering`离线使用现有Go工具及隔离源码副本，不安装工具；内存互斥不代表数据库持久性、生产鉴权或分布式恰好一次。框架验证保持各自实际边界。42入口仍可独立分发，[协调迁移](docs/coexistence.md)继续保护已有消费者与用户编辑。
 
-[未发布变更](CHANGELOG.zh-CN.md)记录当前1.0.0范围。先发布并核验common2.0.0，backend1.0.0仍保留为未发布版本，本轮不上传产品。
+[发布变更](CHANGELOG.zh-CN.md)记录backend1.0.0范围。craft-common 2.0.0、frontend-craft 3.0.0、backend-craft 1.0.0 均已于2026-11-09（Asia/Shanghai）发布至 npm，版本号不变。

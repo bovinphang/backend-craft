@@ -1,13 +1,13 @@
 # Backend Craft
 
-> Release status (2026-11-09): craft-common 2.0.0 is published on npm. Frontend 3.0.0 and backend 1.0.0 remain unreleased; product versions are unchanged. Earlier preparation notes describe the pre-publication state.
+> Release status: craft-common 2.0.0, frontend-craft 3.0.0 and backend-craft 1.0.0 were published to npm on 2026-11-09 (Asia/Shanghai). Package versions are unchanged.
 
 
 Backend engineering skills for Rust, Go, Java, Python, C and C++. Includes 21 service-domain skills, 21 shared `cc-*` skills, 8 agents and 8 command workflows in English and Simplified Chinese.
 
 [简体中文](README.zh-CN.md) · [Runtime contracts](docs/research/runtime-contracts.md) · [Validation config](docs/validation-config.md)
 
-Requires Node.js 22+. The precise common dependency is `@bovinphang/craft-common@2.0.0`. This final version is prepared for publication and must be published before a clean public-registry installation can succeed; local release artifacts are currently used for verification.
+Requires Node.js 22+. The precise common dependency is `@bovinphang/craft-common@2.0.0`. All three packages are published on npm; public-registry installation can use these exact versions. Publication alone does not prove installation or native-host activation in every environment.
 
 ```sh
 npm install -g @bovinphang/backend-craft@1.0.0
@@ -54,4 +54,4 @@ Fourteen existing service entries add scoped decisions for failure/recovery, API
 
 The [HTTP replay sample](skills/bec-api-design/examples/engineering/README.md) tests response failure after commit, changed intent and concurrent duplicates with real HTTP clients. Repository-only `pnpm run verify:engineering` uses the existing Go toolchain offline and isolated source copies; it does not install tools. Its in-memory mutex is not database durability, production authentication or distributed exactly-once. Framework checks retain their own actual boundaries. All42 entries remain independently distributable; [coordinated migration](docs/coexistence.md) protects existing consumers and edits.
 
-[Unreleased changes](CHANGELOG.md) describe the current 1.0.0 scope. Publish and verify common 2.0.0 first; backend 1.0.0 remains unreleased and is not uploaded by this preparation.
+[Release notes](CHANGELOG.md) describe backend 1.0.0. craft-common 2.0.0, frontend-craft 3.0.0 and backend-craft 1.0.0 were published to npm on 2026-11-09 (Asia/Shanghai). Package versions are unchanged.
