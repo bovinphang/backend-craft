@@ -9,6 +9,15 @@ export interface Arguments {
   language: "en" | "zh-CN";
 }
 export function parse(argv: string[], allowed: string[]): Arguments {
+  argv = argv.flatMap((arg) =>
+    arg === "-g"
+      ? ["--global"]
+      : arg === "-l"
+        ? ["--local"]
+        : arg.startsWith("--lang=")
+          ? ["--lang", arg.slice(7)]
+          : [arg],
+  );
   const result: Arguments = {
     positionals: [],
     json: false,

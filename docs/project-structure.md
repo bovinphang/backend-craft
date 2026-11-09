@@ -34,7 +34,7 @@ backend-craft/
 
 `dist/` 由 `pnpm build` 生成，包含 CLI、Hook、OpenClaw 入口与声明，不手工修改。`package.json` 的 `exports` 指向 `dist/index.js` 和 `dist/index.d.ts`；命令别名 `bec` 与 `backend-craft` 指向同一个构建入口。
 
-领域内容在本仓库维护。21 个 `cc-*` Skill 与内嵌公共方法由精确依赖 `@bovinphang/craft-common@2.0.0` 生成；先修改公共源，再运行 `pnpm run sync:common`，用 `pnpm run check:common` 只读比对，不直接修改公共副本。领域内容变化需要同步中文镜像、能力索引及相关文档。
+领域内容在本仓库维护。21 个 `cc-*` Skill 与内嵌公共方法由精确依赖 `@bovinphang/craft-common@2.1.0` 生成；先修改公共源，再运行 `pnpm run sync:common`，用 `pnpm run check:common` 只读比对，不直接修改公共副本。领域内容变化需要同步中文镜像、能力索引及相关文档。
 
 日常校验使用 `pnpm lint`、`pnpm typecheck`、`pnpm build`、`pnpm test` 和 `pnpm run check:content`。`pnpm run verify:coexistence --frontend-root ../frontend-craft`、`pnpm run verify:languages` 分别验证真实前后端共存与本地语言夹具；环境要求及结果边界见 [共存证据](verification/coexistence.md) 和 [工具链证据](verification/toolchains.md)。
 

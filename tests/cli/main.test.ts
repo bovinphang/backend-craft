@@ -21,7 +21,7 @@ function fixture(t: { after(fn: () => void): void }) {
     };
   return { cwd, output, errors, io };
 }
-test("help/version 不依赖工程，未知参数、平台和自管理命令不写入", async (t) => {
+test("help/version 不依赖工程，未知参数和平台不写入", async (t) => {
   const f = fixture(t);
   assert.equal(
     await main(["--version"], { ...f.io, cwd: path.join(f.cwd, "absent") }),
@@ -32,8 +32,6 @@ test("help/version 不依赖工程，未知参数、平台和自管理命令不�
     ["runtime", "install", "unknown"],
     ["runtime", "install", "claude", "--force"],
     ["runtime", "install", "claude", "--local", "--global"],
-    ["update"],
-    ["uninstall"],
   ])
     assert.equal(await main(args, f.io), 2);
   assert.deepEqual(fs.readdirSync(f.cwd), []);
@@ -137,7 +135,10 @@ test("list/doctor 不把 F 清单当成 B，安装后区分资源完整和启用
   await main(["runtime", "list", "--json"], f.io);
   assert.deepEqual(JSON.parse(f.output.join("")), []);
   f.output.length = 0;
-  assert.equal(await main(["runtime", "install", "claude", "--json"], f.io), 0);
+  assert.equal(
+    await main(["runtime", "install", "claude", "--local", "--json"], f.io),
+    0,
+  );
   f.output.length = 0;
   assert.equal(await main(["doctor", "claude", "--json"], f.io), 0);
   const report = JSON.parse(f.output.join(""));
@@ -160,13 +161,16 @@ test("已有中文安装在省略 --lang 更新时保持原语言", async (t) =>
   const f = fixture(t);
   assert.equal(
     await main(
-      ["runtime", "install", "claude", "--lang", "zh-CN", "--json"],
+      ["runtime", "install", "claude", "--local", "--lang", "zh-CN", "--json"],
       f.io,
     ),
     0,
   );
   f.output.length = 0;
-  assert.equal(await main(["runtime", "update", "claude", "--json"], f.io), 0);
+  assert.equal(
+    await main(["runtime", "update", "claude", "--local", "--json"], f.io),
+    0,
+  );
   const manifest = JSON.parse(
     fs.readFileSync(
       path.join(f.cwd, ".claude/backend-craft.manifest.json"),
@@ -256,7 +260,10 @@ test("从父目录指定子目录或子文件优先读取最近工程配置，�
 
 test("doctor 检查共享入口自身片段，用户及前端正文变动不误报", async (t) => {
   const f = fixture(t);
-  assert.equal(await main(["runtime", "install", "claude", "--json"], f.io), 0);
+  assert.equal(
+    await main(["runtime", "install", "claude", "--local", "--json"], f.io),
+    0,
+  );
   const ctx = createInstallContext({
       productRoot: path.resolve("."),
       cwd: f.cwd,

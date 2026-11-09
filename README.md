@@ -7,7 +7,7 @@ Backend engineering skills for Rust, Go, Java, Python, C and C++. Includes 21 se
 
 [简体中文](README.zh-CN.md) · [Runtime contracts](docs/research/runtime-contracts.md) · [Validation config](docs/validation-config.md)
 
-Requires Node.js 22+. The precise common dependency is `@bovinphang/craft-common@2.0.0`. All three packages are published on npm; public-registry installation can use these exact versions. Publication alone does not prove installation or native-host activation in every environment.
+Requires Node.js 22+. The precise common dependency is `@bovinphang/craft-common@2.1.0`. The current 2.1.0 common dependency is prepared locally and not yet published; the earlier 2.0.0 dependency belongs to the previously published builds.
 
 ```sh
 npm install -g @bovinphang/backend-craft@1.0.0
@@ -32,7 +32,7 @@ Choose either CLI installation or a native Claude/OpenClaw plugin for a runtime.
 
 Development: `pnpm install`, `pnpm lint`, `pnpm typecheck`, `pnpm build`, `pnpm test`, `pnpm run pack:all`. The last command builds, tests, creates native and 42 standalone skill packages, and verifies their content. No publishing command runs automatically.
 
-[Project structure and maintenance](docs/project-structure.md) (Simplified Chinese) describes source modules, generated common content and validation commands. The CLI does not support self-update or self-uninstall; use the original package manager to manage the CLI and `bec runtime update/uninstall` for runtime resources.
+[Project structure and maintenance](docs/project-structure.md) (Simplified Chinese) describes source modules, generated common content and validation commands. The CLI supports self-update and self-uninstall through the original verified npm/pnpm installation; use `bec runtime update/uninstall` for resources.
 
 Run `pnpm build` before `pnpm test` in a fresh checkout: packaging tests execute the generated CLI, native hooks and OpenClaw bundle from `dist/`. Unlike frontend-craft, backend-craft does not build automatically in its `test` script.
 
@@ -55,3 +55,7 @@ Fourteen existing service entries add scoped decisions for failure/recovery, API
 The [HTTP replay sample](skills/bec-api-design/examples/engineering/README.md) tests response failure after commit, changed intent and concurrent duplicates with real HTTP clients. Repository-only `pnpm run verify:engineering` uses the existing Go toolchain offline and isolated source copies; it does not install tools. Its in-memory mutex is not database durability, production authentication or distributed exactly-once. Framework checks retain their own actual boundaries. All42 entries remain independently distributable; [coordinated migration](docs/coexistence.md) protects existing consumers and edits.
 
 [Release notes](CHANGELOG.md) describe backend 1.0.0. craft-common 2.0.0, frontend-craft 3.0.0 and backend-craft 1.0.0 were published to npm on 2026-11-09 (Asia/Shanghai). Package versions are unchanged.
+
+## CLI management (unreleased)
+
+This source now pins craft-common 2.1.0; these changes are not published. See [CLI management](docs/cli-management.md) for self-management, interactive and batch operations, and installation defaults.

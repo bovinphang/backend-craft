@@ -5,7 +5,7 @@
 
 面向 Rust、Go、Java、Python、C、C++ 的后端专业 AI Coding 插件。包含 21 个服务领域 Skill、21 个公共 cc-* Skill、8 个 Agent 与 8 个命令工作流，提供英文与简体中文内容。
 
-要求 Node.js 22+。精确依赖 craft-common@2.0.0；三包均已发布，可通过公开源安装对应版本；发布本身不等于所有环境安装或原生宿主激活均已验证。
+要求 Node.js 22+。当前源码精确依赖 craft-common@2.1.0（待发布）；此前发布的 2.0.0 对应历史产品构建。
 
 ```sh
 npm install -g @bovinphang/backend-craft@1.0.0
@@ -29,7 +29,7 @@ CLI 与原生插件渠道二选一。CLI 通过版本、语言、摘要共享公
 
 开发使用 pnpm：lint、typecheck、test、build、check:common；pack:all 按构建、测试、原生与独立包构建、包核验顺序执行，产出 npm CLI、OpenClaw 包与 42 个独立 Skill 包，不自动发布。
 
-[工程结构与维护入口](docs/project-structure.md)列出源码模块、公共内容生成边界与校验命令。首版 CLI 不提供自升级、自卸载；使用原包管理器管理 CLI，使用 `bec runtime update/uninstall` 管理运行时资源。
+[工程结构与维护入口](docs/project-structure.md)列出源码模块、公共内容生成边界与校验命令。CLI 支持通过原 npm/pnpm 安装来源自升级、自卸载；使用 `bec runtime update/uninstall` 管理运行时资源。
 
 首次检出应先运行 `pnpm build`，再运行 `pnpm test`；分发测试依赖 `dist/` 中的 CLI、原生 Hook 和 OpenClaw bundle。后端的 `test` 脚本不会自动构建。
 
@@ -52,3 +52,7 @@ CLI 与原生插件渠道二选一。CLI 通过版本、语言、摘要共享公
 [HTTP重放样例](skills/bec-api-design/examples/engineering/README.md)通过真实HTTP客户端验证提交后响应失败、意图变化与并发重复。源码仓的`pnpm run verify:engineering`离线使用现有Go工具及隔离源码副本，不安装工具；内存互斥不代表数据库持久性、生产鉴权或分布式恰好一次。框架验证保持各自实际边界。42入口仍可独立分发，[协调迁移](docs/coexistence.md)继续保护已有消费者与用户编辑。
 
 [发布变更](CHANGELOG.zh-CN.md)记录backend1.0.0范围。craft-common 2.0.0、frontend-craft 3.0.0、backend-craft 1.0.0 均已于2026-11-09（Asia/Shanghai）发布至 npm，版本号不变。
+
+## CLI 管理（待发布）
+
+当前源码精确依赖 craft-common 2.1.0，尚未发布此轮改动。自管理、交互、批量操作和默认位置见 [CLI 管理指南](docs/cli-management.zh-CN.md)。

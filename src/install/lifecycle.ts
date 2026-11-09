@@ -26,12 +26,14 @@ async function run(
   ctx: InstallContext,
   adapter: RuntimeAdapter,
   action: "install" | "update" | "uninstall",
+  forceOwnedRemoval = false,
 ): Promise<InstallResult> {
   if (ctx.runtime !== adapter.id) throw new Error("Runtime 适配身份不匹配");
   const { skillsDir } = getRuntimeTarget(ctx, adapter);
   const common = skillsDir ? commonContext(ctx, skillsDir) : undefined;
   return runProductLifecycle({
     action,
+    forceOwnedRemoval,
     definition: PRODUCT_DEFINITION,
     context: toProductContext(ctx),
     codec: MANIFEST_CODEC,
@@ -61,6 +63,9 @@ export function installRuntime(
 export function uninstallRuntime(
   ctx: InstallContext,
   adapter: RuntimeAdapter = getRuntime(ctx.runtime),
+  options: { force?: boolean } = {},
 ): Promise<InstallResult> {
-  return run(ctx, adapter, "uninstall").catch(backendInstallError);
+  return run(ctx, adapter, "uninstall", options.force).catch(
+    backendInstallError,
+  );
 }

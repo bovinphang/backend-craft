@@ -60,7 +60,7 @@
     "verify:engineering": "tsx scripts/verify-engineering.ts"
   },
   "dependencies": {
-    "@bovinphang/craft-common": "2.0.0",
+    "@bovinphang/craft-common": "2.1.0",
     "cross-spawn": "7.0.6",
     "smol-toml": "1.9.1",
     "yaml": "2.9.0"
