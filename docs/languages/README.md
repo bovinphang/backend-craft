@@ -1,14 +1,44 @@
-# 六语言使用指南
+# Six-language guide
 
-先在任务根运行 bec project inspect <路径> --json，确认最近子工程，再运行 bec validate <路径> --dry-run --json。不要把一个 Monorepo 的兄弟服务合并为单语言项目。
+[简体中文](README.zh-CN.md) · [Documentation](../README.md)
 
-| 语言 | 核心内容 | 默认入口与边界 |
-|---|---|---|
-| Rust | bec-rust-project-standard、bec-rust-async | fmt --check、clippy/test/build；locked/offline，不自动安装 rustup 组件 |
-| Go | bec-go-project-standard、bec-go-concurrency | gofmt 只读、vet/test；readonly 模块与关闭代理下载；test -count=1 |
-| Java | bec-java-project-standard、bec-java-runtime | 已有 Maven/Gradle 离线入口；wrapper-only 需明确准备，不隐式换全局工具 |
-| Python | bec-python-project-standard、bec-python-async | 已有 pyproject 工具配置与虚拟环境；pytest/unittest 测试证据，不自动 pip 安装 |
-| C | bec-c-project-standard、bec-native-memory-safety | 已配置 CMake 构建/测试；明确 C 工程，不由 CMake 文件名推断 C++ |
-| C++ | bec-cpp-project-standard、bec-native-memory-safety | 已配置 CMake 构建/测试；验证 RAII、生命周期、错误和线程边界 |
+## Select the project scope
 
-现有自定义任务优先写入 .backend-craft.json，args 必须是数组，cwd 保持在工作区内。复杂 CMake preset、多个构建入口和未配置的 native 构建目录必须明确配置。Integration 默认不启用；必需阶段被跳过会返回不完整。独立报告写入 reports/backend-craft。
+```sh
+bec project inspect services/api --json
+bec validate services/api --dry-run --json
+bec validate services/api --json
+```
+
+Confirm the nearest project and review its validation plan. A file, missing file or subdirectory positional target retains nearest-task discovery semantics. With explicit --task-path, the positional argument is the workspace and the task path is relative to it. Select sibling services separately or declare them through explicit configuration.
+
+## Language entry points and tools
+
+| Language | Common skills | Candidate validation and boundaries |
+| --- | --- | --- |
+| Rust | `cc-rust-project-standard`, `cc-rust-async` | fmt --check, clippy, test and build with locked/offline settings |
+| Go | `cc-go-project-standard`, `cc-go-concurrency` | Read-only gofmt, vet, test and build with readonly modules and downloads disabled |
+| Java | `cc-java-project-standard`, `cc-java-runtime` | Prepared offline Maven/Gradle tasks; explicit configuration when wrappers are present |
+| Python | `cc-python-project-standard`, `cc-python-async` | Existing pyproject tools and virtual environment; pytest/unittest evidence |
+| C | `cc-c-project-standard`, `cc-native-memory-safety` | Configured CMake/CTest and explicit C project evidence |
+| C++ | `cc-cpp-project-standard`, `cc-native-memory-safety` | Configured CMake/CTest, resource lifetimes and thread boundaries |
+
+These six languages are supported by backend validation modules. Common content additionally includes TypeScript, Electron and Tauri, and inspection can return broader units and task recommendations.
+
+## Project conventions and preparation
+
+Validation prefers explicit .backend-craft.json, then existing tasks, then language candidates. Configure complex CMake presets, multiple build entry points and unconfigured native build directories explicitly. Prepare Java wrapper distributions in advance and resolve missing tools and dependencies through project conventions.
+
+Default candidates use offline or read-only lock options. Skipped required stages, missing tools and zero tests prevent a passing result. Integration stages are disabled by default. See [validation configuration](../validation-config.md) for configuration and exit codes.
+
+## Service framework specialties
+
+| Framework | Skill |
+| --- | --- |
+| Spring Boot | `bec-spring-boot-project-standard` |
+| FastAPI | `bec-fastapi-project-standard` |
+| Gin | `bec-gin-project-standard` |
+| Axum | `bec-axum-project-standard` |
+| Drogon | `bec-drogon-project-standard` |
+
+Framework skills provide domain mechanisms and examples. Validation continues through the language modules and existing project commands. See [project structure](../project-structure.md) and [acceptance evidence](../verification/acceptance.md) for preparation and verified boundaries.

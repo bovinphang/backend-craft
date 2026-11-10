@@ -1,47 +1,63 @@
-# 工程结构与维护入口
+# Project structure and maintenance
 
-backend-craft 1.0.0 是 TypeScript / ESM 工具包，使用 esbuild 构建，测试使用 Node.js `node:test`。Node.js 最低版本为 22，包管理器固定为 pnpm 12.4.1；它不是 Vite 应用。
+[简体中文](project-structure.zh-CN.md) · [Documentation](README.md)
 
-```text
-backend-craft/
-├── bin/backend-craft.ts       # bec / backend-craft CLI 入口
-├── src/
-│   ├── cli.ts                # CLI 分发及退出码
-│   ├── cli/                  # 参数、inspect、validate、runtime 输出
-│   ├── content/              # 产品目录、双语快照和公共来源
-│   ├── install/              # 安装生命周期、清单、产品事务和共享配置
-│   │   ├── adapters/         # 15 个 Runtime 适配器
-│   │   └── shared-config/    # 文本、JSON、TOML 条目所有权
-│   ├── project/              # 工程识别、配置、计划、执行和测试证据
-│   │   └── languages/        # Rust、Go、Java、Python、C、C++ 语言模块
-│   ├── hooks/                # session-start、format、validate
-│   ├── openclaw/             # 原生插件入口
-│   ├── product.ts            # 产品标识及版本
-│   └── index.ts              # 对外 API
-├── skills/                   # 21 个 bec-* + 21 个 cc-*，以及能力索引
-├── agents/                   # 8 个后端 Agent
-├── commands/                 # 8 个命令工作流
-├── localized/zh-CN/          # 中文内容镜像
-├── templates/shared/rules/   # 核心、六语言规则及公共方法引用
-├── hooks/                    # 原生 Claude Hook 配置
-├── .claude-plugin/           # Claude 插件及 marketplace 清单
-├── openclaw.plugin.json      # OpenClaw 配置 schema
-├── common-content.lock.json  # 公共快照来源、精确版本与摘要
-├── scripts/                  # 构建、同步、打包及专项验证
-├── tests/                    # 单元、集成、隔离分发及共存测试
-└── docs/                     # 使用指南、平台研究和历史验收证据
+Backend Craft 1.1.0 is a TypeScript / ESM toolkit built with esbuild and tested with Node.js node:test. It requires Node.js 22+ and pins pnpm 12.4.1.
+
+## Module responsibilities
+
+| Directory or file | Responsibility |
+| --- | --- |
+| `bin/` | bec / backend-craft CLI entry |
+| `src/cli.ts, src/cli/` | Shared command dispatch and backend inspection/validation adapters |
+| `src/install/` | Resource transactions, ownership, manifests and 15 runtime adapters |
+| `src/project/` | Six-language validation, explicit configuration, execution and evidence |
+| `src/content/` | Bilingual catalog, common provenance and snapshot declarations |
+| `src/hooks/, src/openclaw/` | Native read-only context and opt-in hook implementations |
+| `skills/, agents/, commands/` | 21 service skills, 21 common skills, 8 agents and 8 workflows |
+| `localized/zh-CN/` | Simplified Chinese content mirror |
+| `templates/, hooks/` | Rules, references and native Claude hook configuration |
+| `.claude-plugin/, openclaw.plugin.json` | Native plugin metadata |
+| `scripts/, tests/` | Build, packaging, content checks and Node.js tests |
+| `docs/` | User guides, research and historical evidence |
+
+src/index.ts exposes the public API. package.json exports resolve to dist/index.js and dist/index.d.ts. Both CLI aliases use dist/bin/backend-craft.js. General discovery, task recommendations and installation algorithms come from craft-common; backend owns service-framework declarations and the six-language validation projection.
+
+## Generated content boundaries
+
+The 21 cc-* skills and embedded common methods come from the exact craft-common 2.1.0 dependency. common-content.lock.json records provenance, version and digests. Synchronize after common-source edits and regenerate index digests after product-index changes. Domain edits require matching Chinese content and capability indexes.
+
+```sh
+pnpm run sync:common
+pnpm run check:common
+pnpm run check:content
 ```
 
-`dist/` 由 `pnpm build` 生成，包含 CLI、Hook、OpenClaw 入口与声明，不手工修改。`package.json` 的 `exports` 指向 `dist/index.js` 和 `dist/index.d.ts`；命令别名 `bec` 与 `backend-craft` 指向同一个构建入口。
+pnpm build generates dist. Packaging scripts generate npm-packages-* and standalone skill packages. Maintain these outputs through source files and scripts.
 
-领域内容在本仓库维护。21 个 `cc-*` Skill 与内嵌公共方法由精确依赖 `@bovinphang/craft-common@2.1.0` 生成；先修改公共源，再运行 `pnpm run sync:common`，用 `pnpm run check:common` 只读比对，不直接修改公共副本。领域内容变化需要同步中文镜像、能力索引及相关文档。
+## Routine checks
 
-日常校验使用 `pnpm lint`、`pnpm typecheck`、`pnpm build`、`pnpm test` 和 `pnpm run check:content`。`pnpm run verify:coexistence --frontend-root ../frontend-craft`、`pnpm run verify:languages` 分别验证真实前后端共存与本地语言夹具；环境要求及结果边界见 [共存证据](verification/coexistence.md) 和 [工具链证据](verification/toolchains.md)。
+```sh
+pnpm lint
+pnpm typecheck
+pnpm run check:common
+pnpm run check:content
+pnpm build
+pnpm test
+pnpm run pack:all
+```
 
-`pnpm run pack:all` 构建、测试、核验并生成 npm CLI、OpenClaw 及 42 个独立 Skill 包，共 44 个归档；输出到脚本创建的 `npm-packages-*` 目录，不执行发布。
+The test script recursively discovers tests/**/*.test.ts and runs Node.js tests serially. Build first after checkout or runtime changes because distribution tests execute dist. pack:all builds, tests, verifies and produces CLI, OpenClaw and 42 standalone skill archives, totaling 44 archives in an npm-packages-* directory.
 
-[验证配置](validation-config.md) · [扩展语言](extending-languages.md) · [Runtime 安装与启用](runtimes/README.md) · [共存与迁移](coexistence.md)
+## Specialty checks
 
-首次检出或修改运行时代码后，先执行 `pnpm build`，再执行 `pnpm test`。后端测试脚本仅启动测试发现与执行，分发测试需要已生成的 `dist/bin/backend-craft.js`、`dist/hooks/` 和 `dist/openclaw/`。
+```sh
+pnpm run verify:coexistence --frontend-root ../frontend-craft
+pnpm run verify:languages
+pnpm run verify:frameworks -- --framework gin,drogon,axum,spring-boot --prepare
+pnpm run verify:engineering
+```
 
-`src/project/` keeps product framework declarations and inspect integration. Bounded discovery and task recommendation live in craft-common; backend retains the six-language validation projection. 产品不复制扫描器或公共安装算法。
+Coexistence checks require the adjacent frontend source and matching common resources. Language fixtures use existing local toolchains. Framework --prepare explicitly prepares isolated Docker examples; omit it for offline replay. Consult scripts and historical toolchain evidence for FastAPI and individual framework requirements. verify:engineering uses the existing Go toolchain and isolated sources for process-local HTTP replay checks. Record actual coverage and list missing or unrun checks.
+
+[Contributing](../CONTRIBUTING.md) · [Toolchain evidence](verification/toolchains.md) · [Validation configuration](validation-config.md)

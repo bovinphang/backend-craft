@@ -113,17 +113,17 @@ test("metadata checks product skill versions in both languages", async (t) => {
   };
   write("package.json", {
     name: "@bovinphang/backend-craft",
-    version: "1.0.0",
+    version: "1.1.0",
     dependencies: { "@bovinphang/craft-common": "2.1.0" },
   });
-  write(".claude-plugin/plugin.json", { version: "1.0.0" });
-  write("openclaw.plugin.json", { version: "1.0.0" });
+  write(".claude-plugin/plugin.json", { version: "1.1.0" });
+  write("openclaw.plugin.json", { version: "1.1.0" });
   write(".claude-plugin/marketplace.json", {
     plugins: [
       {
         name: "backend-craft",
-        version: "1.0.0",
-        source: { version: "1.0.0", package: "@bovinphang/backend-craft" },
+        version: "1.1.0",
+        source: { version: "1.1.0", package: "@bovinphang/backend-craft" },
       },
     ],
   });
@@ -154,7 +154,7 @@ test("metadata checks product skill versions in both languages", async (t) => {
     files: [],
     catalogs,
   });
-  write("skills/metadata.json", [{ id: "bec-example", version: "1.0.0" }]);
+  write("skills/metadata.json", [{ id: "bec-example", version: "1.1.0" }]);
   write("localized/zh-CN/skills/metadata.json", [
     { id: "bec-example", version: "9.0.0" },
   ]);

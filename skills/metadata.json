@@ -8,7 +8,7 @@
       "design"
     ],
     "summary": "Backend API contracts",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -47,7 +47,7 @@
       "design"
     ],
     "summary": "Backend architecture decisions",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -86,7 +86,7 @@
       "security"
     ],
     "summary": "Server authorization and security",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -126,7 +126,7 @@
       "service"
     ],
     "summary": "Axum service engineering",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -173,7 +173,7 @@
       "design"
     ],
     "summary": "Cache consistency and resilience",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -212,7 +212,7 @@
       "review"
     ],
     "summary": "Backend code review",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -248,7 +248,7 @@
       "design"
     ],
     "summary": "Database evolution and queries",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -287,7 +287,7 @@
       "framework"
     ],
     "summary": "Backend diagnosis workflow",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -326,7 +326,7 @@
       "management"
     ],
     "summary": "Backend dependency changes",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -365,7 +365,7 @@
       "sync"
     ],
     "summary": "Backend documentation synchronization",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -405,7 +405,7 @@
       "service"
     ],
     "summary": "Drogon service engineering",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -453,7 +453,7 @@
       "service"
     ],
     "summary": "FastAPI service engineering",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -501,7 +501,7 @@
       "service"
     ],
     "summary": "Gin service engineering",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -547,7 +547,7 @@
       "observability"
     ],
     "summary": "Backend observability",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -585,7 +585,7 @@
       "optimization"
     ],
     "summary": "Backend performance evidence",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -624,7 +624,7 @@
       "init"
     ],
     "summary": "Backend project initialization",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -662,7 +662,7 @@
       "refactoring"
     ],
     "summary": "Backend behavior-preserving refactoring",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -701,7 +701,7 @@
       "service"
     ],
     "summary": "Spring Boot service engineering",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -748,7 +748,7 @@
       "workflow"
     ],
     "summary": "Backend test-driven workflow",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -787,7 +787,7 @@
       "strategy"
     ],
     "summary": "Backend testing strategy",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -826,7 +826,7 @@
       "management"
     ],
     "summary": "Transaction and side-effect consistency",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",

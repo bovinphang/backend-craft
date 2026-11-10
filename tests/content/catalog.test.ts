@@ -23,7 +23,7 @@ function fixture(t: { after(fn: () => void): void }) {
 test("产品身份、清单与前端隔离", async () => {
   const { PRODUCT } = await import("../../src/product.js");
   assert.equal(PRODUCT.name, "@bovinphang/backend-craft");
-  assert.equal(PRODUCT.version, "1.0.0");
+  assert.equal(PRODUCT.version, "1.1.0");
   assert.equal(PRODUCT.manifestName, "backend-craft.manifest.json");
 });
 test("完整资源、来源和含空格中文路径可读取", async (t) => {

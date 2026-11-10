@@ -1,58 +1,193 @@
+<div align="center">
+
 # Backend Craft
 
-> 发布状态更新：craft-common 2.0.0、frontend-craft 3.0.0、backend-craft 1.0.0 均已于2026-11-09（Asia/Shanghai）发布至 npm，版本号不变。
+面向 AI 编程助手的后端工程工作流。
 
+[![CI](https://github.com/bovinphang/backend-craft/actions/workflows/ci.yml/badge.svg)](https://github.com/bovinphang/backend-craft/actions/workflows/ci.yml)
+[![npm](https://img.shields.io/npm/v/@bovinphang/backend-craft)](https://www.npmjs.com/package/@bovinphang/backend-craft)
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+![Node.js](https://img.shields.io/badge/Node.js-22%2B-5FA04E)
 
-面向 Rust、Go、Java、Python、C、C++ 的后端专业 AI Coding 插件。包含 21 个服务领域 Skill、21 个公共 cc-* Skill、8 个 Agent 与 8 个命令工作流，提供英文与简体中文内容。
+[English](README.md) · **简体中文**
 
-要求 Node.js 22+。当前源码精确依赖 craft-common@2.1.0（待发布）；此前发布的 2.0.0 对应历史产品构建。
+</div>
+
+Backend Craft 将架构、API、数据、安全、测试与故障诊断工作流接入 **15 个 AI 编程 Runtime**。提供 **21 个后端 Skill**、**21 个公共工程 Skill**、**8 个 Agent** 与 **8 个命令工作流**，包含英文和简体中文内容。
+
+服务工程覆盖 Rust、Go、Java、Python、C、C++，提供 Spring Boot、FastAPI、Gin、Axum、Drogon 专项。公共 `cc-*` 底座还覆盖 TypeScript、Electron、Tauri。
+
+[文档导航](docs/README.zh-CN.md) · [示例提示词](docs/example-prompts.zh-CN.md) · [贡献指南](CONTRIBUTING.zh-CN.md) · [变更日志](CHANGELOG.zh-CN.md)
+
+## 核心能力
+
+- 使用架构、API、存储、缓存和事务工作流规划服务演进。
+- 结合公共语言规范与五个框架专项，遵循已有项目约定。
+- 使用代码、安全、性能、调试和测试规划 Agent 处理工程任务。
+- 只读识别项目，预览验证计划，使用现有本地工具执行检查。
+- 为不同助手生成适配资源，跟踪所有权，并与 Frontend Craft 共享公共内容。
+
+## 安装
+
+要求 **Node.js 22+**，CLI 面向 Windows、macOS 和 Linux。后端验证还需要项目已有工具链及准备完成的依赖。
+
+### 版本可用性
+
+当前源码版本为 **1.1.0**，精确依赖 **`@bovinphang/craft-common@2.1.0`**。本页 `setup` 和 CLI 自管理流程适用于 1.1.0 源码，发布前可按[源码开发说明](CONTRIBUTING.zh-CN.md#本地开发)体验。
+
+### 全局 CLI
 
 ```sh
-npm install -g @bovinphang/backend-craft@1.0.0
+npm install -g @bovinphang/backend-craft@latest
+cd your-backend-project
 bec runtime install codex --local --lang zh-CN
-bec project inspect . --json
-bec validate . --dry-run --json
-bec validate . --json
-bec matrix --json
-bec doctor codex --json
-bec runtime update codex --local --lang zh-CN
-bec runtime uninstall codex --local
+bec doctor codex --local --json
 ```
 
-默认 local；global 安装到对应用户配置目录。inspect 只读；validate 使用现有任务、显式配置或保守语言建议。不会下载编译器或 wrapper；缺工具、必需测试跳过、零测试均不能报成功。退出码 0 为通过、1 为失败、2 为不完整或参数错误。JSON 计划隐藏参数与环境值，执行前应审阅本地配置。
+npm 命令安装 `bec` 和 `backend-craft` 终端命令，`runtime install` 将指定 Runtime 接入项目。用户级接入使用 `--global`，英文资源使用 `--lang en`。
 
-自动格式与验证默认关闭。Claude 原生 SessionStart 仅提供只读上下文；OpenClaw 可明确开启 autoValidate，或提供本地 StageSpec 后开启 autoFormat。文件存在、宿主可发现和实际启用是三个不同状态；doctor 不猜测宿主信任或启用状态。
+### 临时 npx 运行
 
-CLI 与原生插件渠道二选一。CLI 通过版本、语言、摘要共享公共资源，使用独立 backend-craft.manifest.json 和共享条目所有权；保留未知、被用户修改的文件，部分卸载会保留公共引用。原生包保证单产品完整性，不承诺双原生产品去重。
+```sh
+cd your-backend-project
+npx @bovinphang/backend-craft@latest runtime install codex --local --lang zh-CN
+npx @bovinphang/backend-craft@latest matrix --json
+```
 
-参见：[平台契约](docs/research/runtime-contracts.md)、[语言指南](docs/languages/README.md)、[验证配置](docs/validation-config.md)、[共存与迁移](docs/coexistence.md)、[扩展语言](docs/extending-languages.md)、[验收证据](docs/verification/acceptance.md)。
+### Claude Code 原生插件
 
-开发使用 pnpm：lint、typecheck、test、build、check:common；pack:all 按构建、测试、原生与独立包构建、包核验顺序执行，产出 npm CLI、OpenClaw 包与 42 个独立 Skill 包，不自动发布。
+在 Claude Code 内添加 Marketplace 并安装插件。
 
-[工程结构与维护入口](docs/project-structure.md)列出源码模块、公共内容生成边界与校验命令。CLI 支持通过原 npm/pnpm 安装来源自升级、自卸载；使用 `bec runtime update/uninstall` 管理运行时资源。
+```text
+/plugin marketplace add bovinphang/backend-craft
+/plugin install backend-craft@backend-craft
+```
 
-首次检出应先运行 `pnpm build`，再运行 `pnpm test`；分发测试依赖 `dist/` 中的 CLI、原生 Hook 和 OpenClaw bundle。后端的 `test` 脚本不会自动构建。
+当前源码的 Marketplace npm 来源指向 1.1.0。本地测试先构建源码，再通过 Claude 的 `--plugin-dir` 加载完整插件目录。详见 [Runtime 安装](docs/runtimes/README.zh-CN.md)。
 
-## 跨领域底座与服务专项
+每个 Runtime 选择一种安装渠道。安装后刷新宿主，在宿主中确认发现与启用状态。
 
-语言工程由 cc-* 入口共享，适用于桌面、原生库、CLI 和服务，C 与 C++ 均有独立入口。本产品维护服务架构、API、数据、安全，以及 Spring Boot、FastAPI、Gin、Axum、Drogon 五个专项；两个产品都交付全部 21 个公共入口。
+### 1.1.0 源码接入方式
 
-`bec project inspect . --task-path services/api/main.go --task-kind api --json` 新增完整 units 与任务推荐，保留原六语言 projects 视图；validate 仍使用既有六语言模块。识别只读，不执行构建工具。
+使用已构建的 1.1.0 CLI 后可执行以下命令。
 
-升级前执行 `bec runtime check-migration [runtime] --local --json`。只有未修改的托管旧入口可随共享事务退役，未知文件、修改或链接会阻断整批安装。先用旧 CLI 退出旧公共消费者，再安装匹配的产品构建。
+```sh
+bec setup
+bec setup codex --local --lang zh-CN
+bec setup all --local --lang zh-CN
+bec runtime install --all --global --lang zh-CN --dry-run --json
+```
 
-显式使用 `pnpm run verify:frameworks -- --framework 'gin,drogon,axum,spring-boot' --prepare` 准备隔离 Docker 样例，省略 --prepare 可离线复验。五项服务边界已有真实缺陷/修复验证；GUI、签名、外部数据库、负载及部署属于另行验证范围。
+`setup` 默认接入当前项目。普通交互安装询问 Runtime、语言与位置；普通非交互安装默认 Claude、全局、英文。脚本中显式指定 `--local` 或 `--global`。详见 [CLI 管理](docs/cli-management.zh-CN.md)。
 
-<!-- engineering-practices-20261108 -->
+## 快速开始
 
-## 按条件适用的工程实践
+### 识别和验证项目
 
-14个既有服务入口补充故障恢复、API/存储演进、权限、事务不确定性、诊断、测试、评审、依赖与五框架实际机制，共同消费八项原则及来源记录；语言/库规范留在common。项目现有约定和兼容优先于外部风格偏好。
+```sh
+bec project inspect . --json
+bec project inspect . --task-path services/api/main.go --task-kind api --json
+bec validate . --dry-run --json
+bec validate . --json
+```
 
-[HTTP重放样例](skills/bec-api-design/examples/engineering/README.md)通过真实HTTP客户端验证提交后响应失败、意图变化与并发重复。源码仓的`pnpm run verify:engineering`离线使用现有Go工具及隔离源码副本，不安装工具；内存互斥不代表数据库持久性、生产鉴权或分布式恰好一次。框架验证保持各自实际边界。42入口仍可独立分发，[协调迁移](docs/coexistence.md)继续保护已有消费者与用户编辑。
+识别读取工程证据并推荐适用能力。执行前先审阅验证计划。验证使用显式配置、项目已有任务或保守语言候选。退出码 `0` 表示通过，`1` 表示失败，`2` 表示不完整或输入无效。缺少必需工具、必需阶段被跳过、零测试均无法通过。
 
-[发布变更](CHANGELOG.zh-CN.md)记录backend1.0.0范围。craft-common 2.0.0、frontend-craft 3.0.0、backend-craft 1.0.0 均已于2026-11-09（Asia/Shanghai）发布至 npm，版本号不变。
+### 与助手协作
 
-## CLI 管理（待发布）
+```text
+按照本仓库架构与 API 约定规划订单服务。
+评审 services/orders 中的授权与事务边界。
+诊断这个 Go 取消传播问题，用现有测试验证修复。
+```
 
-当前源码精确依赖 craft-common 2.1.0，尚未发布此轮改动。自管理、交互、批量操作和默认位置见 [CLI 管理指南](docs/cli-management.zh-CN.md)。
+Claude Code 提供 `/bec-review`、`/bec-debug` 等工作流。Codex 通过 Skill 和 Agent 完成任务，其他宿主的资源形式见 [Runtime 指南](docs/runtimes/README.zh-CN.md)。
+
+## 能力目录
+
+### 后端 Skill
+
+| 领域 | Skill |
+| --- | --- |
+| 服务设计 | `bec-architecture-design`、`bec-api-design` |
+| 数据与一致性 | `bec-database-design`、`bec-cache-design`、`bec-transaction-management` |
+| 安全与运行保障 | `bec-auth-security`、`bec-observability`、`bec-performance-optimization` |
+| 交付与维护 | `bec-project-init`、`bec-code-review`、`bec-debug-framework`、`bec-testing-strategy`、`bec-tdd-workflow`、`bec-refactoring`、`bec-dependency-management`、`bec-doc-sync` |
+| 服务框架 | `bec-spring-boot-project-standard`、`bec-fastapi-project-standard`、`bec-gin-project-standard`、`bec-axum-project-standard`、`bec-drogon-project-standard` |
+
+### 公共工程 Skill
+
+| 领域 | Skill |
+| --- | --- |
+| 语言 | `cc-typescript-project-standard`、`cc-rust-project-standard`、`cc-go-project-standard`、`cc-java-project-standard`、`cc-python-project-standard`、`cc-c-project-standard`、`cc-cpp-project-standard` |
+| 运行时与并发 | `cc-rust-async`、`cc-go-concurrency`、`cc-java-runtime`、`cc-python-async`、`cc-native-memory-safety` |
+| 桌面 | `cc-electron-project-standard`、`cc-tauri-project-standard` |
+| 工程方法 | `cc-source-driven-development`、`cc-doc-sync-core`、`cc-debug-methodology`、`cc-refactoring-core`、`cc-tdd-methodology` |
+| 图表 | `cc-drawio-studio`、`cc-technical-diagrams` |
+
+### Agent
+
+| Agent | 用途 |
+| --- | --- |
+| `bec-architect` | 架构与模块边界规划 |
+| `bec-code-reviewer` | 后端代码评审 |
+| `bec-security-reviewer` | 认证、授权与服务安全评审 |
+| `bec-performance-optimizer` | 性能诊断与优化 |
+| `bec-debugger` | 故障诊断与验证修复 |
+| `bec-test-planner` | 基于风险的测试策略 |
+| `bec-refactoring-expert` | 保持行为的重构 |
+| `bec-doc-updater` | 文档同步 |
+
+### 助手命令
+
+| 命令 | 用途 |
+| --- | --- |
+| `/bec-init` | 初始化项目指导内容 |
+| `/bec-plan` | 架构或测试规划 |
+| `/bec-review` | 后端代码评审 |
+| `/bec-debug` | 诊断与修复故障 |
+| `/bec-tdd` | 测试驱动工作流 |
+| `/bec-refactor` | 结合行为验证重构 |
+| `/bec-doc-sync` | 同步项目文档 |
+| `/bec-validate` | 预览和执行工程验证 |
+
+这些是助手工作流，终端验证使用 `bec validate`。报告写入 `reports/backend-craft/`，Agent 在该目录使用各自定义的文件名。
+
+## 配置与验证
+
+- [语言指南](docs/languages/README.zh-CN.md)介绍六语言验证，公共 Skill 的语言覆盖单独维护。
+- [验证配置](docs/validation-config.zh-CN.md)介绍 `.backend-craft.json`、阶段执行与测试证据，集成阶段需显式启用。
+- 自动格式与验证默认关闭。Claude 原生 SessionStart Hook 提供只读上下文；OpenClaw 原生插件可开启 `autoValidate`，配置 `formatStage` 后可开启 `autoFormat`。
+- 框架样例与 [HTTP 重放样例](skills/bec-api-design/examples/engineering/README.md)提供限定范围的验证证据。[验收记录](docs/verification/acceptance.md)列出验证环境与边界。
+
+## 更新与卸载
+
+以下生命周期命令要求 1.1.0 CLI。
+
+```sh
+bec update --dry-run
+bec update
+bec runtime update codex --local --dry-run --json
+bec runtime update codex --local
+bec runtime uninstall codex --local --dry-run --json
+bec runtime uninstall codex --local
+bec uninstall --yes
+```
+
+`bec update` 核实原 npm/pnpm 来源，升级 CLI 后刷新当前项目及全局托管资源。`runtime update` 使用当前包内容，默认沿用每个安装的语言。`bec uninstall` 卸载 CLI 并保留资源，添加 `--purge` 可先清理发现的本产品资源。
+
+1.0.0 CLI 应通过包管理器更新 npm 包，并使用显式 `runtime update`、`runtime uninstall` 管理资源。
+
+用户修改与未知文件受到保护。跨产品共享 `cc-*` 要求 common 版本、语言与内容摘要一致。升级混合安装前阅读[共存与迁移](docs/coexistence.zh-CN.md)。
+
+## 文档
+
+[文档导航](docs/README.zh-CN.md)汇总安装、提示词、配置、迁移和维护入口。研究资料与历史验收记录保留原始上下文。
+
+## 贡献
+
+[贡献指南](CONTRIBUTING.zh-CN.md)介绍开发环境、双语维护和校验流程。通过 [GitHub Issues](https://github.com/bovinphang/backend-craft/issues)反馈可复现问题。
+
+## 许可证
+
+[MIT](LICENSE) © bovinphang。

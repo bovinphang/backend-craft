@@ -1,13 +1,14 @@
 # Changelog
 
-## Unreleased — 2026-11-09
+[简体中文](CHANGELOG.zh-CN.md)
+
+## [1.1.0] - 2026-11-10
+
+Source version prepared with craft-common 2.1.0. npm publication is pending.
 
 - Share product CLI dispatch, prompts, package-manager ownership detection, self-management and Claude cache management.
 - Align backend basic commands with frontend; setup defaults local, ordinary noninteractive install defaults global; preserve backend validation and ownership.
-- Prepare common 2.1.0 without publishing or changing product versions.
-
-
-[简体中文](CHANGELOG.zh-CN.md)
+- Reorganize bilingual user and contributor documentation and align product constants, native plugin metadata and service-skill indexes with version 1.1.0.
 
 ## [1.0.0] - 2026-11-09
 

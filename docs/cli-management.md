@@ -1,5 +1,9 @@
 # CLI management
 
+[简体中文](cli-management.zh-CN.md) · [Documentation](README.md)
+
+This guide describes the 1.1.0 CLI. See the [project home](../README.md#version-availability) for public package availability.
+
 Both products use craft-common's command dispatcher, interactive prompts, npm/pnpm installation detection and CLI lifecycle. Replace bec with fec for frontend-craft.
 
 `bec setup [runtime]` and `bec setup all` connect the current project locally. `--global/-g` overrides this. Ordinary `bec`, `bec install` or `bec runtime install` prompts for runtime(s), language and location in a terminal; without a terminal it defaults to Claude, global and English. This changes backend-craft's former default local installation. Use `--local/-l` explicitly in existing scripts. Use `--lang en|zh-CN` or `--lang=zh-CN`.
@@ -17,3 +21,18 @@ Backend-only `validate`, `project inspect`, existing JSON outputs and `runtime l
 ## Coordinated common upgrade
 
 The shared resource ledger still requires an exact common version, language and digest. Existing 2.0.0 consumers must exit using their old product CLIs before matching 2.1.0 product builds install resources. Updating only one product can therefore leave its new CLI ready while resource refresh reports a compatibility conflict; follow the existing common migration procedure and retry. Do not use force to take over another consumer.
+
+## Common operations
+
+```sh
+bec setup codex --local --lang en --dry-run --json
+bec setup codex --local --lang en
+bec runtime install --all --global --lang en --dry-run --json
+bec runtime list --local --json
+bec runtime update codex --local --dry-run --json
+bec runtime uninstall codex --local --dry-run --json
+bec update --dry-run
+bec uninstall --purge --yes --dry-run
+```
+
+Use setup all for bulk setup and runtime install --all for bulk resource installation. runtime list enumerates managed installations in the selected scope; list enumerates supported runtimes. For source debugging, prefix subcommands with node dist/bin/backend-craft.js.

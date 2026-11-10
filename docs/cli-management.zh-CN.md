@@ -1,5 +1,9 @@
 # CLI 管理
 
+[English](cli-management.md) · [文档导航](README.zh-CN.md)
+
+本指南面向 1.1.0 CLI，公开包版本见[项目首页](../README.zh-CN.md#版本可用性)。
+
 前后端复用 craft-common 的命令调度、交互、npm/pnpm 来源识别和 CLI 生命周期。前端示例将 bec 替换为 fec。
 
 - `bec setup [runtime]`、`bec setup all` 默认本地安装，`--global/-g` 显式改为全局。
@@ -13,3 +17,18 @@
 ## 公共资源协调升级
 
 公共账本继续严格匹配版本、语言和摘要。现有 2.0.0 消费者应先通过各自旧 CLI 退出，再由匹配 2.1.0 的产品构建安装资源。单独升级一个产品可能出现 CLI 已就绪、资源刷新报告兼容冲突的情况；按既有公共迁移流程退出旧引用后重试，不使用 force 接管其他消费者。
+
+## 常用操作
+
+```sh
+bec setup codex --local --lang zh-CN --dry-run --json
+bec setup codex --local --lang zh-CN
+bec runtime install --all --global --lang zh-CN --dry-run --json
+bec runtime list --local --json
+bec runtime update codex --local --dry-run --json
+bec runtime uninstall codex --local --dry-run --json
+bec update --dry-run
+bec uninstall --purge --yes --dry-run
+```
+
+setup all 用于 setup 批量接入，runtime install 批量接入使用 --all。runtime list 列出指定范围内已托管安装，list 列出支持的 Runtime。源码目录调试使用 node dist/bin/backend-craft.js 加子命令。

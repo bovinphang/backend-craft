@@ -105,7 +105,7 @@ test("CLI 真实 npm tarball 脱离源码和 node_modules，包含双语与原�
     { cwd: out, encoding: "utf8" },
   );
   assert.equal(cli.status, 0, cli.stderr);
-  assert.match(cli.stdout, /1.0.0/);
+  assert.match(cli.stdout, /1\.1\.0/);
   const installed = spawnSync(
     process.execPath,
     [
@@ -162,6 +162,16 @@ test("CLI 真实 npm tarball 脱离源码和 node_modules，包含双语与原�
 test("OpenClaw 原生包包含完整专业/公共资源、显式命令与默认只读注册", async (t) => {
   const out = temporary(t);
   packOpenClaw(root, out);
+  for (const file of [
+    "docs/README.md",
+    "docs/README.zh-CN.md",
+    "CONTRIBUTING.md",
+    "CONTRIBUTING.zh-CN.md",
+    "CHANGELOG.md",
+    "CHANGELOG.zh-CN.md",
+  ]) {
+    assert.ok(fs.existsSync(path.join(out, file)), `缺少文档：${file}`);
+  }
   const manifest = JSON.parse(
     fs.readFileSync(path.join(out, "openclaw.plugin.json"), "utf8"),
   );
@@ -198,7 +208,7 @@ test("干净 Git marketplace 指向精确 npm 归档，原生 Hook 随该归档�
   assert.deepEqual(source, {
     source: "npm",
     package: "@bovinphang/backend-craft",
-    version: "1.0.0",
+    version: "1.1.0",
   });
   const archive = npmPack(root, out),
     unpacked = path.join(out, "artifact");

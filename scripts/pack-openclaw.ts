@@ -14,6 +14,11 @@ export function packOpenClaw(productRoot: string, output: string): void {
     "LICENSE",
     "README.md",
     "README.zh-CN.md",
+    "docs",
+    "CONTRIBUTING.md",
+    "CONTRIBUTING.zh-CN.md",
+    "CHANGELOG.md",
+    "CHANGELOG.zh-CN.md",
     "openclaw.plugin.json",
   ])
     fs.cpSync(path.join(productRoot, name), path.join(output, name), {
@@ -69,6 +74,11 @@ export function packOpenClaw(productRoot: string, output: string): void {
           "openclaw.plugin.json",
           "README.md",
           "README.zh-CN.md",
+          "docs",
+          "CONTRIBUTING.md",
+          "CONTRIBUTING.zh-CN.md",
+          "CHANGELOG.md",
+          "CHANGELOG.zh-CN.md",
           "LICENSE",
         ],
         openclaw: { extensions: ["./dist/openclaw/index.js"] },

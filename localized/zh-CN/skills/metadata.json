@@ -8,7 +8,7 @@
       "design"
     ],
     "summary": "后端 API 契约",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -47,7 +47,7 @@
       "design"
     ],
     "summary": "后端架构设计",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -86,7 +86,7 @@
       "security"
     ],
     "summary": "服务端授权与安全",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -126,7 +126,7 @@
       "service"
     ],
     "summary": "Axum 服务工程",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -173,7 +173,7 @@
       "design"
     ],
     "summary": "缓存一致性与韧性",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -212,7 +212,7 @@
       "review"
     ],
     "summary": "后端代码评审",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -248,7 +248,7 @@
       "design"
     ],
     "summary": "数据库演进与查询设计",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -287,7 +287,7 @@
       "framework"
     ],
     "summary": "后端诊断流程",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -326,7 +326,7 @@
       "management"
     ],
     "summary": "后端依赖变更",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -365,7 +365,7 @@
       "sync"
     ],
     "summary": "后端文档同步",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -405,7 +405,7 @@
       "service"
     ],
     "summary": "Drogon 服务工程",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -453,7 +453,7 @@
       "service"
     ],
     "summary": "FastAPI 服务工程",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -501,7 +501,7 @@
       "service"
     ],
     "summary": "Gin 服务工程",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -547,7 +547,7 @@
       "observability"
     ],
     "summary": "后端可观测性",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -585,7 +585,7 @@
       "optimization"
     ],
     "summary": "后端性能证据与优化",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -624,7 +624,7 @@
       "init"
     ],
     "summary": "后端工程初始化",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -662,7 +662,7 @@
       "refactoring"
     ],
     "summary": "后端行为保持重构",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -701,7 +701,7 @@
       "service"
     ],
     "summary": "Spring Boot 服务工程",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -748,7 +748,7 @@
       "workflow"
     ],
     "summary": "后端测试驱动流程",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -787,7 +787,7 @@
       "strategy"
     ],
     "summary": "后端测试策略",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",
@@ -826,7 +826,7 @@
       "management"
     ],
     "summary": "事务与副作用一致性",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "license": "MIT",
     "homepage": "https://github.com/bovinphang/backend-craft",
     "repository": "https://github.com/bovinphang/backend-craft",

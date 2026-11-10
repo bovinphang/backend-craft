@@ -1,6 +1,6 @@
 {
   "name": "@bovinphang/backend-craft",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Backend engineering skills, agents and runtime integration for Rust, Go, Java, Python, C and C++",
   "type": "module",
   "license": "MIT",
@@ -36,6 +36,8 @@
     "LICENSE",
     "README.md",
     "README.zh-CN.md",
+    "CONTRIBUTING.md",
+    "CONTRIBUTING.zh-CN.md",
     ".claude-plugin",
     "openclaw.plugin.json",
     "CHANGELOG.md",

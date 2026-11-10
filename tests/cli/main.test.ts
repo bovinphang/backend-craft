@@ -27,7 +27,7 @@ test("help/version 不依赖工程，未知参数和平台不写入", async (t) 
     await main(["--version"], { ...f.io, cwd: path.join(f.cwd, "absent") }),
     0,
   );
-  assert.match(f.output.join(""), /1\.0\.0/);
+  assert.match(f.output.join(""), /1\.1\.0/);
   for (const args of [
     ["runtime", "install", "unknown"],
     ["runtime", "install", "claude", "--force"],
