@@ -4,15 +4,13 @@
 
 ## [1.1.0] - 2026-11-10
 
-Source version prepared with craft-common 2.1.0. npm publication is pending.
+### Added
 
 - Share product CLI dispatch, prompts, package-manager ownership detection, self-management and Claude cache management.
 - Align backend basic commands with frontend; setup defaults local, ordinary noninteractive install defaults global; preserve backend validation and ownership.
 - Reorganize bilingual user and contributor documentation and align product constants, native plugin metadata and service-skill indexes with version 1.1.0.
 
 ## [1.0.0] - 2026-11-09
-
-Backend 1.0.0 was published on 2026-11-09 (Asia/Shanghai), using common 2.0.0.
 
 ### Added
 
