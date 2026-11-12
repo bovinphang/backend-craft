@@ -31,10 +31,6 @@ Backend Craft 将架构、API、数据、安全、测试与故障诊断工作流
 
 要求 **Node.js 22+**，CLI 面向 Windows、macOS 和 Linux。后端验证还需要项目已有工具链及准备完成的依赖。
 
-### 版本可用性
-
-当前源码版本为 **1.1.0**，精确依赖 **`@bovinphang/craft-common@2.1.0`**。本页 `setup` 和 CLI 自管理流程适用于 1.1.0 源码，发布前可按[源码开发说明](CONTRIBUTING.zh-CN.md#本地开发)体验。
-
 ### 全局 CLI
 
 ```sh
@@ -63,13 +59,23 @@ npx @bovinphang/backend-craft@latest matrix --json
 /plugin install backend-craft@backend-craft
 ```
 
-当前源码的 Marketplace npm 来源指向 1.1.0。本地测试先构建源码，再通过 Claude 的 `--plugin-dir` 加载完整插件目录。详见 [Runtime 安装](docs/runtimes/README.zh-CN.md)。
+从本地源码加载插件时，先构建，再在仓库根目录运行 `claude --plugin-dir .`。详见 [Runtime 安装指南](docs/runtimes/README.zh-CN.md)。
 
 每个 Runtime 选择一种安装渠道。安装后刷新宿主，在宿主中确认发现与启用状态。
 
-### 1.1.0 源码接入方式
+### 从源码构建
 
-使用已构建的 1.1.0 CLI 后可执行以下命令。
+在仓库根目录使用 pnpm 12.4.1 构建 CLI，再用 Node.js 直接运行。当前源码精确依赖 `@bovinphang/craft-common@2.1.0`。
+
+```sh
+pnpm install --frozen-lockfile
+pnpm build
+node dist/bin/backend-craft.js setup codex --local --lang zh-CN --dry-run --json
+```
+
+### 接入 Runtime
+
+安装 CLI 后，在目标项目目录执行以下命令。`setup` 要求 Backend Craft 1.1.0 或更高版本。
 
 ```sh
 bec setup
@@ -158,11 +164,11 @@ Claude Code 提供 `/bec-review`、`/bec-debug` 等工作流。Codex 通过 Skil
 - [语言指南](docs/languages/README.zh-CN.md)介绍六语言验证，公共 Skill 的语言覆盖单独维护。
 - [验证配置](docs/validation-config.zh-CN.md)介绍 `.backend-craft.json`、阶段执行与测试证据，集成阶段需显式启用。
 - 自动格式与验证默认关闭。Claude 原生 SessionStart Hook 提供只读上下文；OpenClaw 原生插件可开启 `autoValidate`，配置 `formatStage` 后可开启 `autoFormat`。
-- 框架样例与 [HTTP 重放样例](skills/bec-api-design/examples/engineering/README.md)提供限定范围的验证证据。[验收记录](docs/verification/acceptance.md)列出验证环境与边界。
+- [HTTP 重放样例](skills/bec-api-design/examples/engineering/README.md)演示幂等场景。
 
 ## 更新与卸载
 
-以下生命周期命令要求 1.1.0 CLI。
+CLI 自管理命令 `bec update` 和 `bec uninstall` 要求 Backend Craft 1.1.0 或更高版本。
 
 ```sh
 bec update --dry-run
@@ -176,13 +182,11 @@ bec uninstall --yes
 
 `bec update` 核实原 npm/pnpm 来源，升级 CLI 后刷新当前项目及全局托管资源。`runtime update` 使用当前包内容，默认沿用每个安装的语言。`bec uninstall` 卸载 CLI 并保留资源，添加 `--purge` 可先清理发现的本产品资源。
 
-1.0.0 CLI 应通过包管理器更新 npm 包，并使用显式 `runtime update`、`runtime uninstall` 管理资源。
-
-用户修改与未知文件受到保护。跨产品共享 `cc-*` 要求 common 版本、语言与内容摘要一致。升级混合安装前阅读[共存与迁移](docs/coexistence.zh-CN.md)。
+用户修改与未知文件受到保护。跨产品共享 `cc-*` 要求公共包版本、语言与内容摘要一致。升级混合安装前，按实际 Runtime 和安装范围运行 `bec runtime check-migration codex --local --json`。详见[共存与迁移](docs/coexistence.zh-CN.md)。
 
 ## 文档
 
-[文档导航](docs/README.zh-CN.md)汇总安装、提示词、配置、迁移和维护入口。研究资料与历史验收记录保留原始上下文。
+[文档导航](docs/README.zh-CN.md)汇总安装、提示词、配置、迁移和维护入口。
 
 ## 贡献
 

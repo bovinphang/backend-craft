@@ -2,7 +2,7 @@
 
 [English](cli-management.md) · [文档导航](README.zh-CN.md)
 
-本指南面向 1.1.0 CLI，公开包版本见[项目首页](../README.zh-CN.md#版本可用性)。
+通过 npm 安装或从源码构建的步骤见[安装](../README.zh-CN.md#安装)。
 
 前后端复用 craft-common 的命令调度、交互、npm/pnpm 来源识别和 CLI 生命周期。前端示例将 bec 替换为 fec。
 

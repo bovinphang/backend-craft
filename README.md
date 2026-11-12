@@ -31,10 +31,6 @@ Service guidance covers Rust, Go, Java, Python, C and C++, with dedicated Spring
 
 Requires **Node.js 22+**. The CLI targets Windows, macOS and Linux. Backend validation also needs your project's existing toolchain and prepared dependencies.
 
-### Version availability
-
-This checkout targets **1.1.0** and pins **`@bovinphang/craft-common@2.1.0`**. The `setup` and CLI self-management workflows documented here belong to the 1.1.0 source. Use the [source development instructions](CONTRIBUTING.md#local-development) to try them before publication.
-
 ### Global CLI
 
 ```sh
@@ -63,13 +59,23 @@ Inside Claude Code, add the Marketplace and install the plugin.
 /plugin install backend-craft@backend-craft
 ```
 
-The Marketplace npm source in this checkout targets 1.1.0. For local testing, build the checkout and pass its complete plugin directory to Claude's `--plugin-dir` option. See [runtime installation](docs/runtimes/README.md).
+To load the plugin from a local checkout, build it first, then run `claude --plugin-dir .` from the repository root. See the [runtime installation guide](docs/runtimes/README.md).
 
 Choose one installation channel per runtime. Refresh the host and confirm discovery and activation there.
 
-### Source 1.1.0 setup
+### Build from source
 
-Once using a built 1.1.0 CLI, these commands are available.
+From the repository root, build the CLI with pnpm 12.4.1 and run it directly with Node.js. This checkout pins `@bovinphang/craft-common@2.1.0`.
+
+```sh
+pnpm install --frozen-lockfile
+pnpm build
+node dist/bin/backend-craft.js setup codex --local --lang en --dry-run --json
+```
+
+### Configure runtimes
+
+Run these commands from the target project with the installed CLI. The `setup` command requires Backend Craft 1.1.0 or later.
 
 ```sh
 bec setup
@@ -158,11 +164,11 @@ These are assistant workflows. Run terminal validation with `bec validate`. Work
 - [Language guide](docs/languages/README.md) describes six-language validation. Shared skill coverage is maintained separately.
 - [Validation configuration](docs/validation-config.md) covers `.backend-craft.json`, stage execution and test evidence. Integration stages require explicit enablement.
 - Automatic formatting and validation are disabled by default. Native Claude SessionStart provides read-only context. Native OpenClaw can opt into `autoValidate` and, with a configured `formatStage`, `autoFormat`.
-- Framework examples and the [HTTP replay example](skills/bec-api-design/examples/engineering/README.md) provide bounded evidence. See [acceptance records](docs/verification/acceptance.md) for environments and limitations.
+- The [HTTP replay example](skills/bec-api-design/examples/engineering/README.md) demonstrates idempotency scenarios.
 
 ## Update and uninstall
 
-The following lifecycle commands require the 1.1.0 CLI.
+CLI self-management commands `bec update` and `bec uninstall` require Backend Craft 1.1.0 or later.
 
 ```sh
 bec update --dry-run
@@ -176,13 +182,11 @@ bec uninstall --yes
 
 `bec update` verifies the original npm/pnpm installation, upgrades the CLI and refreshes managed resources in the current project and globally. `runtime update` uses installed content and preserves each installation's language unless overridden. `bec uninstall` removes the CLI and retains resources. Add `--purge` to clean discovered product resources first.
 
-For a 1.0.0 CLI, update the npm package through your package manager and use explicit `runtime update` or `runtime uninstall` commands for resources.
-
-Modified and unknown files are protected. Shared `cc-*` resources require matching common versions, languages and content digests. Read [coexistence and migration](docs/coexistence.md) before upgrading mixed installations.
+Modified and unknown files are protected. Shared `cc-*` resources require matching common versions, languages and content digests. Before upgrading a mixed installation, run `bec runtime check-migration codex --local --json` with the applicable runtime and scope. See [coexistence and migration](docs/coexistence.md).
 
 ## Documentation
 
-The [documentation index](docs/README.md) covers installation, prompts, configuration, migration and maintenance. Research notes and dated verification records retain their original context.
+The [documentation index](docs/README.md) covers installation, prompts, configuration, migration and maintenance.
 
 ## Contributing
 

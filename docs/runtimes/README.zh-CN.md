@@ -2,7 +2,7 @@
 
 [English](README.md) · [文档导航](../README.zh-CN.md)
 
-本指南描述 1.1.0 源码生成的资源。公开包与源码版本的区别见[项目首页](../../README.zh-CN.md#版本可用性)。
+通过 npm 安装或从源码构建的步骤见[安装](../../README.zh-CN.md#安装)。
 
 ## CLI 接入
 

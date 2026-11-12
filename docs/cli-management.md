@@ -2,7 +2,7 @@
 
 [简体中文](cli-management.zh-CN.md) · [Documentation](README.md)
 
-This guide describes the 1.1.0 CLI. See the [project home](../README.md#version-availability) for public package availability.
+See [installation](../README.md#install) for npm and source setup.
 
 Both products use craft-common's command dispatcher, interactive prompts, npm/pnpm installation detection and CLI lifecycle. Replace bec with fec for frontend-craft.
 

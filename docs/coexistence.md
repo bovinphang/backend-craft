@@ -4,7 +4,7 @@
 
 ## Common resource contract
 
-Backend specialties use bec-*, frontend specialties use fec-* and shared engineering capabilities use cc-*. This source pins craft-common 2.1.0. See the [project home](../README.md#version-availability) for public availability.
+Backend specialties use bec-*, frontend specialties use fec-* and shared engineering capabilities use cc-*. This source pins craft-common 2.1.0. See [installation](../README.md#install) for npm and source setup.
 
 CLI installations share resources by exact common version, language and content digest. Coexisting products must match all three values; conflicts block installation. Backend uses its own backend-craft.manifest.json and tracks ownership of individual entries in shared files.
 
