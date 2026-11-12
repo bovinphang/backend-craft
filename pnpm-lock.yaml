@@ -213,7 +213,7 @@ importers:
 packages:
 
   '@bovinphang/craft-common@2.1.0':
-    resolution: {integrity: sha512-TJVYWcprj9uUV3tqqcOhF/YHMYXxkQvgNfLb13dhm/aHdndl6GKvuoRY6UIpJTnova4iG2lBbnPD3DlU6c6ICA==}
+    resolution: {integrity: sha512-xrF1Xb96d5zEGjik9wCWmRpLtSFOMJ65+CDI4td5Gi9N9ye0ZY7WgxzkuDj9iEtaM5AOMoof6I9dHjj77NCU2g==}
     engines: {node: '>=22.0.0'}
 
   '@esbuild/aix-ppc64@0.28.2':
