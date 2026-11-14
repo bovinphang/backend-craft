@@ -7,6 +7,7 @@ export function packOpenClaw(productRoot: string, output: string): void {
   fs.mkdirSync(output, { recursive: true });
   if (fs.readdirSync(output).length) throw new Error("原生包需要空输出目录");
   for (const name of [
+    "assets/brand",
     "skills",
     "localized",
     "templates",
@@ -66,6 +67,7 @@ export function packOpenClaw(productRoot: string, output: string): void {
         license: "MIT",
         description: "后端工程专业原生插件；CLI 与原生渠道二选一",
         files: [
+          "assets/brand",
           "dist",
           "skills",
           "localized",

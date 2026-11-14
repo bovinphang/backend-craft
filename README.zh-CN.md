@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="assets/brand/backend-craft.png" alt="backend-craft logo" width="200" />
+
 # Backend Craft
 
 面向 AI 编程助手的后端工程工作流。

@@ -24,6 +24,7 @@
     }
   },
   "files": [
+    "assets/brand",
     "dist",
     "skills",
     "agents",

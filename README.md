@@ -1,5 +1,7 @@
 <div align="center">
 
+<img src="assets/brand/backend-craft.png" alt="backend-craft logo" width="200" />
+
 # Backend Craft
 
 Backend engineering workflows for AI coding assistants.
