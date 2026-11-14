@@ -27,7 +27,9 @@ import type { InstallContext } from "../../src/install/types.js";
 import type { RuntimeAdapter } from "../../src/install/registry.js";
 const productRoot = path.resolve("dist/package");
 function fixture(t: { after(fn: () => void): void }): InstallContext {
-  const cwd = fs.mkdtempSync(path.join(os.tmpdir(), "bec-life-"));
+  const cwd = fs.realpathSync.native(
+    fs.mkdtempSync(path.join(os.tmpdir(), "bec-life-")),
+  );
   t.after(() => fs.rmSync(cwd, { recursive: true, force: true }));
   return {
     productRoot,

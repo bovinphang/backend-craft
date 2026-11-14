@@ -1,7 +1,8 @@
 import fs from "node:fs";
 import path from "node:path";
 import { executeProductPlan } from "../../src/install/transaction.ts";
-const [root, phase] = process.argv.slice(2),
+const [declaredRoot, phase] = process.argv.slice(2),
+  root = fs.realpathSync.native(declaredRoot),
   baseDir = path.join(root, ".cline");
 const ctx = {
   productRoot: path.join(process.cwd(), "dist/package"),

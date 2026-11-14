@@ -2,7 +2,8 @@ import fs from "node:fs";
 import path from "node:path";
 import { installRuntime } from "../../src/install/lifecycle.ts";
 import { writeManaged } from "../../src/install/manifest.ts";
-const [root, phase, mode] = process.argv.slice(2),
+const [declaredRoot, phase, mode] = process.argv.slice(2),
+  root = fs.realpathSync.native(declaredRoot),
   baseDir = path.join(root, ".claude"),
   file = path.join(baseDir, "bec-owned.md");
 const ctx = {

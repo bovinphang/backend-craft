@@ -17,7 +17,9 @@ import {
 import { MANIFEST_CODEC } from "../../src/install/manifest-codec.js";
 import { toProductContext } from "../../src/product.js";
 function fixture(t: { after(fn: () => void): void }): InstallContext {
-  const cwd = fs.mkdtempSync(path.join(os.tmpdir(), "bec-manifest-"));
+  const cwd = fs.realpathSync.native(
+    fs.mkdtempSync(path.join(os.tmpdir(), "bec-manifest-")),
+  );
   t.after(() => fs.rmSync(cwd, { recursive: true, force: true }));
   return {
     productRoot: path.resolve("dist/package"),

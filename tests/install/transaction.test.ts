@@ -11,7 +11,9 @@ import {
   recoverProductTransaction,
 } from "../../src/install/transaction.js";
 function fixture(t: { after(fn: () => void): void }): InstallContext {
-  const cwd = fs.mkdtempSync(path.join(os.tmpdir(), "后端事务 space "));
+  const cwd = fs.realpathSync.native(
+    fs.mkdtempSync(path.join(os.tmpdir(), "后端事务 space ")),
+  );
   t.after(() => fs.rmSync(cwd, { recursive: true, force: true }));
   return {
     productRoot: path.resolve("dist/package"),
