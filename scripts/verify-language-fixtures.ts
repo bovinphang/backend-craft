@@ -43,7 +43,7 @@ export function verifyLanguageFixtures(
         temp,
         { recursive: true },
       );
-      const cli = path.join(root, "dist/bin/backend-craft.js");
+      const cli = path.join(root, "dist/package/dist/bin/backend-craft.js");
       const run = (argv: string[]) => {
         const value = spawnSync(process.execPath, [cli, ...argv], {
           cwd: temp,

@@ -17,7 +17,7 @@ function fixture(t: { after(fn: () => void): void }) {
     io: {
       cwd,
       home: path.join(cwd, "home"),
-      productRoot: path.resolve("."),
+      productRoot: path.resolve("dist/package"),
       env: {},
       isTTY: false,
       stdout: (s: string) => out.push(s),

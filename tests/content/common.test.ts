@@ -150,6 +150,7 @@ test("缺失公共包时明确来源错误而不生成空内容", (t) => {
 test("Git Windows 检出后公共快照字节不变", (t) => {
   const root = fixture(t),
     checkout = fixture(t);
+  fs.unlinkSync(path.join(checkout, "package.json"));
   const source = path.join(
     commonRoot,
     "skills/cc-technical-diagrams/assets/quality-examples/sequence.mmd",

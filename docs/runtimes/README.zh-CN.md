@@ -55,7 +55,7 @@ Claude Marketplace 的来源精确指向 npm 包，当前源码指向 1.1.0。�
 
 ```sh
 pnpm build
-claude --plugin-dir .
+claude --plugin-dir ./dist/package
 ```
 
 命令在 backend-craft 仓库根执行。原生 Claude SessionStart 提供只读工程上下文。OpenClaw 原生插件通过打包产物交付，在宿主插件配置中可设置 autoValidate、autoFormat 和 formatStage；后二者配合显式本地格式阶段使用。详情见[验证配置](../validation-config.zh-CN.md)。

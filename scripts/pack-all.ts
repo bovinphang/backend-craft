@@ -14,13 +14,14 @@ const build = spawnSync(
 );
 if (build.status !== 0) throw new Error("构建失败");
 if (runTests(root) !== 0) throw new Error("测试失败");
-checkPackages(root);
+const productRoot = path.join(root, "dist/package");
+checkPackages(productRoot);
 const output = fs.mkdtempSync(path.join(root, "npm-packages-")),
-  skills = packSkills(root, path.join(output, "skills")),
+  skills = packSkills(productRoot, path.join(output, "skills")),
   native = path.join(output, "openclaw");
-packOpenClaw(root, native);
+packOpenClaw(productRoot, native);
 const archives = [
-  npmPack(root, output),
+  npmPack(productRoot, output),
   npmPack(native, output),
   ...skills.map((skill) => npmPack(skill.packagePath, output)),
 ];

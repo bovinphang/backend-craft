@@ -3,13 +3,13 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import os from "node:os";
-const root = path.resolve(import.meta.dirname, "../..");
+const root = path.resolve(import.meta.dirname, "../../dist/package");
 test("service case requires a real HTTP pair and isolated maintainer", () => {
   for (const file of [
     "scripts/verify-engineering.ts",
     "skills/bec-api-design/examples/engineering/server_test.go",
   ])
-    assert.ok(fs.existsSync(path.join(root, file)), "missing " + file);
+    assert.ok(fs.existsSync(file.startsWith("scripts/") ? path.resolve(import.meta.dirname, "../..", file) : path.join(root, file)), "missing " + file);
 });
 test("real service idempotency pair runs through httptest", async (t) => {
   const { verifyEngineeringExamples } =

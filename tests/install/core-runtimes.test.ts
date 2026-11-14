@@ -14,7 +14,7 @@ import {
   getRuntimeTarget,
   createInstallContext,
 } from "../../src/install/paths.js";
-const productRoot = path.resolve(".");
+const productRoot = path.resolve("dist/package");
 test("双语完整专业角色、命令及语言规则不混合加载", () => {
   for (const language of ["en", "zh-CN"] as const) {
     const c = readProductCatalog(productRoot, language);

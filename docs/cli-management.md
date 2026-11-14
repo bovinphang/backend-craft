@@ -35,4 +35,4 @@ bec update --dry-run
 bec uninstall --purge --yes --dry-run
 ```
 
-Use setup all for bulk setup and runtime install --all for bulk resource installation. runtime list enumerates managed installations in the selected scope; list enumerates supported runtimes. For source debugging, prefix subcommands with node dist/bin/backend-craft.js.
+Use setup all for bulk setup and runtime install --all for bulk resource installation. runtime list enumerates managed installations in the selected scope; list enumerates supported runtimes. For source debugging, prefix subcommands with node dist/package/dist/bin/backend-craft.js.

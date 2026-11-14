@@ -14,8 +14,8 @@ function fixture(t: { after(fn: () => void): void }): InstallContext {
   const cwd = fs.mkdtempSync(path.join(os.tmpdir(), "后端事务 space "));
   t.after(() => fs.rmSync(cwd, { recursive: true, force: true }));
   return {
-    productRoot: path.resolve("."),
-    contentRoot: path.resolve("."),
+    productRoot: path.resolve("dist/package"),
+    contentRoot: path.resolve("dist/package"),
     cwd,
     home: path.join(cwd, "home"),
     baseDir: path.join(cwd, ".cline"),

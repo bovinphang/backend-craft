@@ -14,7 +14,7 @@ function fixture(t: { after(fn: () => void): void }) {
     io: CliIO = {
       cwd,
       home: path.join(cwd, "home"),
-      productRoot: path.resolve("."),
+      productRoot: path.resolve("dist/package"),
       env: {},
       stdout: (v) => output.push(v),
       stderr: (v) => errors.push(v),
@@ -265,7 +265,7 @@ test("doctor 检查共享入口自身片段，用户及前端正文变动不误�
     0,
   );
   const ctx = createInstallContext({
-      productRoot: path.resolve("."),
+      productRoot: path.resolve("dist/package"),
       cwd: f.cwd,
       home: f.io.home,
       runtime: "claude",

@@ -61,3 +61,5 @@ pnpm run verify:engineering
 共存检查需要相邻前端源码与匹配的公共资源；语言夹具使用已有本地工具链。框架 --prepare 显式准备隔离 Docker 样例，省略后离线复验，FastAPI 环境及各框架要求见脚本与历史工具链证据。verify:engineering 使用现有 Go 工具和隔离源码副本验证进程内 HTTP 重放样例。记录实际覆盖范围，缺工具或未执行的项目应单独列出。
 
 [贡献指南](../CONTRIBUTING.zh-CN.md) · [工具链证据](verification/toolchains.md) · [验证配置](validation-config.zh-CN.md)
+
+公共生成资源（cc-*、领域内嵌公共引用、完整混合索引与来源锁）位于构建后的 `dist/package/`。源码中的 skills 索引只保存领域条目，完整发行包结构在组合目录中检查。

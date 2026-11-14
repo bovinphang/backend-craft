@@ -29,7 +29,7 @@ const ids = [
     "openclaw",
     "qoder",
   ],
-  productRoot = path.resolve(".");
+  productRoot = path.resolve("dist/package");
 test("local runtime targets match the captured installation contract", () => {
   const contract = JSON.parse(
     fs.readFileSync(

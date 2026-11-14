@@ -47,19 +47,21 @@
     "access": "public"
   },
   "scripts": {
-    "lint": "eslint src bin scripts tests eslint.config.mjs --max-warnings=0 --no-error-on-unmatched-pattern",
-    "typecheck": "tsc --noEmit -p tsconfig.json",
-    "test": "tsx scripts/run-tests.ts",
-    "build": "pnpm typecheck && tsx scripts/build.ts",
-    "prepack": "pnpm build",
+    "lint": "pnpm run prepare:content && eslint src bin scripts tests eslint.config.mjs --max-warnings=0 --no-error-on-unmatched-pattern && pnpm run check:content",
+    "typecheck": "pnpm run prepare:content && tsc --noEmit -p tsconfig.json",
+    "test": "pnpm run build && tsx scripts/run-tests.ts",
+    "build": "pnpm run prepare:content && pnpm typecheck && tsx scripts/build.ts",
+    "prepack": "node scripts/source-pack-guard.mjs",
     "sync:common": "tsx scripts/sync-common.ts",
     "check:common": "tsx scripts/sync-common.ts --check",
-    "check:content": "tsx scripts/check-content.ts",
+    "check:content": "pnpm run prepare:content && tsx scripts/check-content.ts",
     "verify:coexistence": "tsx scripts/verify-coexistence.ts",
     "verify:languages": "tsx scripts/verify-language-fixtures.ts",
     "verify:frameworks": "tsx scripts/verify-frameworks.ts",
     "pack:all": "tsx scripts/pack-all.ts",
-    "verify:engineering": "tsx scripts/verify-engineering.ts"
+    "verify:engineering": "tsx scripts/verify-engineering.ts",
+    "prepare:content": "tsx scripts/prepare-content.ts",
+    "prepublishOnly": "node scripts/source-pack-guard.mjs"
   },
   "dependencies": {
     "@bovinphang/craft-common": "2.1.0",

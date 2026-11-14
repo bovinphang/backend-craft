@@ -35,6 +35,6 @@ if (
   process.argv[1] &&
   path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)
 ) {
-  checkContent(path.resolve(import.meta.dirname, ".."));
+  checkContent(path.resolve(import.meta.dirname, "../dist/package"));
   console.log("双语内容与来源锁完整");
 }

@@ -12,7 +12,7 @@ function fixture(t: { after(fn: () => void): void }) {
   const cwd = fs.mkdtempSync(path.join(os.tmpdir(), "bec-migration-"));
   t.after(() => fs.rmSync(cwd, { recursive: true, force: true }));
   return createInstallContext({
-    productRoot: path.resolve("."),
+    productRoot: path.resolve("dist/package"),
     cwd,
     home: path.join(cwd, "home"),
     runtime: "claude",

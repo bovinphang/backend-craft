@@ -31,4 +31,4 @@ bec update --dry-run
 bec uninstall --purge --yes --dry-run
 ```
 
-setup all 用于 setup 批量接入，runtime install 批量接入使用 --all。runtime list 列出指定范围内已托管安装，list 列出支持的 Runtime。源码目录调试使用 node dist/bin/backend-craft.js 加子命令。
+setup all 用于 setup 批量接入，runtime install 批量接入使用 --all。runtime list 列出指定范围内已托管安装，list 列出支持的 Runtime。源码目录调试使用 node dist/package/dist/bin/backend-craft.js 加子命令。

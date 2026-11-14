@@ -5,9 +5,9 @@ import path from "node:path";
 import { parseDocument } from "yaml";
 import { readProductCatalog } from "../../src/content/catalog.js";
 import { readCommonCatalog } from "../../src/content/common.js";
-const root = path.resolve(".");
+const root = path.resolve("dist/package");
 const cases = JSON.parse(
-  fs.readFileSync(path.join(root, "tests/evals/scenarios.json"), "utf8"),
+  fs.readFileSync(path.resolve("tests/evals/scenarios.json"), "utf8"),
 ) as Array<{ id: string }>;
 const expected = cases.map((item) => item.id).sort();
 for (const id of expected)

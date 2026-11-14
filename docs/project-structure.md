@@ -61,3 +61,5 @@ pnpm run verify:engineering
 Coexistence checks require the adjacent frontend source and matching common resources. Language fixtures use existing local toolchains. Framework --prepare explicitly prepares isolated Docker examples; omit it for offline replay. Consult scripts and historical toolchain evidence for FastAPI and individual framework requirements. verify:engineering uses the existing Go toolchain and isolated sources for process-local HTTP replay checks. Record actual coverage and list missing or unrun checks.
 
 [Contributing](../CONTRIBUTING.md) · [Toolchain evidence](verification/toolchains.md) · [Validation configuration](validation-config.md)
+
+Generated common skills, embedded references, merged indexes and provenance locks live in the assembled `dist/package/` directory. Source indexes contain domain-owned entries. Inspect the assembled directory for the complete release layout.

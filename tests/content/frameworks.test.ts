@@ -7,7 +7,7 @@ import {
   readCapabilityCandidates,
 } from "@bovinphang/craft-common";
 import { readProductCatalog } from "../../src/content/catalog.js";
-const root = path.resolve(".");
+const root = path.resolve("dist/package");
 for (const framework of ["spring-boot", "fastapi", "gin", "axum", "drogon"])
   test(`${framework} is a standalone bilingual specialty, not a language alias`, () => {
     for (const language of ["en", "zh-CN"] as const) {

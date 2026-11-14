@@ -25,7 +25,7 @@ import { entryHash } from "../../src/install/shared-config/index.js";
 
 import type { InstallContext } from "../../src/install/types.js";
 import type { RuntimeAdapter } from "../../src/install/registry.js";
-const productRoot = path.resolve(".");
+const productRoot = path.resolve("dist/package");
 function fixture(t: { after(fn: () => void): void }): InstallContext {
   const cwd = fs.mkdtempSync(path.join(os.tmpdir(), "bec-life-"));
   t.after(() => fs.rmSync(cwd, { recursive: true, force: true }));
@@ -301,7 +301,7 @@ for (const update of [false, true])
           update ? "update" : "install",
         ],
         {
-          cwd: productRoot,
+          cwd: path.resolve("."),
           windowsHide: true,
           stdio: ["ignore", "pipe", "pipe"],
         },

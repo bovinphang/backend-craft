@@ -21,7 +21,7 @@ import {
 } from "../../src/install/manifest.js";
 import { hashBytes } from "../../src/content/snapshot.js";
 const frontendRoot = process.env.BEC_FRONTEND_REFERENCE,
-  productRoot = path.resolve("."),
+  productRoot = path.resolve("dist/package"),
   skip = frontendRoot
     ? false
     : "需要 BEC_FRONTEND_REFERENCE 指向真实前端构建产物";

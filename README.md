@@ -195,3 +195,5 @@ See the [contributing guide](CONTRIBUTING.md) for development setup, bilingual m
 ## License
 
 [MIT](LICENSE) © bovinphang.
+
+Common content is maintained in craft-common. This source repository stores domain skills; `pnpm run build` assembles the complete bilingual product in `dist/package/`. Local development and Git submodules load `--plugin-dir <repository>/dist/package`. Build release archives with `pnpm run pack:all`; see CONTRIBUTING.md.

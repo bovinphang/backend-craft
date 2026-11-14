@@ -8,8 +8,14 @@ export function findProductRoot(start: string): string {
     if (
       fs.existsSync(file) &&
       JSON.parse(fs.readFileSync(file, "utf8")).name === PRODUCT.name
-    )
-      return current;
+    ) {
+      const pkg = JSON.parse(fs.readFileSync(file, "utf8"));
+      if (!pkg.scripts?.["prepare:content"]) return current;
+      const output = path.join(current, "dist/package");
+      if (!fs.existsSync(path.join(output, "common-content.lock.json")))
+        throw new Error("请先运行 pnpm run build");
+      return output;
+    }
     const parent = path.dirname(current);
     if (parent === current) break;
     current = parent;

@@ -55,7 +55,7 @@ The Claude Marketplace source pins an npm package version, currently 1.1.0 in th
 
 ```sh
 pnpm build
-claude --plugin-dir .
+claude --plugin-dir ./dist/package
 ```
 
 Run in the backend-craft repository root. Native Claude SessionStart provides read-only project context. The native OpenClaw package exposes autoValidate, autoFormat and formatStage in host plugin configuration. Formatting requires an explicit local format stage. See [validation configuration](../validation-config.md).

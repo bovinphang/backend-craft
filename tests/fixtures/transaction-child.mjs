@@ -4,8 +4,8 @@ import { executeProductPlan } from "../../src/install/transaction.ts";
 const [root, phase] = process.argv.slice(2),
   baseDir = path.join(root, ".cline");
 const ctx = {
-  productRoot: process.cwd(),
-  contentRoot: process.cwd(),
+  productRoot: path.join(process.cwd(), "dist/package"),
+  contentRoot: path.join(process.cwd(), "dist/package"),
   cwd: root,
   home: path.join(root, "home"),
   baseDir,

@@ -39,7 +39,7 @@ test(
       ";import {createInstallContext} from " +
       JSON.stringify(paths) +
       ";await installRuntime(createInstallContext({productRoot:" +
-      JSON.stringify(path.resolve(".")) +
+      JSON.stringify(path.resolve("dist/package")) +
       ",cwd:" +
       JSON.stringify(root.toUpperCase()) +
       ",home:" +

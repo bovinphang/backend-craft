@@ -4,7 +4,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { readContentCatalog } from "@bovinphang/craft-common";
-const root=path.resolve(import.meta.dirname,"../..");
+const root=path.resolve(import.meta.dirname,"../../dist/package");
 const installed=path.resolve(path.dirname(fileURLToPath(import.meta.resolve("@bovinphang/craft-common"))),"..");
 const targets=["bec-architecture-design","bec-api-design","bec-auth-security","bec-database-design","bec-transaction-management","bec-observability","bec-testing-strategy","bec-code-review","bec-dependency-management","bec-spring-boot-project-standard","bec-fastapi-project-standard","bec-gin-project-standard","bec-axum-project-standard","bec-drogon-project-standard"];
 test("fourteen backend entries consume exact installed core bytes and the full 21-entry common snapshot",()=>{

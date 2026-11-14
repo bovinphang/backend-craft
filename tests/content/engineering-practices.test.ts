@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import { parseDocument } from "yaml";
-const root = path.resolve(import.meta.dirname, "../..");
+const root = path.resolve(import.meta.dirname, "../../dist/package");
 const targets: ReadonlyArray<readonly [string, readonly string[]]> = [
   [
     "bec-spring-boot-project-standard",

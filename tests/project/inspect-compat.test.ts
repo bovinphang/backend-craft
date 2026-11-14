@@ -14,7 +14,7 @@ test("legacy inspect file positional still selects nearest project and recommend
   const current = inspectCapabilities(
     root,
     "lib/src/lib.rs",
-    path.resolve("."),
+    path.resolve("dist/package"),
   );
   assert.deepEqual(current.projects, legacy.projects);
   assert.ok(
@@ -39,13 +39,13 @@ test("legacy positional tasks preserve missing-file, child-directory and externa
     path.join(outside, "main.go"),
   ])
     assert.deepEqual(
-      inspectCapabilities(root, target, path.resolve(".")).projects,
+      inspectCapabilities(root, target, path.resolve("dist/package")).projects,
       inspect(root, target).projects,
     );
   const scoped = inspectCapabilities(
     root,
     ".",
-    path.resolve("."),
+    path.resolve("dist/package"),
     "src/new.rs",
     "native-memory",
   );
@@ -65,7 +65,7 @@ test("legacy positional tasks through a declared root junction keep canonical re
     process.platform === "win32" ? "junction" : "dir",
   );
   assert.deepEqual(
-    inspectCapabilities(alias, "src/new.rs", path.resolve(".")).projects,
+    inspectCapabilities(alias, "src/new.rs", path.resolve("dist/package")).projects,
     inspect(alias, "src/new.rs").projects,
   );
 });

@@ -1,9 +1,11 @@
+import { prepareContent } from "./prepare-content.js";
 import { build } from "esbuild";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import { checkContent } from "./check-content.js";
 const root = path.resolve(import.meta.dirname, "..");
-checkContent(root);
+const outputRoot = prepareContent({ sourceRoot: root });
+checkContent(outputRoot);
 for (const [entry, out] of [
   ["src/index.ts", "dist/index.js"],
   ["bin/backend-craft.ts", "dist/bin/backend-craft.js"],
@@ -13,7 +15,7 @@ for (const [entry, out] of [
   await build({
     absWorkingDir: root,
     entryPoints: [entry],
-    outfile: out,
+    outfile: path.join(outputRoot, out),
     bundle: true,
     format: "esm",
     platform: "node",

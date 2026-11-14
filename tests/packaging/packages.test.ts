@@ -11,7 +11,7 @@ import { packOpenClaw } from "../../scripts/pack-openclaw.js";
 import { checkPackages } from "../../scripts/check-packages.js";
 import { readProductCatalog } from "../../src/content/catalog.js";
 import { hashBytes } from "../../src/content/snapshot.js";
-const root = path.resolve(".");
+const root = path.resolve("dist/package");
 function temporary(t: { after(fn: () => void): void }) {
   const out = fs.mkdtempSync(path.join(os.tmpdir(), "bec-packed-"));
   t.after(() => fs.rmSync(out, { recursive: true, force: true }));
