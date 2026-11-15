@@ -4,7 +4,7 @@
 
 # Backend Craft
 
-### One toolkit. Every AI coding assistant. Production-grade backend standards.
+### Backend engineering workflows for your AI coding assistant.
 
 [![CI](https://github.com/bovinphang/backend-craft/actions/workflows/ci.yml/badge.svg)](https://github.com/bovinphang/backend-craft/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/@bovinphang/backend-craft)](https://www.npmjs.com/package/@bovinphang/backend-craft)
@@ -39,87 +39,77 @@ Service guidance covers Rust, Go, Java, Python, C and C++, with dedicated Spring
 - Inspect projects, preview validation plans and execute checks through existing local tools.
 - Generate runtime-specific resources, track ownership and share common content with Frontend Craft.
 
-## Install
+**Skills** provide task-specific guidance, **agents** handle focused engineering tasks, and **command workflows** are assistant entry points where supported. They are distinct from terminal commands such as `bec setup`.
 
-Requires **Node.js 22+**. The CLI targets Windows, macOS and Linux. Backend validation also needs your project's existing toolchain and prepared dependencies.
+## Quick start
 
-### Global CLI
+You need **Node.js 22+**, an installed AI coding assistant and an existing backend project. The CLI supports Windows, macOS and Linux.
+
+### 1. Install and connect your assistant
 
 ```sh
 npm install -g @bovinphang/backend-craft@latest
 cd your-backend-project
-bec runtime install codex --local --lang en
+bec setup
+```
+
+Replace `your-backend-project` with your project directory. In an interactive terminal, `bec setup` lets you select one or more AI runtimes (coding assistants), then the resource language: English or Simplified Chinese. Use Up/Down to navigate, Space to toggle selections and Enter to confirm. Claude is selected initially; deselect it if you only want another assistant. Resources are installed into the **current project** by default.
+
+To skip the prompts or use a script, specify the runtime, scope and language explicitly. For example, to connect Codex:
+
+```sh
+bec setup codex --local --lang en
+```
+
+### 2. Check the installation
+
+Run the check from the same project directory. This example uses Codex; replace `codex` with each runtime you selected from the [supported runtime list](docs/runtimes/README.md).
+
+```sh
 bec doctor codex --local --json
 ```
 
-The npm command installs the `bec` and `backend-craft` terminal commands. `runtime install` connects the selected runtime to your project. Use `--global` for user-wide resources and `--lang zh-CN` for Chinese content.
+`installed: true` means a managed installation exists; `filesHealthy: true` means its resources are intact. `enabled: "unknown"` means the CLI cannot confirm activation inside the assistant. If either installation check is false, review the diagnostics and the [runtime guide](docs/runtimes/README.md) before continuing.
 
-### Temporary npx execution
+### 3. Run your first task
+
+Restart or refresh your assistant, open the target project and start a new conversation. Confirm the installed resources are discovered and enable them if the host requires trust or approval. Where skills are supported, use this prompt, replacing `services/orders` with an existing module:
+
+```text
+Use bec-code-review to review services/orders without modifying code.
+Follow this repository's conventions and prioritize authorization, transaction boundaries and error handling.
+List findings with file locations, impact and suggested fixes; state explicitly if no issues are found.
+```
+
+Expect a review with actionable findings or an explicit no-findings result. Claude Code also exposes `/bec-review` and `/bec-debug`; Codex uses skills and agents. Resource forms vary by host: see the [runtime guide](docs/runtimes/README.md) and [example prompts](docs/example-prompts.md).
+
+## Other installation options
+
+### Run without a global CLI
+
+This is an alternative to the global CLI. Prefix subsequent CLI commands with `npx @bovinphang/backend-craft@latest` as well.
 
 ```sh
 cd your-backend-project
-npx @bovinphang/backend-craft@latest runtime install codex --local --lang en
-npx @bovinphang/backend-craft@latest matrix --json
+npx @bovinphang/backend-craft@latest setup
 ```
 
 ### Claude Code native plugin
 
-Inside Claude Code, add the Marketplace and install the plugin.
+Run these commands inside Claude Code. Choose one installation channel per runtime; CLI installation and the native plugin must not be installed together for the same runtime. See the [runtime guide](docs/runtimes/README.md) for activation and channel switching.
 
 ```text
 /plugin marketplace add bovinphang/backend-craft
 /plugin install backend-craft@backend-craft
 ```
 
-To load the plugin from a local checkout, build it first, then run `claude --plugin-dir .` from the repository root. See the [runtime installation guide](docs/runtimes/README.md).
+### User-wide installation
 
-Choose one installation channel per runtime. Refresh the host and confirm discovery and activation there.
-
-### Build from source
-
-From the repository root, build the CLI with pnpm 12.4.1 and run it directly with Node.js. This checkout pins `@bovinphang/craft-common@2.1.0`.
+Use `--global` to share resources across projects for your user. The example selects Codex explicitly; avoid installing both scopes unless intended. Batch setup and full defaults are documented in [CLI management](docs/cli-management.md).
 
 ```sh
-pnpm install --frozen-lockfile
-pnpm build
-node dist/bin/backend-craft.js setup codex --local --lang en --dry-run --json
+bec setup codex --global --lang en
 ```
-
-### Configure runtimes
-
-Run these commands from the target project with the installed CLI. The `setup` command requires Backend Craft 1.1.0 or later.
-
-```sh
-bec setup
-bec setup codex --local --lang en
-bec setup all --local --lang en
-bec runtime install --all --global --lang en --dry-run --json
-```
-
-`setup` defaults to the current project. Ordinary interactive installation asks for runtimes, language and location. Ordinary non-interactive installation defaults to Claude, global scope and English. Specify `--local` or `--global` in scripts. See [CLI management](docs/cli-management.md).
-
-## Quick start
-
-### Inspect and validate a project
-
-```sh
-bec project inspect . --json
-bec project inspect . --task-path services/api/main.go --task-kind api --json
-bec validate . --dry-run --json
-bec validate . --json
-```
-
-Inspection reads project evidence and recommends matching capabilities. Review the plan before execution. Validation uses explicit configuration, existing project tasks or conservative language suggestions. Exit codes are `0` for passed, `1` for failed and `2` for incomplete or invalid input. Missing required tools, skipped required stages and zero tests prevent a passing result.
-
-### Work with your assistant
-
-```text
-Plan the order service using this repository's architecture and API conventions.
-Review authorization and transaction boundaries in services/orders.
-Diagnose this Go cancellation bug and verify the fix with existing tests.
-```
-
-Claude Code exposes `/bec-review` and `/bec-debug` workflows. Codex uses skills and agents for these tasks. Other hosts expose resources described in the [runtime guide](docs/runtimes/README.md).
 
 ## Capability catalog
 
@@ -173,6 +163,19 @@ These are assistant workflows. Run terminal validation with `bec validate`. Work
 
 ## Configuration and validation
 
+Project validation needs your project's existing toolchain and installed dependencies.
+
+### Inspect and validate a project
+
+```sh
+bec project inspect . --json
+bec project inspect . --task-path services/api/main.go --task-kind api --json
+bec validate . --dry-run --json
+bec validate . --json
+```
+
+Inspection reads project evidence and recommends matching capabilities. Review the plan before execution. Validation uses explicit configuration, existing project tasks or conservative language suggestions. Exit codes are `0` for passed, `1` for failed and `2` for incomplete or invalid input. Missing required tools, skipped required stages and zero tests prevent a passing result.
+
 - [Language guide](docs/languages/README.md) describes six-language validation. Shared skill coverage is maintained separately.
 - [Validation configuration](docs/validation-config.md) covers `.backend-craft.json`, stage execution and test evidence. Integration stages require explicit enablement.
 - Automatic formatting and validation are disabled by default. Native Claude SessionStart provides read-only context. Native OpenClaw can opt into `autoValidate` and, with a configured `formatStage`, `autoFormat`.
@@ -180,14 +183,10 @@ These are assistant workflows. Run terminal validation with `bec validate`. Work
 
 ## Update and uninstall
 
-CLI self-management commands `bec update` and `bec uninstall` require Backend Craft 1.1.0 or later.
-
 ```sh
 bec update --dry-run
 bec update
-bec runtime update codex --local --dry-run --json
 bec runtime update codex --local
-bec runtime uninstall codex --local --dry-run --json
 bec runtime uninstall codex --local
 bec uninstall --yes
 ```
@@ -198,14 +197,37 @@ Modified and unknown files are protected. Shared `cc-*` resources require matchi
 
 ## Documentation
 
-The [documentation index](docs/README.md) covers installation, prompts, configuration, migration and maintenance.
+| Guide | Contents |
+| --- | --- |
+| [Runtime installation and activation](docs/runtimes/README.md) | Supported assistants, resource paths and host discovery |
+| [CLI management](docs/cli-management.md) | Scopes, batch operations, updates and removal |
+| [Example prompts](docs/example-prompts.md) | Architecture, review and troubleshooting tasks |
+| [Validation configuration](docs/validation-config.md) | Project checks and test evidence |
+| [Coexistence and migration](docs/coexistence.md) | Shared resources and installation conflicts |
+| [Documentation index](docs/README.md) | Language guides, engineering structure and extensions |
 
-## Contributing
+## Source development and contributing
 
-See the [contributing guide](CONTRIBUTING.md) for development setup, bilingual maintenance and checks. Report reproducible problems through [GitHub Issues](https://github.com/bovinphang/backend-craft/issues).
+Domain skills, agents and workflows are maintained here. Shared `cc-*` skills and common methods are maintained in [craft-common](https://github.com/bovinphang/craft-common). `pnpm build` assembles the complete English and Simplified Chinese product in `dist/package/`; load this assembled directory for local development and Git submodules.
+
+Use Node.js 22+ and the pnpm version declared in `package.json`. Dependency versions are defined by `package.json` and `pnpm-lock.yaml`. Run:
+
+```sh
+git clone https://github.com/bovinphang/backend-craft.git
+cd backend-craft
+pnpm install --frozen-lockfile
+pnpm build
+node dist/package/dist/bin/backend-craft.js version
+```
+
+To load the built Claude plugin, run this from the repository root:
+
+```sh
+claude --plugin-dir ./dist/package
+```
+
+See [Contributing](CONTRIBUTING.md) for development checks, bilingual maintenance and release archives (`pnpm run pack:all`). Report reproducible problems through [GitHub Issues](https://github.com/bovinphang/backend-craft/issues).
 
 ## License
 
 [MIT](LICENSE) © bovinphang.
-
-Common content is maintained in craft-common. This source repository stores domain skills; `pnpm run build` assembles the complete bilingual product in `dist/package/`. Local development and Git submodules load `--plugin-dir <repository>/dist/package`. Build release archives with `pnpm run pack:all`; see CONTRIBUTING.md.

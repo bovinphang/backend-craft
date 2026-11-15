@@ -2,7 +2,7 @@
 
 [简体中文](cli-management.zh-CN.md) · [Documentation](README.md)
 
-See [installation](../README.md#install) for npm and source setup.
+See the [quick start](../README.md#quick-start) for npm installation and [source development](../README.md#source-development-and-contributing) for local builds.
 
 Both products use craft-common's command dispatcher, interactive prompts, npm/pnpm installation detection and CLI lifecycle. Replace bec with fec for frontend-craft.
 

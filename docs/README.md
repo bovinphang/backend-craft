@@ -2,7 +2,7 @@
 
 [简体中文](README.zh-CN.md) · [Project home](../README.md)
 
-These guides describe the 1.1.0 source. See the project home for public release availability. Start with runtime installation, then explore prompts or project validation.
+These guides describe the current source. Follow the [quick start](../README.md#quick-start) to connect your assistant and run your first task, then explore prompts or project validation.
 
 | Guide | Contents |
 | --- | --- |

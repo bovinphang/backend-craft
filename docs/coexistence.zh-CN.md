@@ -4,7 +4,7 @@
 
 ## 公共资源契约
 
-后端专业内容使用 bec-*，前端使用 fec-*，公共工程能力使用 cc-*。当前源码精确依赖 craft-common 2.1.0。通过 npm 安装或从源码构建的步骤见[安装](../README.zh-CN.md#安装)。
+后端专业内容使用 bec-*，前端使用 fec-*，公共工程能力使用 cc-*。当前源码精确依赖 craft-common 2.1.0。npm 安装见[快速开始](../README.zh-CN.md#快速开始)，本地构建见[源码开发与贡献](../README.zh-CN.md#源码开发与贡献)。
 
 CLI 按 common 版本、语言与内容摘要共享资源。共存的产品必须精确匹配这三项；冲突会阻止安装。后端使用独立 backend-craft.manifest.json，并按共享文件内的条目跟踪所有权。
 

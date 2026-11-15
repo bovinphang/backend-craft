@@ -2,7 +2,7 @@
 
 [简体中文](README.zh-CN.md) · [Documentation](../README.md)
 
-See [installation](../../README.md#install) for npm and source setup.
+See the [quick start](../../README.md#quick-start) for npm installation and [source development](../../README.md#source-development-and-contributing) for local builds.
 
 ## CLI connection
 
@@ -51,7 +51,7 @@ doctor checks backend manifests, digests and common references. enabled remains 
 
 ## Native plugins
 
-The Claude Marketplace source pins an npm package version, currently 1.1.0 in this source. See the project home for public availability. Before publication, use a Marketplace Git revision targeting a published package, or test the source directory as follows.
+The Claude Marketplace source pins an npm package version, currently 1.1.0 in this source. For local source development, build and load the assembled product as follows.
 
 ```sh
 pnpm build

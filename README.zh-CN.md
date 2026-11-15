@@ -4,7 +4,7 @@
 
 # Backend Craft
 
-### 一套工具，适配所有 AI 编程助手，落地生产级后端规范。
+### 将后端工程规范与工作流接入你的 AI 编程助手。
 
 [![CI](https://github.com/bovinphang/backend-craft/actions/workflows/ci.yml/badge.svg)](https://github.com/bovinphang/backend-craft/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/@bovinphang/backend-craft)](https://www.npmjs.com/package/@bovinphang/backend-craft)
@@ -39,87 +39,77 @@ Backend Craft 将架构、API、数据、安全、测试与故障诊断工作流
 - 只读识别项目，预览验证计划，使用现有本地工具执行检查。
 - 为不同助手生成适配资源，跟踪所有权，并与 Frontend Craft 共享公共内容。
 
-## 安装
+**Skill** 提供特定任务的规范与方法，**Agent** 负责专项工程任务，**命令工作流**提供宿主支持的快捷入口；它们与终端中的 `bec setup` 等 CLI 命令不同。
 
-要求 **Node.js 22+**，CLI 面向 Windows、macOS 和 Linux。后端验证还需要项目已有工具链及准备完成的依赖。
+## 快速开始
 
-### 全局 CLI
+准备 **Node.js 22+**、已安装的 AI 编程助手，以及一个已有后端项目。CLI 支持 Windows、macOS 和 Linux。
+
+### 1. 安装并接入助手
 
 ```sh
 npm install -g @bovinphang/backend-craft@latest
 cd your-backend-project
-bec runtime install codex --local --lang zh-CN
+bec setup
+```
+
+将 `your-backend-project` 替换为实际项目目录。在交互终端中，`bec setup` 会先让你选择一个或多个 AI 运行时（编程助手），再选择英文或简体中文资源。使用方向键移动、空格勾选或取消、回车确认。初始勾选 Claude；只接入其他助手时，先取消该选项。资源默认安装到**当前项目**。
+
+需要跳过交互或编写脚本时，显式指定运行时、安装范围和语言。以 Codex 为例：
+
+```sh
+bec setup codex --local --lang zh-CN
+```
+
+### 2. 检查安装结果
+
+在同一项目目录执行检查。以下以 Codex 为例；请将 `codex` 替换为[支持列表](docs/runtimes/README.zh-CN.md)中实际选择的运行时标识，多选时逐个检查。
+
+```sh
 bec doctor codex --local --json
 ```
 
-npm 命令安装 `bec` 和 `backend-craft` 终端命令，`runtime install` 将指定 Runtime 接入项目。用户级接入使用 `--global`，英文资源使用 `--lang en`。
+`installed: true` 表示存在托管安装，`filesHealthy: true` 表示资源完整。`enabled: "unknown"` 表示 CLI 无法确认助手内部是否已启用资源。前两项为 false 时，先根据诊断信息和 [Runtime 指南](docs/runtimes/README.zh-CN.md)排查。
+
+### 3. 完成首次任务
+
+刷新或重启助手，打开目标项目并新建会话，确认助手已发现安装的资源；如宿主要求信任或启用，请完成相应操作。对于支持 Skill 的助手，可发送以下提示词，将 `services/orders` 替换为实际存在的模块路径：
+
+```text
+使用 bec-code-review 对 services/orders 做只读代码评审，不修改代码。
+遵循本仓库约定，优先检查授权、事务边界和错误处理。
+列出问题位置、影响与修复建议；如果没有发现问题，请明确说明。
+```
+
+预期得到包含问题位置、影响和修复建议的评审结果，或明确的无问题结论。Claude Code 还提供 `/bec-review`、`/bec-debug` 等工作流，Codex 使用 Skill 和 Agent。不同宿主的资源形式见 [Runtime 指南](docs/runtimes/README.zh-CN.md)，更多任务见[示例提示词](docs/example-prompts.zh-CN.md)。
+
+## 其他安装方式
 
 ### 临时 npx 运行
 
+不安装全局 CLI 时使用此方式。后续 CLI 命令也需要使用 `npx @bovinphang/backend-craft@latest` 前缀执行。
+
 ```sh
 cd your-backend-project
-npx @bovinphang/backend-craft@latest runtime install codex --local --lang zh-CN
-npx @bovinphang/backend-craft@latest matrix --json
+npx @bovinphang/backend-craft@latest setup
 ```
 
 ### Claude Code 原生插件
 
-在 Claude Code 内添加 Marketplace 并安装插件。
+在 Claude Code 内执行以下命令。每个运行时选择一种安装渠道，同一运行时的 CLI 接入与原生插件不能同时安装。启用和切换渠道见 [Runtime 指南](docs/runtimes/README.zh-CN.md)。
 
 ```text
 /plugin marketplace add bovinphang/backend-craft
 /plugin install backend-craft@backend-craft
 ```
 
-从本地源码加载插件时，先构建，再在仓库根目录运行 `claude --plugin-dir .`。详见 [Runtime 安装指南](docs/runtimes/README.zh-CN.md)。
+### 用户级全局接入
 
-每个 Runtime 选择一种安装渠道。安装后刷新宿主，在宿主中确认发现与启用状态。
-
-### 从源码构建
-
-在仓库根目录使用 pnpm 12.4.1 构建 CLI，再用 Node.js 直接运行。当前源码精确依赖 `@bovinphang/craft-common@2.1.0`。
+需要跨项目使用时，以 `--global` 安装到用户级目录。以下显式选择 Codex；按需选择范围，避免无意中同时安装本地与全局资源。批量接入和完整默认值见 [CLI 管理](docs/cli-management.zh-CN.md)。
 
 ```sh
-pnpm install --frozen-lockfile
-pnpm build
-node dist/bin/backend-craft.js setup codex --local --lang zh-CN --dry-run --json
+bec setup codex --global --lang zh-CN
 ```
-
-### 接入 Runtime
-
-安装 CLI 后，在目标项目目录执行以下命令。`setup` 要求 Backend Craft 1.1.0 或更高版本。
-
-```sh
-bec setup
-bec setup codex --local --lang zh-CN
-bec setup all --local --lang zh-CN
-bec runtime install --all --global --lang zh-CN --dry-run --json
-```
-
-`setup` 默认接入当前项目。普通交互安装询问 Runtime、语言与位置；普通非交互安装默认 Claude、全局、英文。脚本中显式指定 `--local` 或 `--global`。详见 [CLI 管理](docs/cli-management.zh-CN.md)。
-
-## 快速开始
-
-### 识别和验证项目
-
-```sh
-bec project inspect . --json
-bec project inspect . --task-path services/api/main.go --task-kind api --json
-bec validate . --dry-run --json
-bec validate . --json
-```
-
-识别读取工程证据并推荐适用能力。执行前先审阅验证计划。验证使用显式配置、项目已有任务或保守语言候选。退出码 `0` 表示通过，`1` 表示失败，`2` 表示不完整或输入无效。缺少必需工具、必需阶段被跳过、零测试均无法通过。
-
-### 与助手协作
-
-```text
-按照本仓库架构与 API 约定规划订单服务。
-评审 services/orders 中的授权与事务边界。
-诊断这个 Go 取消传播问题，用现有测试验证修复。
-```
-
-Claude Code 提供 `/bec-review`、`/bec-debug` 等工作流。Codex 通过 Skill 和 Agent 完成任务，其他宿主的资源形式见 [Runtime 指南](docs/runtimes/README.zh-CN.md)。
 
 ## 能力目录
 
@@ -173,6 +163,19 @@ Claude Code 提供 `/bec-review`、`/bec-debug` 等工作流。Codex 通过 Skil
 
 ## 配置与验证
 
+项目验证需要已有工具链及准备完成的项目依赖。
+
+### 识别和验证项目
+
+```sh
+bec project inspect . --json
+bec project inspect . --task-path services/api/main.go --task-kind api --json
+bec validate . --dry-run --json
+bec validate . --json
+```
+
+识别读取工程证据并推荐适用能力。执行前先审阅验证计划。验证使用显式配置、项目已有任务或保守语言候选。退出码 `0` 表示通过，`1` 表示失败，`2` 表示不完整或输入无效。缺少必需工具、必需阶段被跳过、零测试均无法通过。
+
 - [语言指南](docs/languages/README.zh-CN.md)介绍六语言验证，公共 Skill 的语言覆盖单独维护。
 - [验证配置](docs/validation-config.zh-CN.md)介绍 `.backend-craft.json`、阶段执行与测试证据，集成阶段需显式启用。
 - 自动格式与验证默认关闭。Claude 原生 SessionStart Hook 提供只读上下文；OpenClaw 原生插件可开启 `autoValidate`，配置 `formatStage` 后可开启 `autoFormat`。
@@ -180,14 +183,10 @@ Claude Code 提供 `/bec-review`、`/bec-debug` 等工作流。Codex 通过 Skil
 
 ## 更新与卸载
 
-CLI 自管理命令 `bec update` 和 `bec uninstall` 要求 Backend Craft 1.1.0 或更高版本。
-
 ```sh
 bec update --dry-run
 bec update
-bec runtime update codex --local --dry-run --json
 bec runtime update codex --local
-bec runtime uninstall codex --local --dry-run --json
 bec runtime uninstall codex --local
 bec uninstall --yes
 ```
@@ -196,16 +195,39 @@ bec uninstall --yes
 
 用户修改与未知文件受到保护。跨产品共享 `cc-*` 要求公共包版本、语言与内容摘要一致。升级混合安装前，按实际 Runtime 和安装范围运行 `bec runtime check-migration codex --local --json`。详见[共存与迁移](docs/coexistence.zh-CN.md)。
 
-## 文档
+## 文档导航
 
-[文档导航](docs/README.zh-CN.md)汇总安装、提示词、配置、迁移和维护入口。
+| 指南 | 内容 |
+| --- | --- |
+| [Runtime 安装与启用](docs/runtimes/README.zh-CN.md) | 支持的助手、资源路径与宿主发现 |
+| [CLI 管理](docs/cli-management.zh-CN.md) | 安装范围、批量操作、更新与卸载 |
+| [示例提示词](docs/example-prompts.zh-CN.md) | 架构、评审与故障诊断任务 |
+| [验证配置](docs/validation-config.zh-CN.md) | 项目检查与测试证据 |
+| [共存与迁移](docs/coexistence.zh-CN.md) | 共享资源与安装冲突 |
+| [完整文档导航](docs/README.zh-CN.md) | 语言指南、工程结构及扩展 |
 
-## 贡献
+## 源码开发与贡献
 
-[贡献指南](CONTRIBUTING.zh-CN.md)介绍开发环境、双语维护和校验流程。通过 [GitHub Issues](https://github.com/bovinphang/backend-craft/issues)反馈可复现问题。
+本仓库维护后端领域 Skill、Agent 和工作流，公共 `cc-*` Skill 与工程方法在 [craft-common](https://github.com/bovinphang/craft-common) 统一维护。`pnpm build` 在 `dist/package/` 组合生成完整英文和简体中文产品。本地开发及 Git 子模块应加载该组合目录。
+
+使用 Node.js 22+ 和 `package.json` 声明的 pnpm 版本；依赖版本以 `package.json` 和 `pnpm-lock.yaml` 为准。按以下顺序构建：
+
+```sh
+git clone https://github.com/bovinphang/backend-craft.git
+cd backend-craft
+pnpm install --frozen-lockfile
+pnpm build
+node dist/package/dist/bin/backend-craft.js version
+```
+
+从源码加载 Claude 插件时，在仓库根目录执行：
+
+```sh
+claude --plugin-dir ./dist/package
+```
+
+开发检查、双语维护及发行归档（`pnpm run pack:all`）见[贡献指南](CONTRIBUTING.zh-CN.md)。通过 [GitHub Issues](https://github.com/bovinphang/backend-craft/issues)反馈可复现问题。
 
 ## 许可证
 
 [MIT](LICENSE) © bovinphang。
-
-公共内容在 craft-common 统一维护。本源码仓库仅保存领域技能；`pnpm run build` 在 `dist/package/` 生成完整双语产品。开发及 Git 子模块使用 `--plugin-dir <仓库>/dist/package`。发行归档通过 `pnpm run pack:all` 生成，具体步骤见 CONTRIBUTING.zh-CN.md。

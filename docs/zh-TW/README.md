@@ -4,7 +4,7 @@
 
 # Backend Craft
 
-### 一套工具，適配所有 AI 程式設計助手，落地生產級後端規範。
+### 將後端工程規範與工作流程接入你的 AI 程式設計助手。
 
 [![CI](https://github.com/bovinphang/backend-craft/actions/workflows/ci.yml/badge.svg)](https://github.com/bovinphang/backend-craft/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/@bovinphang/backend-craft)](https://www.npmjs.com/package/@bovinphang/backend-craft)
@@ -39,87 +39,77 @@ Backend Craft 將架構、API、資料、安全、測試與故障診斷工作流
 - 只讀識別專案，預覽驗證計劃，使用現有本地工具執行檢查。
 - 為不同助手生成適配資源，跟蹤所有權，並與 Frontend Craft 共享公共內容。
 
-## 安裝
+**Skill** 提供特定任務的規範與方法，**Agent** 負責專項工程任務，**命令工作流程**提供宿主支援的快捷入口；它們與終端中的 `bec setup` 等 CLI 命令不同。
 
-要求 **Node.js 22+**，CLI 面向 Windows、macOS 和 Linux。後端驗證還需要專案已有工具鏈及準備完成的依賴。
+## 快速開始
 
-### 全域 CLI
+準備 **Node.js 22+**、已安裝的 AI 程式設計助手，以及一個既有後端專案。CLI 支援 Windows、macOS 和 Linux。
+
+### 1. 安裝並接入助手
 
 ```sh
 npm install -g @bovinphang/backend-craft@latest
 cd your-backend-project
-bec runtime install codex --local --lang zh-CN
+bec setup
+```
+
+將 `your-backend-project` 替換為實際專案目錄。在互動終端中，`bec setup` 會先讓你選擇一個或多個 AI 執行環境（程式設計助手），再選擇英文或簡體中文資源。使用方向鍵移動、空白鍵勾選或取消、Enter 確認。初始勾選 Claude；只接入其他助手時，先取消該選項。資源預設安裝到**目前專案**。
+
+需要跳過互動或編寫指令碼時，明確指定執行環境、安裝範圍和語言。以 Codex 為例：
+
+```sh
+bec setup codex --local --lang zh-CN
+```
+
+### 2. 檢查安裝結果
+
+在同一專案目錄執行檢查。以下以 Codex 為例；請將 `codex` 替換為[支援清單](../../docs/runtimes/README.zh-CN.md)中實際選擇的執行環境識別碼，多選時逐個檢查。
+
+```sh
 bec doctor codex --local --json
 ```
 
-npm 命令安裝 `bec` 和 `backend-craft` 終端命令，`runtime install` 將指定 Runtime 接入專案。使用者級接入使用 `--global`，英文資源使用 `--lang en`。
+`installed: true` 表示存在受管安裝，`filesHealthy: true` 表示資源完整。`enabled: "unknown"` 表示 CLI 無法確認助手內部是否已啟用資源。前兩項為 false 時，先根據診斷資訊和 [Runtime 指南](../../docs/runtimes/README.zh-CN.md)排查。
+
+### 3. 完成首次任務
+
+重新整理或重新啟動助手，開啟目標專案並建立新對話，確認助手已發現安裝的資源；如宿主要求信任或啟用，請完成相應操作。對於支援 Skill 的助手，可傳送以下提示詞，將 `services/orders` 替換為實際存在的模組路徑：
+
+```text
+使用 bec-code-review 對 services/orders 做唯讀程式碼審查，不修改程式碼。
+遵循本倉庫慣例，優先檢查授權、交易邊界和錯誤處理。
+列出問題位置、影響與修復建議；如果沒有發現問題，請明確說明。
+```
+
+預期得到包含問題位置、影響和修復建議的審查結果，或明確的無問題結論。Claude Code 還提供 `/bec-review`、`/bec-debug` 等工作流程，Codex 使用 Skill 和 Agent。不同宿主的資源形式見 [Runtime 指南](../../docs/runtimes/README.zh-CN.md)，更多任務見[範例提示詞](../../docs/example-prompts.zh-CN.md)。
+
+## 其他安裝方式
 
 ### 臨時 npx 執行
 
+不安裝全域 CLI 時使用此方式。後續 CLI 命令也需要使用 `npx @bovinphang/backend-craft@latest` 前綴執行。
+
 ```sh
 cd your-backend-project
-npx @bovinphang/backend-craft@latest runtime install codex --local --lang zh-CN
-npx @bovinphang/backend-craft@latest matrix --json
+npx @bovinphang/backend-craft@latest setup
 ```
 
 ### Claude Code 原生外掛
 
-在 Claude Code 內新增 Marketplace 並安裝外掛。
+在 Claude Code 內執行以下命令。每個執行環境選擇一種安裝管道，同一執行環境的 CLI 接入與原生外掛不能同時安裝。啟用和切換管道見 [Runtime 指南](../../docs/runtimes/README.zh-CN.md)。
 
 ```text
 /plugin marketplace add bovinphang/backend-craft
 /plugin install backend-craft@backend-craft
 ```
 
-從本地原始碼載入外掛時，先構建，再在倉庫根目錄執行 `claude --plugin-dir .`。詳見 [Runtime 安裝指南](../../docs/runtimes/README.zh-CN.md)。
+### 使用者級全域接入
 
-每個 Runtime 選擇一種安裝渠道。安裝後重新整理宿主，在宿主中確認發現與啟用狀態。
-
-### 從原始碼構建
-
-在倉庫根目錄使用 pnpm 12.4.1 構建 CLI，再用 Node.js 直接執行。當前原始碼精確依賴 `@bovinphang/craft-common@2.1.0`。
+需要跨專案使用時，以 `--global` 安裝到使用者級目錄。以下明確選擇 Codex；按需選擇範圍，避免無意中同時安裝本機與全域資源。批次接入和完整預設值見 [CLI 管理](../../docs/cli-management.zh-CN.md)。
 
 ```sh
-pnpm install --frozen-lockfile
-pnpm build
-node dist/bin/backend-craft.js setup codex --local --lang zh-CN --dry-run --json
+bec setup codex --global --lang zh-CN
 ```
-
-### 接入 Runtime
-
-安裝 CLI 後，在目標專案目錄執行以下命令。`setup` 要求 Backend Craft 1.1.0 或更高版本。
-
-```sh
-bec setup
-bec setup codex --local --lang zh-CN
-bec setup all --local --lang zh-CN
-bec runtime install --all --global --lang zh-CN --dry-run --json
-```
-
-`setup` 預設接入當前專案。普通互動安裝詢問 Runtime、語言與位置；普通非互動安裝預設 Claude、全域、英文。指令碼中顯式指定 `--local` 或 `--global`。詳見 [CLI 管理](../../docs/cli-management.zh-CN.md)。
-
-## 快速開始
-
-### 識別和驗證專案
-
-```sh
-bec project inspect . --json
-bec project inspect . --task-path services/api/main.go --task-kind api --json
-bec validate . --dry-run --json
-bec validate . --json
-```
-
-識別讀取工程證據並推薦適用能力。執行前先審閱驗證計劃。驗證使用顯式配置、專案已有任務或保守語言候選。退出碼 `0` 表示透過，`1` 表示失敗，`2` 表示不完整或輸入無效。缺少必需工具、必需階段被跳過、零測試均無法透過。
-
-### 與助手協作
-
-```text
-按照本倉庫架構與 API 約定規劃訂單服務。
-評審 services/orders 中的授權與事務邊界。
-診斷這個 Go 取消傳播問題，用現有測試驗證修復。
-```
-
-Claude Code 提供 `/bec-review`、`/bec-debug` 等工作流。Codex 透過 Skill 和 Agent 完成任務，其他宿主的資源形式見 [Runtime 指南](../../docs/runtimes/README.zh-CN.md)。
 
 ## 能力目錄
 
@@ -173,6 +163,19 @@ Claude Code 提供 `/bec-review`、`/bec-debug` 等工作流。Codex 透過 Skil
 
 ## 配置與驗證
 
+專案驗證需要既有工具鏈及準備完成的專案相依套件。
+
+### 識別和驗證專案
+
+```sh
+bec project inspect . --json
+bec project inspect . --task-path services/api/main.go --task-kind api --json
+bec validate . --dry-run --json
+bec validate . --json
+```
+
+識別讀取工程證據並推薦適用能力。執行前先審閱驗證計劃。驗證使用顯式配置、專案已有任務或保守語言候選。退出碼 `0` 表示透過，`1` 表示失敗，`2` 表示不完整或輸入無效。缺少必需工具、必需階段被跳過、零測試均無法透過。
+
 - [語言指南](../../docs/languages/README.zh-CN.md)介紹六語言驗證，公共 Skill 的語言覆蓋單獨維護。
 - [驗證配置](../../docs/validation-config.zh-CN.md)介紹 `.backend-craft.json`、階段執行與測試證據，整合階段需顯式啟用。
 - 自動格式與驗證預設關閉。Claude 原生 SessionStart Hook 提供只讀上下文；OpenClaw 原生外掛可開啟 `autoValidate`，配置 `formatStage` 後可開啟 `autoFormat`。
@@ -180,14 +183,10 @@ Claude Code 提供 `/bec-review`、`/bec-debug` 等工作流。Codex 透過 Skil
 
 ## 更新與解除安裝
 
-CLI 自管理命令 `bec update` 和 `bec uninstall` 要求 Backend Craft 1.1.0 或更高版本。
-
 ```sh
 bec update --dry-run
 bec update
-bec runtime update codex --local --dry-run --json
 bec runtime update codex --local
-bec runtime uninstall codex --local --dry-run --json
 bec runtime uninstall codex --local
 bec uninstall --yes
 ```
@@ -196,16 +195,39 @@ bec uninstall --yes
 
 使用者修改與未知檔案受到保護。跨產品共享 `cc-*` 要求公共包版本、語言與內容摘要一致。升級混合安裝前，按實際 Runtime 和安裝範圍執行 `bec runtime check-migration codex --local --json`。詳見[共存與遷移](../../docs/coexistence.zh-CN.md)。
 
-## 文件
+## 文件導覽
 
-[文件導航](../../docs/README.zh-CN.md)彙總安裝、提示詞、配置、遷移和維護入口。
+| 指南 | 內容 |
+| --- | --- |
+| [Runtime 安裝與啟用](../../docs/runtimes/README.zh-CN.md) | 支援的助手、資源路徑與宿主發現 |
+| [CLI 管理](../../docs/cli-management.zh-CN.md) | 安裝範圍、批次操作、更新與解除安裝 |
+| [範例提示詞](../../docs/example-prompts.zh-CN.md) | 架構、審查與故障診斷任務 |
+| [驗證設定](../../docs/validation-config.zh-CN.md) | 專案檢查與測試證據 |
+| [共存與遷移](../../docs/coexistence.zh-CN.md) | 共用資源與安裝衝突 |
+| [完整文件導覽](../../docs/README.zh-CN.md) | 語言指南、工程結構及擴充 |
 
-## 貢獻
+## 原始碼開發與貢獻
 
-[貢獻指南](../../CONTRIBUTING.zh-CN.md)介紹開發環境、雙語維護和校驗流程。透過 [GitHub Issues](https://github.com/bovinphang/backend-craft/issues)反饋可復現問題。
+本倉庫維護後端領域 Skill、Agent 和工作流程，公共 `cc-*` Skill 與工程方法在 [craft-common](https://github.com/bovinphang/craft-common) 統一維護。`pnpm build` 在 `dist/package/` 組合產生完整英文和簡體中文產品。本機開發及 Git 子模組應載入該組合目錄。
+
+使用 Node.js 22+ 和 `package.json` 宣告的 pnpm 版本；相依版本以 `package.json` 和 `pnpm-lock.yaml` 為準。按以下順序建置：
+
+```sh
+git clone https://github.com/bovinphang/backend-craft.git
+cd backend-craft
+pnpm install --frozen-lockfile
+pnpm build
+node dist/package/dist/bin/backend-craft.js version
+```
+
+從原始碼載入 Claude 外掛時，在倉庫根目錄執行：
+
+```sh
+claude --plugin-dir ./dist/package
+```
+
+開發檢查、雙語維護及發行封存檔（`pnpm run pack:all`）見[貢獻指南](../../CONTRIBUTING.zh-CN.md)。透過 [GitHub Issues](https://github.com/bovinphang/backend-craft/issues)回報可重現問題。
 
 ## 許可證
 
 [MIT](../../LICENSE) © bovinphang。
-
-公共內容在 craft-common 統一維護。本原始碼倉庫僅儲存領域技能；`pnpm run build` 在 `dist/package/` 生成完整雙語產品。開發及 Git 子模組使用 `--plugin-dir <仓库>/dist/package`。發行歸檔透過 `pnpm run pack:all` 生成，具體步驟見 CONTRIBUTING.zh-CN.md。

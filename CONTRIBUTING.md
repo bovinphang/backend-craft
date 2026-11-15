@@ -9,7 +9,7 @@ Contributions can include reproducible issues, documentation fixes, skills, runt
 - Node.js 22+ and pnpm 12.4.1, as declared in package.json.
 - Git and the local language tools needed for the checks you intend to execute.
 - Use pnpm-lock.yaml and run `pnpm install --frozen-lockfile` for a fresh checkout.
-- This source depends on craft-common 2.1.0. See README for public registry availability. Before dependency publication, maintainers must provide a matching verified dependency source.
+- Dependency versions are defined by package.json and pnpm-lock.yaml; install the locked dependencies before building.
 
 The project uses TypeScript, ESM, esbuild and Node.js `node:test`. See [project structure](docs/project-structure.md) for module responsibilities.
 

@@ -2,7 +2,7 @@
 
 [English](README.md) · [文档导航](../README.zh-CN.md)
 
-通过 npm 安装或从源码构建的步骤见[安装](../../README.zh-CN.md#安装)。
+npm 安装见[快速开始](../../README.zh-CN.md#快速开始)，本地构建见[源码开发与贡献](../../README.zh-CN.md#源码开发与贡献)。
 
 ## CLI 接入
 
@@ -51,7 +51,7 @@ doctor 检查后端清单、摘要与公共引用，enabled 保持 unknown。安
 
 ## 原生插件
 
-Claude Marketplace 的来源精确指向 npm 包，当前源码指向 1.1.0。公开可用版本见项目首页；发布前使用指向已发布包的 Marketplace Git 修订，或按下列流程测试源码目录。
+Claude Marketplace 的来源精确指向 npm 包，当前源码指向 1.1.0。本地源码开发按以下流程构建并加载组合产物。
 
 ```sh
 pnpm build

@@ -4,7 +4,7 @@
 
 # Backend Craft
 
-### 하나의 도구 모음으로 모든 AI 코딩 도우미에 프로덕션 수준의 백엔드 표준을 적용합니다.
+### AI 코딩 도우미에 백엔드 개발 규칙과 워크플로를 연결하세요.
 
 [![CI](https://github.com/bovinphang/backend-craft/actions/workflows/ci.yml/badge.svg)](https://github.com/bovinphang/backend-craft/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/@bovinphang/backend-craft)](https://www.npmjs.com/package/@bovinphang/backend-craft)
@@ -39,87 +39,77 @@ Rust, Go, Java, Python, C, C++ 서비스 개발을 지원하며 Spring Boot, Fas
 - 프로젝트를 분석하고 검증 계획을 미리 확인한 후 기존 로컬 도구로 검사를 실행합니다.
 - 런타임별 리소스를 생성하고 소유 관계를 추적하며 Frontend Craft와 공통 콘텐츠를 공유합니다.
 
-## 설치
+**스킬**은 작업별 규칙과 방법을 제공하고, **에이전트**는 전문 개발 작업을 담당하며, **명령 워크플로**는 지원 호스트에서 호출 진입점을 제공합니다. 터미널의 `bec setup` 같은 CLI 명령과 구분됩니다.
 
-**Node.js 22 이상**이 필요합니다. CLI는 Windows, macOS, Linux를 지원합니다. 백엔드 검증에는 프로젝트의 기존 도구 체인과 준비된 의존성도 필요합니다.
+## 빠른 시작
 
-### CLI 전역 설치
+**Node.js 22+**, 설치된 AI 코딩 도우미와 기존 백엔드 프로젝트를 준비하세요. CLI는 Windows, macOS, Linux를 지원합니다.
+
+### 1. 설치 및 도우미 연결
 
 ```sh
 npm install -g @bovinphang/backend-craft@latest
 cd your-backend-project
-bec runtime install codex --local --lang en
+bec setup
+```
+
+`your-backend-project`를 실제 프로젝트 경로로 바꾸세요. 대화형 터미널에서 `bec setup`으로 AI 런타임(코딩 도우미)을 하나 이상 선택한 다음 영어 또는 중국어 간체 리소스를 선택합니다. 방향키로 이동하고 Space로 선택·해제한 후 Enter로 확정하세요. 처음에는 Claude가 선택되어 있으므로 다른 도우미만 사용하려면 해제하세요. 기본적으로 **현재 프로젝트**에 설치합니다.
+
+대화형 선택을 생략하거나 스크립트에서 실행하려면 런타임, 범위와 언어를 지정하세요. Codex 예시:
+
+```sh
+bec setup codex --local --lang en
+```
+
+### 2. 설치 확인
+
+같은 프로젝트 디렉터리에서 확인하세요. 아래는 Codex 예시입니다. `codex`를 [지원 목록](../../docs/runtimes/README.md)에서 선택한 런타임 식별자로 바꾸고 선택한 런타임마다 확인하세요.
+
+```sh
 bec doctor codex --local --json
 ```
 
-npm 명령은 `bec`와 `backend-craft` 터미널 명령을 설치합니다. `runtime install`은 선택한 런타임을 프로젝트에 연결합니다. 사용자 전체 리소스에는 `--global`, 중국어 간체 콘텐츠에는 `--lang zh-CN`을 사용하세요.
+`installed: true`는 관리 대상 설치가 있음을, `filesHealthy: true`는 리소스가 정상임을 뜻합니다. `enabled: "unknown"`은 CLI가 도우미 내부의 활성화 상태를 확인할 수 없다는 뜻입니다. 앞의 두 항목이 false이면 진단 결과와 [런타임 가이드](../../docs/runtimes/README.md)를 확인하세요.
+
+### 3. 첫 작업 실행
+
+도우미를 새로 고치거나 다시 시작하고 대상 프로젝트에서 새 대화를 여세요. 설치한 리소스가 검색되는지 확인하고 호스트가 요구하면 신뢰 또는 활성화 절차를 완료하세요. 스킬을 지원하는 도우미에서는 다음 프롬프트를 사용할 수 있습니다. `services/orders`를 실제 모듈 경로로 바꾸세요.
+
+```text
+bec-code-review로 services/orders를 읽기 전용으로 검토하고 코드는 수정하지 마세요.
+저장소 규칙을 따르고 인가, 트랜잭션 경계 및 오류 처리를 우선 확인하세요.
+문제 위치, 영향과 수정 제안을 제시하고 문제가 없으면 명시하세요.
+```
+
+문제 위치·영향·수정 제안 또는 문제가 없다는 결과를 확인하세요. Claude Code는 `/bec-review`, `/bec-debug`도 제공하며 Codex는 스킬과 에이전트를 사용합니다. 호스트별 리소스는 [런타임 가이드](../../docs/runtimes/README.md), 추가 작업은 [프롬프트 예시](../../docs/example-prompts.md)를 참조하세요.
+
+## 다른 설치 방법
 
 ### npx로 임시 실행
 
+전역 CLI를 설치하지 않을 때 사용하는 방법입니다. 이후 CLI 명령도 `npx @bovinphang/backend-craft@latest`를 붙여 실행하세요.
+
 ```sh
 cd your-backend-project
-npx @bovinphang/backend-craft@latest runtime install codex --local --lang en
-npx @bovinphang/backend-craft@latest matrix --json
+npx @bovinphang/backend-craft@latest setup
 ```
 
 ### Claude Code 네이티브 플러그인
 
-Claude Code에서 Marketplace를 추가하고 플러그인을 설치하세요.
+Claude Code 안에서 다음 명령을 실행하세요. 런타임마다 설치 경로를 하나만 선택하세요. 같은 런타임에서 CLI 연결과 네이티브 플러그인을 함께 설치할 수 없습니다. 활성화와 설치 경로 전환은 [런타임 가이드](../../docs/runtimes/README.md)를 참조하세요.
 
 ```text
 /plugin marketplace add bovinphang/backend-craft
 /plugin install backend-craft@backend-craft
 ```
 
-로컬 소스에서 플러그인을 불러오려면 먼저 빌드한 후 저장소 루트에서 `claude --plugin-dir .`을 실행하세요. [런타임 설치 가이드](../../docs/runtimes/README.md)를 참조하세요.
+### 사용자 전역 설치
 
-런타임마다 설치 경로를 하나 선택하세요. 호스트를 새로 고친 후 리소스가 발견되고 활성화되는지 확인하세요.
-
-### 소스에서 빌드
-
-저장소 루트에서 pnpm 12.4.1로 CLI를 빌드하고 Node.js로 직접 실행하세요. 이 소스는 `@bovinphang/craft-common@2.1.0`으로 고정되어 있습니다.
+여러 프로젝트에서 공유하려면 `--global`로 사용자 전역에 설치하세요. 다음은 Codex 예시입니다. 의도하지 않게 로컬과 전역에 중복 설치하지 않도록 범위를 선택하세요. 일괄 작업과 전체 기본값은 [CLI 관리](../../docs/cli-management.md)를 참조하세요.
 
 ```sh
-pnpm install --frozen-lockfile
-pnpm build
-node dist/bin/backend-craft.js setup codex --local --lang en --dry-run --json
+bec setup codex --global --lang en
 ```
-
-### 런타임 설정
-
-설치된 CLI로 대상 프로젝트에서 다음 명령을 실행하세요. `setup` 명령에는 Backend Craft 1.1.0 이상이 필요합니다.
-
-```sh
-bec setup
-bec setup codex --local --lang en
-bec setup all --local --lang en
-bec runtime install --all --global --lang en --dry-run --json
-```
-
-`setup`은 기본적으로 현재 프로젝트를 대상으로 합니다. 일반 대화형 설치에서는 런타임, 언어, 위치를 선택합니다. 일반 비대화형 설치의 기본값은 Claude, 전역 범위, 영어입니다. 스크립트에서는 `--local` 또는 `--global`을 명시하세요. [CLI 관리](../../docs/cli-management.md)를 참조하세요.
-
-## 빠른 시작
-
-### 프로젝트 분석 및 검증
-
-```sh
-bec project inspect . --json
-bec project inspect . --task-path services/api/main.go --task-kind api --json
-bec validate . --dry-run --json
-bec validate . --json
-```
-
-분석은 프로젝트 근거를 읽고 적합한 기능을 추천합니다. 실행 전에 계획을 검토하세요. 검증은 명시적 설정, 기존 프로젝트 작업 또는 언어별 보수적 제안을 사용합니다. 종료 코드는 통과 `0`, 실패 `1`, 불완전 또는 잘못된 입력 `2`입니다. 필수 도구 누락, 필수 단계 건너뛰기 또는 테스트 0개인 경우 통과할 수 없습니다.
-
-### 도우미와 작업하기
-
-```text
-이 저장소의 아키텍처 및 API 규칙에 따라 주문 서비스를 계획하세요.
-services/orders의 권한 부여와 트랜잭션 경계를 검토하세요.
-이 Go 취소 전파 버그를 진단하고 기존 테스트로 수정을 검증하세요.
-```
-
-Claude Code는 `/bec-review`, `/bec-debug` 워크플로를 제공합니다. Codex는 스킬과 에이전트로 이 작업을 수행합니다. 다른 호스트의 리소스는 [런타임 가이드](../../docs/runtimes/README.md)에 설명되어 있습니다.
 
 ## 기능 목록
 
@@ -173,6 +163,19 @@ Claude Code는 `/bec-review`, `/bec-debug` 워크플로를 제공합니다. Code
 
 ## 설정 및 검증
 
+프로젝트 검증에는 기존 도구 체인과 설치된 의존성이 필요합니다.
+
+### 프로젝트 분석 및 검증
+
+```sh
+bec project inspect . --json
+bec project inspect . --task-path services/api/main.go --task-kind api --json
+bec validate . --dry-run --json
+bec validate . --json
+```
+
+분석은 프로젝트 근거를 읽고 적합한 기능을 추천합니다. 실행 전에 계획을 검토하세요. 검증은 명시적 설정, 기존 프로젝트 작업 또는 언어별 보수적 제안을 사용합니다. 종료 코드는 통과 `0`, 실패 `1`, 불완전 또는 잘못된 입력 `2`입니다. 필수 도구 누락, 필수 단계 건너뛰기 또는 테스트 0개인 경우 통과할 수 없습니다.
+
 - [언어 가이드](../../docs/languages/README.md)는 6개 프로그래밍 언어의 검증을 설명합니다. 공통 스킬의 언어 지원 범위는 별도로 관리합니다.
 - [검증 설정](../../docs/validation-config.md)은 `.backend-craft.json`, 단계 실행 및 테스트 근거를 설명합니다. 통합 단계는 명시적으로 활성화해야 합니다.
 - 자동 서식 지정과 검증은 기본적으로 꺼져 있습니다. Claude 네이티브 SessionStart는 읽기 전용 컨텍스트를 제공합니다. OpenClaw 네이티브에서는 `autoValidate`를 켤 수 있으며 `formatStage`를 설정하면 `autoFormat`도 켤 수 있습니다.
@@ -180,14 +183,10 @@ Claude Code는 `/bec-review`, `/bec-debug` 워크플로를 제공합니다. Code
 
 ## 업데이트 및 제거
 
-CLI 자체 관리 명령인 `bec update`와 `bec uninstall`에는 Backend Craft 1.1.0 이상이 필요합니다.
-
 ```sh
 bec update --dry-run
 bec update
-bec runtime update codex --local --dry-run --json
 bec runtime update codex --local
-bec runtime uninstall codex --local --dry-run --json
 bec runtime uninstall codex --local
 bec uninstall --yes
 ```
@@ -198,14 +197,37 @@ bec uninstall --yes
 
 ## 문서
 
-[문서 목록](../../docs/README.md)은 설치, 프롬프트, 설정, 마이그레이션 및 유지보수를 안내합니다.
+| 가이드 | 내용 |
+| --- | --- |
+| [런타임 설치 및 활성화](../../docs/runtimes/README.md) | 지원 도우미, 경로와 리소스 검색 |
+| [CLI 관리](../../docs/cli-management.md) | 설치 범위, 일괄 작업, 업데이트와 제거 |
+| [프롬프트 예시](../../docs/example-prompts.md) | 설계, 검토와 문제 진단 |
+| [검증 설정](../../docs/validation-config.md) | 프로젝트 검사 및 테스트 근거 |
+| [공존 및 마이그레이션](../../docs/coexistence.md) | 공유 리소스와 충돌 |
+| [전체 문서](../../docs/README.md) | 언어 가이드, 구조 및 확장 |
 
-## 기여
+## 소스 개발 및 기여
 
-개발 환경, 영어·중국어 간체 콘텐츠 유지보수 및 검사는 [기여 안내](../../CONTRIBUTING.md)를 참조하세요. 재현 가능한 문제는 [GitHub Issues](https://github.com/bovinphang/backend-craft/issues)로 제보하세요.
+이 저장소는 백엔드 전용 스킬, 에이전트와 워크플로를 관리합니다. 공통 `cc-*` 스킬과 개발 방법은 [craft-common](https://github.com/bovinphang/craft-common)에서 관리하며 `pnpm build`가 영어·중국어 간체 제품 전체를 `dist/package/`에 생성합니다. 로컬 개발과 Git 서브모듈에서는 이 디렉터리를 불러오세요.
+
+Node.js 22+와 `package.json`에 지정된 pnpm을 사용하세요. 의존성 버전은 `package.json`과 `pnpm-lock.yaml`을 따릅니다. 다음 순서로 실행하세요.
+
+```sh
+git clone https://github.com/bovinphang/backend-craft.git
+cd backend-craft
+pnpm install --frozen-lockfile
+pnpm build
+node dist/package/dist/bin/backend-craft.js version
+```
+
+빌드한 Claude 플러그인은 저장소 루트에서 다음 명령으로 불러오세요:
+
+```sh
+claude --plugin-dir ./dist/package
+```
+
+개발 검사, 영어·중국어 간체 유지보수 및 배포 아카이브(`pnpm run pack:all`)는 [기여 안내](../../CONTRIBUTING.md)를 참조하세요. 재현 가능한 문제는 [GitHub Issues](https://github.com/bovinphang/backend-craft/issues)로 제보하세요.
 
 ## 라이선스
 
 [MIT](../../LICENSE) © bovinphang.
-
-공통 콘텐츠는 craft-common에서 관리합니다. 이 소스 저장소는 도메인 스킬을 저장하며 `pnpm run build`가 `dist/package/`에 영어·중국어 간체 제품 전체를 생성합니다. 로컬 개발과 Git 서브모듈에서는 `--plugin-dir <repository>/dist/package`를 사용합니다. 배포용 아카이브는 `pnpm run pack:all`로 생성합니다. 자세한 내용은 [CONTRIBUTING.md](../../CONTRIBUTING.md)를 참조하세요.

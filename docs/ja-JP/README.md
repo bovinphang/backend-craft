@@ -4,7 +4,7 @@
 
 # Backend Craft
 
-### ひとつのツールキット。すべての AI コーディングアシスタント。本番品質のバックエンド標準。
+### AI コーディングアシスタントにバックエンドの開発規約とワークフローを。
 
 [![CI](https://github.com/bovinphang/backend-craft/actions/workflows/ci.yml/badge.svg)](https://github.com/bovinphang/backend-craft/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/@bovinphang/backend-craft)](https://www.npmjs.com/package/@bovinphang/backend-craft)
@@ -39,87 +39,77 @@ Rust、Go、Java、Python、C、C++ のサービス開発を対象とし、Sprin
 - プロジェクトを調査し、検証計画をプレビューして既存のローカルツールでチェックを実行します。
 - ランタイム別リソースを生成し、所有関係を追跡して Frontend Craft と共通コンテンツを共有します。
 
-## インストール
+**スキル**はタスク別の規約や手法、**エージェント**は専門的な開発タスク、**コマンドワークフロー**は対応ホストでの呼び出し入口を提供します。ターミナルの `bec setup` などの CLI コマンドとは異なります。
 
-**Node.js 22+** が必要です。CLI は Windows、macOS、Linux に対応します。バックエンドの検証には、プロジェクト既存のツールチェーンと準備済みの依存関係も必要です。
+## クイックスタート
 
-### CLI のグローバルインストール
+**Node.js 22+**、インストール済みの AI コーディングアシスタント、既存のバックエンドプロジェクトを用意してください。CLI は Windows、macOS、Linux に対応します。
+
+### 1. インストールと接続
 
 ```sh
 npm install -g @bovinphang/backend-craft@latest
 cd your-backend-project
-bec runtime install codex --local --lang en
+bec setup
+```
+
+`your-backend-project` を実際のプロジェクトディレクトリに置き換えてください。対話式ターミナルの `bec setup` で AI ランタイム（アシスタント）を 1 つ以上選択し、英語または簡体字中国語のリソースを選びます。矢印キーで移動、Space で選択・解除、Enter で確定します。初期状態では Claude が選択されています。他のアシスタントだけを使う場合は解除してください。既定では**現在のプロジェクト**にインストールします。
+
+対話を省略する場合やスクリプトでは、ランタイム、範囲、言語を明示します。Codex の例：
+
+```sh
+bec setup codex --local --lang en
+```
+
+### 2. インストールの確認
+
+同じプロジェクトディレクトリで確認します。以下は Codex の例です。`codex` を[対応一覧](../../docs/runtimes/README.md)から選んだランタイムの識別子に置き換え、選択したものをそれぞれ確認してください。
+
+```sh
 bec doctor codex --local --json
 ```
 
-npm コマンドは `bec` と `backend-craft` をターミナルにインストールします。`runtime install` は選択したランタイムをプロジェクトに接続します。ユーザー全体のリソースには `--global`、簡体字中国語のコンテンツには `--lang zh-CN` を指定します。
+`installed: true` は管理対象のインストールが存在すること、`filesHealthy: true` はリソースが正常であることを示します。`enabled: "unknown"` はアシスタント内での有効化を CLI が確認できないことを意味します。前の 2 項目が false の場合は診断情報と[ランタイムガイド](../../docs/runtimes/README.md)を確認してください。
+
+### 3. 最初のタスク
+
+アシスタントを更新または再起動し、対象プロジェクトで新しい会話を開始します。リソースが検出されていることを確認し、必要ならホストの信頼・有効化操作を行ってください。スキル対応のアシスタントでは次のプロンプトを使えます。`services/orders` は実在するモジュールのパスに置き換えてください。
+
+```text
+bec-code-review を使い、services/orders をコード変更なしでレビューしてください。
+リポジトリの規約に従い、認可、トランザクション境界、エラー処理を重点的に確認してください。
+問題の場所、影響、修正案を示し、問題がなければ明記してください。
+```
+
+問題の場所・影響・修正案、または問題なしという結果を確認します。Claude Code は `/bec-review` や `/bec-debug` も提供し、Codex はスキルとエージェントを使用します。ホストごとの違いは[ランタイムガイド](../../docs/runtimes/README.md)、その他のタスクは[プロンプト例](../../docs/example-prompts.md)を参照してください。
+
+## その他のインストール方法
 
 ### npx による一時実行
 
+グローバル CLI をインストールしない場合の方法です。以降の CLI コマンドにも `npx @bovinphang/backend-craft@latest` を付けて実行してください。
+
 ```sh
 cd your-backend-project
-npx @bovinphang/backend-craft@latest runtime install codex --local --lang en
-npx @bovinphang/backend-craft@latest matrix --json
+npx @bovinphang/backend-craft@latest setup
 ```
 
 ### Claude Code ネイティブプラグイン
 
-Claude Code 内で Marketplace を追加し、プラグインをインストールします。
+Claude Code 内で以下を実行します。ランタイムごとにインストール経路を 1 つ選んでください。同じランタイムで CLI 接続とネイティブプラグインは併用できません。有効化と経路の切り替えは[ランタイムガイド](../../docs/runtimes/README.md)を参照してください。
 
 ```text
 /plugin marketplace add bovinphang/backend-craft
 /plugin install backend-craft@backend-craft
 ```
 
-ローカルのソースからプラグインを読み込む場合は、先にビルドし、リポジトリルートで `claude --plugin-dir .` を実行します。[ランタイムインストールガイド](../../docs/runtimes/README.md)を参照してください。
+### ユーザー全体へのインストール
 
-ランタイムごとにインストール経路をひとつ選びます。ホストを更新し、リソースの検出と有効化を確認してください。
-
-### ソースからビルド
-
-リポジトリルートで pnpm 12.4.1 を使って CLI をビルドし、Node.js で直接実行します。このソースでは `@bovinphang/craft-common@2.1.0` に固定しています。
+プロジェクト間で共用する場合は `--global` でユーザー全体にインストールします。以下は Codex の例です。意図せずローカルとグローバルの両方にインストールしないよう範囲を選んでください。一括操作と既定値は [CLI 管理](../../docs/cli-management.md)を参照してください。
 
 ```sh
-pnpm install --frozen-lockfile
-pnpm build
-node dist/bin/backend-craft.js setup codex --local --lang en --dry-run --json
+bec setup codex --global --lang en
 ```
-
-### ランタイム設定
-
-インストール済みの CLI を使い、対象プロジェクトで以下を実行します。`setup` コマンドには Backend Craft 1.1.0 以降が必要です。
-
-```sh
-bec setup
-bec setup codex --local --lang en
-bec setup all --local --lang en
-bec runtime install --all --global --lang en --dry-run --json
-```
-
-`setup` は既定で現在のプロジェクトを対象とします。通常の対話式インストールではランタイム、言語、場所を選びます。通常の非対話式インストールは Claude、グローバル、英語が既定です。スクリプトでは `--local` または `--global` を明示してください。[CLI 管理](../../docs/cli-management.md)を参照してください。
-
-## クイックスタート
-
-### プロジェクトの調査と検証
-
-```sh
-bec project inspect . --json
-bec project inspect . --task-path services/api/main.go --task-kind api --json
-bec validate . --dry-run --json
-bec validate . --json
-```
-
-調査ではプロジェクトの情報を読み取り、適切な機能を推奨します。実行前に計画を確認してください。検証は明示設定、既存タスク、または言語別の保守的な候補を使用します。終了コードは成功が `0`、失敗が `1`、未完了または入力不正が `2` です。必須ツールの不足、必須段階のスキップ、テスト数ゼロでは成功になりません。
-
-### アシスタントとの作業
-
-```text
-このリポジトリのアーキテクチャと API 規約に従って注文サービスを計画してください。
-services/orders の認可とトランザクション境界をレビューしてください。
-この Go のキャンセル処理の不具合を診断し、既存テストで修正を検証してください。
-```
-
-Claude Code は `/bec-review`、`/bec-debug` などのワークフローを提供します。Codex ではスキルとエージェントを使用します。その他のホストのリソースは[ランタイムガイド](../../docs/runtimes/README.md)に記載しています。
 
 ## 機能一覧
 
@@ -173,6 +163,19 @@ Claude Code は `/bec-review`、`/bec-debug` などのワークフローを提�
 
 ## 設定と検証
 
+プロジェクトの検証には既存のツールチェーンとインストール済みの依存関係が必要です。
+
+### プロジェクトの調査と検証
+
+```sh
+bec project inspect . --json
+bec project inspect . --task-path services/api/main.go --task-kind api --json
+bec validate . --dry-run --json
+bec validate . --json
+```
+
+調査ではプロジェクトの情報を読み取り、適切な機能を推奨します。実行前に計画を確認してください。検証は明示設定、既存タスク、または言語別の保守的な候補を使用します。終了コードは成功が `0`、失敗が `1`、未完了または入力不正が `2` です。必須ツールの不足、必須段階のスキップ、テスト数ゼロでは成功になりません。
+
 - [言語ガイド](../../docs/languages/README.md)では 6 つのプログラミング言語の検証を説明します。共通スキルの言語対応範囲は別途管理します。
 - [検証設定](../../docs/validation-config.md)では `.backend-craft.json`、段階ごとの実行、テストの証拠を説明します。統合段階は明示的な有効化が必要です。
 - 自動整形と自動検証は既定で無効です。Claude ネイティブの SessionStart は読み取り専用のコンテキストを提供します。OpenClaw ネイティブでは `autoValidate` を有効化でき、`formatStage` の設定後は `autoFormat` も有効化できます。
@@ -180,14 +183,10 @@ Claude Code は `/bec-review`、`/bec-debug` などのワークフローを提�
 
 ## 更新とアンインストール
 
-CLI 自己管理コマンドの `bec update` と `bec uninstall` には Backend Craft 1.1.0 以降が必要です。
-
 ```sh
 bec update --dry-run
 bec update
-bec runtime update codex --local --dry-run --json
 bec runtime update codex --local
-bec runtime uninstall codex --local --dry-run --json
 bec runtime uninstall codex --local
 bec uninstall --yes
 ```
@@ -198,14 +197,37 @@ bec uninstall --yes
 
 ## ドキュメント
 
-[ドキュメント一覧](../../docs/README.md)にインストール、プロンプト、設定、移行、保守の情報をまとめています。
+| ガイド | 内容 |
+| --- | --- |
+| [ランタイムの導入と有効化](../../docs/runtimes/README.md) | 対応アシスタント、パス、リソース検出 |
+| [CLI 管理](../../docs/cli-management.md) | インストール範囲、一括操作、更新、削除 |
+| [プロンプト例](../../docs/example-prompts.md) | 設計、レビュー、障害診断 |
+| [検証設定](../../docs/validation-config.md) | プロジェクトのチェックとテストの証拠 |
+| [共存と移行](../../docs/coexistence.md) | 共有リソースと競合 |
+| [ドキュメント一覧](../../docs/README.md) | 言語ガイド、構成、拡張 |
 
-## 貢献
+## ソース開発と貢献
 
-開発環境、英語・簡体字中国語コンテンツの保守、チェックについては[貢献ガイド](../../CONTRIBUTING.md)を参照してください。再現可能な問題は [GitHub Issues](https://github.com/bovinphang/backend-craft/issues) に報告してください。
+このリポジトリではバックエンド固有のスキル、エージェント、ワークフローを管理します。共通の `cc-*` スキルと手法は [craft-common](https://github.com/bovinphang/craft-common) で管理し、`pnpm build` で英語・簡体字中国語の製品全体を `dist/package/` に生成します。ローカル開発と Git サブモジュールではこのディレクトリを読み込んでください。
+
+Node.js 22+ と `package.json` 指定の pnpm を使用します。依存バージョンは `package.json` と `pnpm-lock.yaml` に従います。次の順に実行してください。
+
+```sh
+git clone https://github.com/bovinphang/backend-craft.git
+cd backend-craft
+pnpm install --frozen-lockfile
+pnpm build
+node dist/package/dist/bin/backend-craft.js version
+```
+
+ビルド済みの Claude プラグインはリポジトリルートから読み込みます：
+
+```sh
+claude --plugin-dir ./dist/package
+```
+
+開発チェック、英語・簡体字中国語コンテンツの保守、配布用アーカイブ（`pnpm run pack:all`）は[貢献ガイド](../../CONTRIBUTING.md)を参照してください。再現可能な問題は [GitHub Issues](https://github.com/bovinphang/backend-craft/issues) に報告してください。
 
 ## ライセンス
 
 [MIT](../../LICENSE) © bovinphang.
-
-共通コンテンツは craft-common で管理します。このソースリポジトリはドメインスキルを保持し、`pnpm run build` が `dist/package/` に英語・簡体字中国語の製品全体を生成します。ローカル開発と Git サブモジュールでは `--plugin-dir <repository>/dist/package` を使います。配布用アーカイブは `pnpm run pack:all` で生成します。詳しくは [CONTRIBUTING.md](../../CONTRIBUTING.md) を参照してください。

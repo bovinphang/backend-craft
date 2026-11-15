@@ -9,7 +9,7 @@
 - Node.js 22+，pnpm 12.4.1，以 package.json 的约定为准。
 - Git，以及需要执行的专项验证所依赖的本地语言工具。
 - 使用 pnpm-lock.yaml，首次安装执行 `pnpm install --frozen-lockfile`。
-- 当前源码依赖 craft-common 2.1.0，公开 registry 的可用性见 README。依赖未公开时，维护者需提供匹配的已验证依赖来源。
+- 依赖版本以 package.json 和 pnpm-lock.yaml 为准，构建前先安装锁定的依赖。
 
 本项目使用 TypeScript、ESM、esbuild 和 Node.js `node:test`。目录职责见[工程结构](docs/project-structure.zh-CN.md)。
 
