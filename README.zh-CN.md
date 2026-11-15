@@ -4,18 +4,28 @@
 
 # Backend Craft
 
-面向 AI 编程助手的后端工程工作流。
+### 一套工具，适配所有 AI 编程助手，落地生产级后端规范。
 
 [![CI](https://github.com/bovinphang/backend-craft/actions/workflows/ci.yml/badge.svg)](https://github.com/bovinphang/backend-craft/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/@bovinphang/backend-craft)](https://www.npmjs.com/package/@bovinphang/backend-craft)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 ![Node.js](https://img.shields.io/badge/Node.js-22%2B-5FA04E)
 
-[English](README.md) · **简体中文**
+**🌐 Language / 语言 / 語言 / 言語 / 언어**
+
+[English](README.md) · [**简体中文**](README.zh-CN.md) · [繁體中文](docs/zh-TW/README.md) · [日本語](docs/ja-JP/README.md) · [한국어](docs/ko-KR/README.md)
 
 </div>
 
-Backend Craft 将架构、API、数据、安全、测试与故障诊断工作流接入 **15 个 AI 编程 Runtime**。提供 **21 个后端 Skill**、**21 个公共工程 Skill**、**8 个 Agent** 与 **8 个命令工作流**，包含英文和简体中文内容。
+Backend Craft 将架构、API、数据、安全、测试与故障诊断工作流接入以下 **15 款 AI 编程助手**：
+
+`claude` `codex` `cursor` `windsurf` `opencode`
+`kilo` `gemini` `copilot` `antigravity` `augment`
+`trae` `codebuddy` `cline` `openclaw` `qoder`
+
+各 Runtime 的路径与注意事项详见 [Runtime 指南](docs/runtimes/README.zh-CN.md)。
+
+提供 **21 个后端 Skill**、**21 个公共工程 Skill**、**8 个 Agent** 与 **8 个命令工作流**。README 提供五种语言版本；可安装的 Skill、Agent 和命令工作流提供英文、简体中文内容。
 
 服务工程覆盖 Rust、Go、Java、Python、C、C++，提供 Spring Boot、FastAPI、Gin、Axum、Drogon 专项。公共 `cc-*` 底座还覆盖 TypeScript、Electron、Tauri。
 

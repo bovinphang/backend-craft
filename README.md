@@ -4,18 +4,28 @@
 
 # Backend Craft
 
-Backend engineering workflows for AI coding assistants.
+### One toolkit. Every AI coding assistant. Production-grade backend standards.
 
 [![CI](https://github.com/bovinphang/backend-craft/actions/workflows/ci.yml/badge.svg)](https://github.com/bovinphang/backend-craft/actions/workflows/ci.yml)
 [![npm](https://img.shields.io/npm/v/@bovinphang/backend-craft)](https://www.npmjs.com/package/@bovinphang/backend-craft)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 ![Node.js](https://img.shields.io/badge/Node.js-22%2B-5FA04E)
 
-**English** · [简体中文](README.zh-CN.md)
+**🌐 Language / 语言 / 語言 / 言語 / 언어**
+
+[**English**](README.md) · [简体中文](README.zh-CN.md) · [繁體中文](docs/zh-TW/README.md) · [日本語](docs/ja-JP/README.md) · [한국어](docs/ko-KR/README.md)
 
 </div>
 
-Backend Craft brings architecture, API, data, security, testing and troubleshooting workflows to **15 AI coding runtimes**. It includes **21 backend skills**, **21 shared engineering skills**, **8 agents** and **8 command workflows**, with English and Simplified Chinese content.
+Backend Craft brings architecture, API, data, security, testing and troubleshooting workflows to the following **15 AI coding assistants**:
+
+`claude` `codex` `cursor` `windsurf` `opencode`
+`kilo` `gemini` `copilot` `antigravity` `augment`
+`trae` `codebuddy` `cline` `openclaw` `qoder`
+
+Per-runtime paths and caveats live in the [runtime guide](docs/runtimes/README.md).
+
+It includes **21 backend skills**, **21 shared engineering skills**, **8 agents** and **8 command workflows**. The README is available in five languages; installable skills, agents and command workflows are available in English and Simplified Chinese.
 
 Service guidance covers Rust, Go, Java, Python, C and C++, with dedicated Spring Boot, FastAPI, Gin, Axum and Drogon skills. Shared `cc-*` foundations also cover TypeScript, Electron and Tauri.
 
