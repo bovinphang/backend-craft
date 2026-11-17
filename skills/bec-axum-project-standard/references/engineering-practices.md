@@ -14,7 +14,7 @@ practiceCards:
 
 # Local engineering decisions
 
-Locate the actual role, toolchain and existing conventions, then read relevant [shared principles](common/engineering-practices.md). These conditions apply to this entry, not every project. Structure checks do not prove all semantics or execution.
+Locate the actual role, toolchain and existing conventions, then read relevant [shared principles](https://github.com/bovinphang/craft-common/blob/v2.1.0/methods/engineering-practices.md). These conditions apply to this entry, not every project. Structure checks do not prove all semantics or execution.
 
 <a id="bec-axum-project-standard:rejection-contract"></a>
 ## Preserve extractor rejection semantics
@@ -40,7 +40,7 @@ Better: Router/Tower oneshot rejects malformed input and no effect occurs. Worse
 Run existing minimal Router rejection/valid pair; record that network, DB and deployment remain separate.
 
 ### Sources
-axum-extractors, rust-api — [registry and limits](common/engineering-practices.sources.json).
+axum-extractors, rust-api — [registry and limits](https://github.com/bovinphang/craft-common/blob/v2.1.0/methods/engineering-practices.sources.json).
 
 Evidence IDs: EP-SVC-01; review-only.  Execution status and scope require actual records; a related ID does not prove every decision on this card.
 
@@ -68,6 +68,6 @@ Better: extract needed data, release the guard, then await. Worse: detach work a
 Verify real runtime/lifecycle effects with owned-task tests; extractor tests alone do not prove State cleanup or DB isolation.
 
 ### Sources
-axum-extractors, tokio-join — [registry and limits](common/engineering-practices.sources.json).
+axum-extractors, tokio-join — [registry and limits](https://github.com/bovinphang/craft-common/blob/v2.1.0/methods/engineering-practices.sources.json).
 
 Evidence IDs: EP-SVC-01; review-only.  Execution status and scope require actual records; a related ID does not prove every decision on this card.

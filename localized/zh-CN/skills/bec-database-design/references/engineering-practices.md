@@ -14,7 +14,7 @@ practiceCards:
 
 # 本入口工程决策
 
-先定位项目角色、工具链及已有约定，再按需读取[公共原则](common/engineering-practices.md)。下列条件仅约束当前语言/场景；结构检查不证明全部语义或实际运行。
+先定位项目角色、工具链及已有约定，再按需读取[公共原则](https://github.com/bovinphang/craft-common/blob/v2.1.0/localized/zh-CN/methods/engineering-practices.md)。下列条件仅约束当前语言/场景；结构检查不证明全部语义或实际运行。
 
 <a id="bec-database-design:migration-compatibility"></a>
 ## 迁移兼容已部署读取方
@@ -40,7 +40,7 @@ practiceCards:
 运行相关引擎集成和恢复检查，记录锁、数据量及未测引擎/版本。
 
 ### 来源
-google-review, ms-playbook — [来源与适用限制](common/engineering-practices.sources.json).
+google-review, ms-playbook — [来源与适用限制](https://github.com/bovinphang/craft-common/blob/v2.1.0/localized/zh-CN/methods/engineering-practices.sources.json).
 
 证据标识: EP-SVC-01; review-only.  执行状态及覆盖范围见实际记录；关联ID不证明该卡全部语义。
 
@@ -68,6 +68,6 @@ google-review, ms-playbook — [来源与适用限制](common/engineering-practi
 用真实引擎/代表数据验证边界与计划，另测取消和预算耗尽。
 
 ### 来源
-aws-retry, ms-playbook — [来源与适用限制](common/engineering-practices.sources.json).
+aws-retry, ms-playbook — [来源与适用限制](https://github.com/bovinphang/craft-common/blob/v2.1.0/localized/zh-CN/methods/engineering-practices.sources.json).
 
 证据标识: EP-SVC-01; review-only.  执行状态及覆盖范围见实际记录；关联ID不证明该卡全部语义。

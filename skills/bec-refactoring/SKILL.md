@@ -14,7 +14,7 @@ Use the local common refactoring method; identify the structural problem and the
 3. Verify affected behavior with existing repository tools. Explicitly report missing tools, environments or execution; a plan is not a passing result.
 4. Deliver scope, specialist decisions, actual verification and remaining risk. A review-only task stays read-only.
 
-Use the [local refactoring method](references/common/refactoring.md) when needed; the checks below specialize its backend subjects.
+Use the [local refactoring method](https://github.com/bovinphang/craft-common/blob/v2.1.0/methods/refactoring.md) when needed; the checks below specialize its backend subjects.
 
 ## Task boundary
 

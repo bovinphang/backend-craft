@@ -14,7 +14,7 @@ practiceCards:
 
 # 本入口工程决策
 
-先定位项目角色、工具链及已有约定，再按需读取[公共原则](common/engineering-practices.md)。下列条件仅约束当前语言/场景；结构检查不证明全部语义或实际运行。
+先定位项目角色、工具链及已有约定，再按需读取[公共原则](https://github.com/bovinphang/craft-common/blob/v2.1.0/localized/zh-CN/methods/engineering-practices.md)。下列条件仅约束当前语言/场景；结构检查不证明全部语义或实际运行。
 
 <a id="bec-axum-project-standard:rejection-contract"></a>
 ## 保留extractor拒绝语义
@@ -40,7 +40,7 @@ practiceCards:
 运行现有minimal Router拒绝/成功配对，网络、数据库与部署单列。
 
 ### 来源
-axum-extractors, rust-api — [来源与适用限制](common/engineering-practices.sources.json).
+axum-extractors, rust-api — [来源与适用限制](https://github.com/bovinphang/craft-common/blob/v2.1.0/localized/zh-CN/methods/engineering-practices.sources.json).
 
 证据标识: EP-SVC-01; review-only.  执行状态及覆盖范围见实际记录；关联ID不证明该卡全部语义。
 
@@ -68,6 +68,6 @@ axum-extractors, rust-api — [来源与适用限制](common/engineering-practic
 用实际运行时/生命周期测试验证，extractor测试不证明State清理或数据库隔离。
 
 ### 来源
-axum-extractors, tokio-join — [来源与适用限制](common/engineering-practices.sources.json).
+axum-extractors, tokio-join — [来源与适用限制](https://github.com/bovinphang/craft-common/blob/v2.1.0/localized/zh-CN/methods/engineering-practices.sources.json).
 
 证据标识: EP-SVC-01; review-only.  执行状态及覆盖范围见实际记录；关联ID不证明该卡全部语义。

@@ -14,7 +14,7 @@ practiceCards:
 
 # Local engineering decisions
 
-Locate the actual role, toolchain and existing conventions, then read relevant [shared principles](common/engineering-practices.md). These conditions apply to this entry, not every project. Structure checks do not prove all semantics or execution.
+Locate the actual role, toolchain and existing conventions, then read relevant [shared principles](https://github.com/bovinphang/craft-common/blob/v2.1.0/methods/engineering-practices.md). These conditions apply to this entry, not every project. Structure checks do not prove all semantics or execution.
 
 <a id="bec-drogon-project-standard:filter-continuation"></a>
 ## Complete one Filter branch once
@@ -40,7 +40,7 @@ Better: denial produces one response and zero Controller effects. Worse: reject 
 Run existing linked Drogon contract executable; distinguish in-process Filter/Controller behavior from listening HTTP and production auth.
 
 ### Sources
-drogon-filters, cpp-core — [registry and limits](common/engineering-practices.sources.json).
+drogon-filters, cpp-core — [registry and limits](https://github.com/bovinphang/craft-common/blob/v2.1.0/methods/engineering-practices.sources.json).
 
 Evidence IDs: EP-SVC-01; review-only.  Execution status and scope require actual records; a related ID does not prove every decision on this card.
 
@@ -68,6 +68,6 @@ Better: explicit owner survives until completion. Worse: borrow a handler stack 
 Exercise changed async paths with actual library/driver and lifetime/concurrency tooling as available; mark unrun DB/shutdown claims.
 
 ### Sources
-drogon-filters, cpp-core — [registry and limits](common/engineering-practices.sources.json).
+drogon-filters, cpp-core — [registry and limits](https://github.com/bovinphang/craft-common/blob/v2.1.0/methods/engineering-practices.sources.json).
 
 Evidence IDs: EP-SVC-01; review-only.  Execution status and scope require actual records; a related ID does not prove every decision on this card.

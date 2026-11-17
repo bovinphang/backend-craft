@@ -14,7 +14,7 @@ practiceCards:
 
 # Local engineering decisions
 
-Locate the actual role, toolchain and existing conventions, then read relevant [shared principles](common/engineering-practices.md). These conditions apply to this entry, not every project. Structure checks do not prove all semantics or execution.
+Locate the actual role, toolchain and existing conventions, then read relevant [shared principles](https://github.com/bovinphang/craft-common/blob/v2.1.0/methods/engineering-practices.md). These conditions apply to this entry, not every project. Structure checks do not prove all semantics or execution.
 
 <a id="bec-architecture-design:failure-units"></a>
 ## Design observable failure units
@@ -40,7 +40,7 @@ Better: identify commit-success/response-loss as uncertain to the caller. Worse:
 Inject scoped faults before/after the real boundary and observe effects, results and recovery. The in-memory HTTP case does not prove database/distributed atomicity.
 
 ### Sources
-aws-retry, ms-faults — [registry and limits](common/engineering-practices.sources.json).
+aws-retry, ms-faults — [registry and limits](https://github.com/bovinphang/craft-common/blob/v2.1.0/methods/engineering-practices.sources.json).
 
 Evidence IDs: EP-SVC-01; review-only.  Execution status and scope require actual records; a related ID does not prove every decision on this card.
 
@@ -68,6 +68,6 @@ Better: expand readers before producing a new required representation. Worse: re
 Exercise the affected old consumer and failure recovery; document data changes that prevent rollback.
 
 ### Sources
-google-review, ms-playbook — [registry and limits](common/engineering-practices.sources.json).
+google-review, ms-playbook — [registry and limits](https://github.com/bovinphang/craft-common/blob/v2.1.0/methods/engineering-practices.sources.json).
 
 Evidence IDs: EP-SVC-01; review-only.  Execution status and scope require actual records; a related ID does not prove every decision on this card.

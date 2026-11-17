@@ -14,7 +14,7 @@ practiceCards:
 
 # Local engineering decisions
 
-Locate the actual role, toolchain and existing conventions, then read relevant [shared principles](common/engineering-practices.md). These conditions apply to this entry, not every project. Structure checks do not prove all semantics or execution.
+Locate the actual role, toolchain and existing conventions, then read relevant [shared principles](https://github.com/bovinphang/craft-common/blob/v2.1.0/methods/engineering-practices.md). These conditions apply to this entry, not every project. Structure checks do not prove all semantics or execution.
 
 <a id="bec-spring-boot-project-standard:validation-effects"></a>
 ## Reject MVC input before service effects
@@ -40,7 +40,7 @@ Better: invalid payload returns a client error and service effect count stays ze
 Run the existing minimal Spring counterexample/fix; record the actual Boot/JDK. Related EP-SVC-01 does not prove Spring validation.
 
 ### Sources
-spring-tests, google-java — [registry and limits](common/engineering-practices.sources.json).
+spring-tests, google-java — [registry and limits](https://github.com/bovinphang/craft-common/blob/v2.1.0/methods/engineering-practices.sources.json).
 
 Evidence IDs: EP-SVC-01; review-only.  Execution status and scope require actual records; a related ID does not prove every decision on this card.
 
@@ -68,6 +68,6 @@ Better: verify the actual configured owner releases its resource. Worse: assume 
 Select context/slice/integration tests by the property; use real storage for isolation claims and report missing shutdown/DB checks.
 
 ### Sources
-spring-tests, oracle-resources — [registry and limits](common/engineering-practices.sources.json).
+spring-tests, oracle-resources — [registry and limits](https://github.com/bovinphang/craft-common/blob/v2.1.0/methods/engineering-practices.sources.json).
 
 Evidence IDs: EP-SVC-01; review-only.  Execution status and scope require actual records; a related ID does not prove every decision on this card.

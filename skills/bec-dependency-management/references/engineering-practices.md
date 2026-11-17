@@ -14,7 +14,7 @@ practiceCards:
 
 # Local engineering decisions
 
-Locate the actual role, toolchain and existing conventions, then read relevant [shared principles](common/engineering-practices.md). These conditions apply to this entry, not every project. Structure checks do not prove all semantics or execution.
+Locate the actual role, toolchain and existing conventions, then read relevant [shared principles](https://github.com/bovinphang/craft-common/blob/v2.1.0/methods/engineering-practices.md). These conditions apply to this entry, not every project. Structure checks do not prove all semantics or execution.
 
 <a id="bec-dependency-management:platform-compatibility"></a>
 ## Respect the evidenced platform contract
@@ -40,7 +40,7 @@ Better: explicit compatible sample toolchain. Worse: lower supply-chain checks t
 Run existing lint/types/build and affected runtime/consumer tests; record minimum versions that were declared but not actually tested.
 
 ### Sources
-typescript-publishing, google-review — [registry and limits](common/engineering-practices.sources.json).
+typescript-publishing, google-review — [registry and limits](https://github.com/bovinphang/craft-common/blob/v2.1.0/methods/engineering-practices.sources.json).
 
 Evidence IDs: EP-SVC-01; review-only.  Execution status and scope require actual records; a related ID does not prove every decision on this card.
 
@@ -68,6 +68,6 @@ Better: both products pin one verified archive. Worse: copy a missing source fil
 Check package closure, bilingual code/locks, ownership-safe migrations and no build caches; retain artifacts and provenance.
 
 ### Sources
-typescript-publishing, ms-playbook — [registry and limits](common/engineering-practices.sources.json).
+typescript-publishing, ms-playbook — [registry and limits](https://github.com/bovinphang/craft-common/blob/v2.1.0/methods/engineering-practices.sources.json).
 
 Evidence IDs: EP-SVC-01; review-only.  Execution status and scope require actual records; a related ID does not prove every decision on this card.

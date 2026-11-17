@@ -14,7 +14,7 @@ practiceCards:
 
 # Local engineering decisions
 
-Locate the actual role, toolchain and existing conventions, then read relevant [shared principles](common/engineering-practices.md). These conditions apply to this entry, not every project. Structure checks do not prove all semantics or execution.
+Locate the actual role, toolchain and existing conventions, then read relevant [shared principles](https://github.com/bovinphang/craft-common/blob/v2.1.0/methods/engineering-practices.md). These conditions apply to this entry, not every project. Structure checks do not prove all semantics or execution.
 
 <a id="bec-fastapi-project-standard:lifespan-ownership"></a>
 ## Own application resources in actual lifespan
@@ -40,7 +40,7 @@ Better: request sees an acquired resource and exit records one close. Worse: onl
 Run the existing FastAPI minimal lifecycle pair; distinguish real lifespan wiring from driver transactions and production shutdown.
 
 ### Sources
-fastapi-lifespan, python-asyncio — [registry and limits](common/engineering-practices.sources.json).
+fastapi-lifespan, python-asyncio — [registry and limits](https://github.com/bovinphang/craft-common/blob/v2.1.0/methods/engineering-practices.sources.json).
 
 Evidence IDs: EP-SVC-01; review-only.  Execution status and scope require actual records; a related ID does not prove every decision on this card.
 
@@ -68,6 +68,6 @@ Better: define who stops and awaits an owned task. Worse: catch cancellation and
 Test the real driver/task boundary for cancellation claims; the lifespan sample alone does not cover them.
 
 ### Sources
-python-asyncio, fastapi-lifespan — [registry and limits](common/engineering-practices.sources.json).
+python-asyncio, fastapi-lifespan — [registry and limits](https://github.com/bovinphang/craft-common/blob/v2.1.0/methods/engineering-practices.sources.json).
 
 Evidence IDs: EP-SVC-01; review-only.  Execution status and scope require actual records; a related ID does not prove every decision on this card.

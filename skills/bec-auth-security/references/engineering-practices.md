@@ -14,7 +14,7 @@ practiceCards:
 
 # Local engineering decisions
 
-Locate the actual role, toolchain and existing conventions, then read relevant [shared principles](common/engineering-practices.md). These conditions apply to this entry, not every project. Structure checks do not prove all semantics or execution.
+Locate the actual role, toolchain and existing conventions, then read relevant [shared principles](https://github.com/bovinphang/craft-common/blob/v2.1.0/methods/engineering-practices.md). These conditions apply to this entry, not every project. Structure checks do not prove all semantics or execution.
 
 <a id="bec-auth-security:verified-context"></a>
 ## Build authority from verified request context
@@ -40,7 +40,7 @@ Better: server-derived principal scopes a key. Worse: accept an X-Role or render
 Test absent/invalid identity and denied paths with the project auth stack; the related HTTP case only proves deduplication behavior.
 
 ### Sources
-electron-security, tauri-permissions, google-review — [registry and limits](common/engineering-practices.sources.json).
+electron-security, tauri-permissions, google-review — [registry and limits](https://github.com/bovinphang/craft-common/blob/v2.1.0/methods/engineering-practices.sources.json).
 
 Evidence IDs: EP-SVC-01; review-only.  Execution status and scope require actual records; a related ID does not prove every decision on this card.
 
@@ -68,6 +68,6 @@ Better: test another tenant’s valid object ID. Worse: test only unauthenticate
 Verify denied reads/writes produce no disclosure/effect and permitted paths still succeed, using synthetic data.
 
 ### Sources
-google-review, ms-faults — [registry and limits](common/engineering-practices.sources.json).
+google-review, ms-faults — [registry and limits](https://github.com/bovinphang/craft-common/blob/v2.1.0/methods/engineering-practices.sources.json).
 
 Evidence IDs: EP-SVC-01; review-only.  Execution status and scope require actual records; a related ID does not prove every decision on this card.

@@ -14,7 +14,7 @@ practiceCards:
 
 # 本入口工程决策
 
-先定位项目角色、工具链及已有约定，再按需读取[公共原则](common/engineering-practices.md)。下列条件仅约束当前语言/场景；结构检查不证明全部语义或实际运行。
+先定位项目角色、工具链及已有约定，再按需读取[公共原则](https://github.com/bovinphang/craft-common/blob/v2.1.0/localized/zh-CN/methods/engineering-practices.md)。下列条件仅约束当前语言/场景；结构检查不证明全部语义或实际运行。
 
 <a id="bec-auth-security:verified-context"></a>
 ## 从已验证请求上下文建立权限
@@ -40,7 +40,7 @@ practiceCards:
 以项目鉴权栈验证缺失/非法身份和拒绝路径；关联HTTP案例只证明去重行为。
 
 ### 来源
-electron-security, tauri-permissions, google-review — [来源与适用限制](common/engineering-practices.sources.json).
+electron-security, tauri-permissions, google-review — [来源与适用限制](https://github.com/bovinphang/craft-common/blob/v2.1.0/localized/zh-CN/methods/engineering-practices.sources.json).
 
 证据标识: EP-SVC-01; review-only.  执行状态及覆盖范围见实际记录；关联ID不证明该卡全部语义。
 
@@ -68,6 +68,6 @@ UI路由守卫、有效ID或认证成功都不证明对象授权；批处理与�
 用合成数据验证拒绝读写不泄露/不生效，允许路径仍成功。
 
 ### 来源
-google-review, ms-faults — [来源与适用限制](common/engineering-practices.sources.json).
+google-review, ms-faults — [来源与适用限制](https://github.com/bovinphang/craft-common/blob/v2.1.0/localized/zh-CN/methods/engineering-practices.sources.json).
 
 证据标识: EP-SVC-01; review-only.  执行状态及覆盖范围见实际记录；关联ID不证明该卡全部语义。

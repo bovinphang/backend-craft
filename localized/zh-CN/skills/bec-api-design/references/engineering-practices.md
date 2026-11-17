@@ -14,7 +14,7 @@ practiceCards:
 
 # 本入口工程决策
 
-先定位项目角色、工具链及已有约定，再按需读取[公共原则](common/engineering-practices.md)。下列条件仅约束当前语言/场景；结构检查不证明全部语义或实际运行。
+先定位项目角色、工具链及已有约定，再按需读取[公共原则](https://github.com/bovinphang/craft-common/blob/v2.1.0/localized/zh-CN/methods/engineering-practices.md)。下列条件仅约束当前语言/场景；结构检查不证明全部语义或实际运行。
 
 <a id="bec-api-design:idempotent-intent"></a>
 ## 按同一操作意图去重
@@ -40,7 +40,7 @@ practiceCards:
 EP-SVC-01通过真实HTTP客户端验证提交后响应失败、意图变化和并发重复，观察实际效果计数；不覆盖数据库、崩溃恢复或鉴权。
 
 ### 来源
-aws-idempotency, aws-retry — [来源与适用限制](common/engineering-practices.sources.json).
+aws-idempotency, aws-retry — [来源与适用限制](https://github.com/bovinphang/craft-common/blob/v2.1.0/localized/zh-CN/methods/engineering-practices.sources.json).
 
 证据标识: EP-SVC-01; case. [本入口可运行案例](../examples/engineering/README.md)。 执行状态及覆盖范围见实际记录；关联ID不证明该卡全部语义。
 
@@ -68,6 +68,6 @@ aws-idempotency, aws-retry — [来源与适用限制](common/engineering-practi
 用现有工具验证旧客户端、非法输入、稳定错误，区分schema检查和实际副作用。
 
 ### 来源
-google-review, ms-playbook — [来源与适用限制](common/engineering-practices.sources.json).
+google-review, ms-playbook — [来源与适用限制](https://github.com/bovinphang/craft-common/blob/v2.1.0/localized/zh-CN/methods/engineering-practices.sources.json).
 
 证据标识: EP-SVC-01; review-only.  执行状态及覆盖范围见实际记录；关联ID不证明该卡全部语义。

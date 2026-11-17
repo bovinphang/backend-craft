@@ -14,7 +14,7 @@ practiceCards:
 
 # 本入口工程决策
 
-先定位项目角色、工具链及已有约定，再按需读取[公共原则](common/engineering-practices.md)。下列条件仅约束当前语言/场景；结构检查不证明全部语义或实际运行。
+先定位项目角色、工具链及已有约定，再按需读取[公共原则](https://github.com/bovinphang/craft-common/blob/v2.1.0/localized/zh-CN/methods/engineering-practices.md)。下列条件仅约束当前语言/场景；结构检查不证明全部语义或实际运行。
 
 <a id="bec-drogon-project-standard:filter-continuation"></a>
 ## Filter只完成一个分支一次
@@ -40,7 +40,7 @@ minimal样例合成角色头不是鉴权；匹配实际Filter/Middleware或协�
 运行现有链接Drogon的契约可执行文件，区分进程内Filter/Controller与监听HTTP、生产鉴权。
 
 ### 来源
-drogon-filters, cpp-core — [来源与适用限制](common/engineering-practices.sources.json).
+drogon-filters, cpp-core — [来源与适用限制](https://github.com/bovinphang/craft-common/blob/v2.1.0/localized/zh-CN/methods/engineering-practices.sources.json).
 
 证据标识: EP-SVC-01; review-only.  执行状态及覆盖范围见实际记录；关联ID不证明该卡全部语义。
 
@@ -68,6 +68,6 @@ Drogon异步请求、客户端、ORM回调适用。
 改动异步路径须用实际库/驱动及可用生命期/并发工具验证，数据库/关闭未运行需注明。
 
 ### 来源
-drogon-filters, cpp-core — [来源与适用限制](common/engineering-practices.sources.json).
+drogon-filters, cpp-core — [来源与适用限制](https://github.com/bovinphang/craft-common/blob/v2.1.0/localized/zh-CN/methods/engineering-practices.sources.json).
 
 证据标识: EP-SVC-01; review-only.  执行状态及覆盖范围见实际记录；关联ID不证明该卡全部语义。

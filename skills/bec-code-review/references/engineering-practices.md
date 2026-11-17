@@ -14,7 +14,7 @@ practiceCards:
 
 # Local engineering decisions
 
-Locate the actual role, toolchain and existing conventions, then read relevant [shared principles](common/engineering-practices.md). These conditions apply to this entry, not every project. Structure checks do not prove all semantics or execution.
+Locate the actual role, toolchain and existing conventions, then read relevant [shared principles](https://github.com/bovinphang/craft-common/blob/v2.1.0/methods/engineering-practices.md). These conditions apply to this entry, not every project. Structure checks do not prove all semantics or execution.
 
 <a id="bec-code-review:evidence-severity"></a>
 ## Grade concrete user-visible effects
@@ -40,7 +40,7 @@ Better: show a duplicate write after a lost response. Worse: block on personal n
 Reproduce important defects where possible, preserve the review and report unjudged boundaries.
 
 ### Sources
-google-review — [registry and limits](common/engineering-practices.sources.json).
+google-review — [registry and limits](https://github.com/bovinphang/craft-common/blob/v2.1.0/methods/engineering-practices.sources.json).
 
 Evidence IDs: EP-SVC-01; review-only.  Execution status and scope require actual records; a related ID does not prove every decision on this card.
 
@@ -68,6 +68,6 @@ Better: exercise old candidate conflict before any writes. Worse: bypass source 
 Validate exact archive bytes/pins plus relevant migration and consumer tests; state baseline and scope.
 
 ### Sources
-google-review, ms-playbook — [registry and limits](common/engineering-practices.sources.json).
+google-review, ms-playbook — [registry and limits](https://github.com/bovinphang/craft-common/blob/v2.1.0/methods/engineering-practices.sources.json).
 
 Evidence IDs: EP-SVC-01; review-only.  Execution status and scope require actual records; a related ID does not prove every decision on this card.

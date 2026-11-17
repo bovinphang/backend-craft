@@ -14,7 +14,7 @@ practiceCards:
 
 # Local engineering decisions
 
-Locate the actual role, toolchain and existing conventions, then read relevant [shared principles](common/engineering-practices.md). These conditions apply to this entry, not every project. Structure checks do not prove all semantics or execution.
+Locate the actual role, toolchain and existing conventions, then read relevant [shared principles](https://github.com/bovinphang/craft-common/blob/v2.1.0/methods/engineering-practices.md). These conditions apply to this entry, not every project. Structure checks do not prove all semantics or execution.
 
 <a id="bec-gin-project-standard:abort-return"></a>
 ## Stop the current handler after rejecting input
@@ -40,7 +40,7 @@ Better: explicit return after rejection and zero effects. Worse: AbortWithStatus
 Exercise the actual Gin router through httptest and observe valid/invalid effects; EP-SVC-01 is a separate standard-library HTTP case.
 
 ### Sources
-gin-binding, go-context — [registry and limits](common/engineering-practices.sources.json).
+gin-binding, go-context — [registry and limits](https://github.com/bovinphang/craft-common/blob/v2.1.0/methods/engineering-practices.sources.json).
 
 Evidence IDs: EP-SVC-01; review-only.  Execution status and scope require actual records; a related ID does not prove every decision on this card.
 
@@ -68,6 +68,6 @@ Better: pass an ID and context.Context to owned work. Worse: capture c and write
 Use actual concurrency/shutdown tests (race tools when supported) and verify owned goroutines exit; router rejection tests do not prove this lifetime.
 
 ### Sources
-go-context, gin-binding — [registry and limits](common/engineering-practices.sources.json).
+go-context, gin-binding — [registry and limits](https://github.com/bovinphang/craft-common/blob/v2.1.0/methods/engineering-practices.sources.json).
 
 Evidence IDs: EP-SVC-01; review-only.  Execution status and scope require actual records; a related ID does not prove every decision on this card.

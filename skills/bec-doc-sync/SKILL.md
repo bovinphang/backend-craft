@@ -14,7 +14,7 @@ Use the local common fact-source method; inspect manifests, handlers/validators,
 3. Verify affected behavior with existing repository tools. Explicitly report missing tools, environments or execution; a plan is not a passing result.
 4. Deliver scope, specialist decisions, actual verification and remaining risk. A review-only task stays read-only.
 
-Use the [local doc-sync method](references/common/doc-sync.md) when needed; the checks below specialize its backend subjects.
+Use the [local doc-sync method](https://github.com/bovinphang/craft-common/blob/v2.1.0/methods/doc-sync.md) when needed; the checks below specialize its backend subjects.
 
 ## Task boundary
 

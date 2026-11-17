@@ -14,7 +14,7 @@ practiceCards:
 
 # 本入口工程决策
 
-先定位项目角色、工具链及已有约定，再按需读取[公共原则](common/engineering-practices.md)。下列条件仅约束当前语言/场景；结构检查不证明全部语义或实际运行。
+先定位项目角色、工具链及已有约定，再按需读取[公共原则](https://github.com/bovinphang/craft-common/blob/v2.1.0/localized/zh-CN/methods/engineering-practices.md)。下列条件仅约束当前语言/场景；结构检查不证明全部语义或实际运行。
 
 <a id="bec-spring-boot-project-standard:validation-effects"></a>
 ## 在服务效果前拒绝非法MVC输入
@@ -40,7 +40,7 @@ DTO约束存在但可能未在实际MVC路由启用。
 运行现有Spring minimal反例/修复，记录实际Boot/JDK；关联EP-SVC-01不证明Spring验证。
 
 ### 来源
-spring-tests, google-java — [来源与适用限制](common/engineering-practices.sources.json).
+spring-tests, google-java — [来源与适用限制](https://github.com/bovinphang/craft-common/blob/v2.1.0/localized/zh-CN/methods/engineering-practices.sources.json).
 
 证据标识: EP-SVC-01; review-only.  执行状态及覆盖范围见实际记录；关联ID不证明该卡全部语义。
 
@@ -68,6 +68,6 @@ spring-tests, google-java — [来源与适用限制](common/engineering-practic
 按属性选context/slice/integration，隔离保证需真实存储，缺少关闭/数据库验证要注明。
 
 ### 来源
-spring-tests, oracle-resources — [来源与适用限制](common/engineering-practices.sources.json).
+spring-tests, oracle-resources — [来源与适用限制](https://github.com/bovinphang/craft-common/blob/v2.1.0/localized/zh-CN/methods/engineering-practices.sources.json).
 
 证据标识: EP-SVC-01; review-only.  执行状态及覆盖范围见实际记录；关联ID不证明该卡全部语义。

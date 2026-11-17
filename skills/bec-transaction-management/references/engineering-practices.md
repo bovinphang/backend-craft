@@ -14,7 +14,7 @@ practiceCards:
 
 # Local engineering decisions
 
-Locate the actual role, toolchain and existing conventions, then read relevant [shared principles](common/engineering-practices.md). These conditions apply to this entry, not every project. Structure checks do not prove all semantics or execution.
+Locate the actual role, toolchain and existing conventions, then read relevant [shared principles](https://github.com/bovinphang/craft-common/blob/v2.1.0/methods/engineering-practices.md). These conditions apply to this entry, not every project. Structure checks do not prove all semantics or execution.
 
 <a id="bec-transaction-management:commit-ambiguity"></a>
 ## Preserve uncertainty after a lost response
@@ -40,7 +40,7 @@ Better: reuse the same intent/key to learn the committed result. Worse: compensa
 Inject a failure after the effect and before success acknowledgement. EP-SVC-01 covers process memory/HTTP only, not real transactional isolation.
 
 ### Sources
-aws-idempotency, aws-retry — [registry and limits](common/engineering-practices.sources.json).
+aws-idempotency, aws-retry — [registry and limits](https://github.com/bovinphang/craft-common/blob/v2.1.0/methods/engineering-practices.sources.json).
 
 Evidence IDs: EP-SVC-01; review-only.  Execution status and scope require actual records; a related ID does not prove every decision on this card.
 
@@ -68,6 +68,6 @@ Better: durable effect/result and dedupe state share an intentional consistency 
 Use real engine/message tests for their guarantees and controlled duplicates/out-of-order/crash windows; mark absent integration NOT RUN.
 
 ### Sources
-aws-idempotency, ms-faults — [registry and limits](common/engineering-practices.sources.json).
+aws-idempotency, ms-faults — [registry and limits](https://github.com/bovinphang/craft-common/blob/v2.1.0/methods/engineering-practices.sources.json).
 
 Evidence IDs: EP-SVC-01; review-only.  Execution status and scope require actual records; a related ID does not prove every decision on this card.

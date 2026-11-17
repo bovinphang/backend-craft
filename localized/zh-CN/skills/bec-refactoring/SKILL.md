@@ -14,7 +14,7 @@ description: "Use when 需要后端行为保持重构，包括保持舍入规则
 3. 使用仓库已有工具验证相关行为；缺少工具、环境或实际执行时明确报告，不能把计划当通过。
 4. 交付改动范围、专业决策、实际验证及剩余风险；仅评审任务保持只读。
 
-公共方法采用[本地 refactoring 方法](references/common/refactoring.md)，按需加载；以下检查聚焦后端对象。
+公共方法采用[本地 refactoring 方法](https://github.com/bovinphang/craft-common/blob/v2.1.0/localized/zh-CN/methods/refactoring.md)，按需加载；以下检查聚焦后端对象。
 
 ## 任务边界
 

@@ -14,7 +14,7 @@ practiceCards:
 
 # 本入口工程决策
 
-先定位项目角色、工具链及已有约定，再按需读取[公共原则](common/engineering-practices.md)。下列条件仅约束当前语言/场景；结构检查不证明全部语义或实际运行。
+先定位项目角色、工具链及已有约定，再按需读取[公共原则](https://github.com/bovinphang/craft-common/blob/v2.1.0/localized/zh-CN/methods/engineering-practices.md)。下列条件仅约束当前语言/场景；结构检查不证明全部语义或实际运行。
 
 <a id="bec-fastapi-project-standard:lifespan-ownership"></a>
 ## 在实际lifespan拥有应用资源
@@ -40,7 +40,7 @@ practiceCards:
 运行现有FastAPI minimal生命周期配对，区分真实lifespan连线与驱动事务/生产关闭。
 
 ### 来源
-fastapi-lifespan, python-asyncio — [来源与适用限制](common/engineering-practices.sources.json).
+fastapi-lifespan, python-asyncio — [来源与适用限制](https://github.com/bovinphang/craft-common/blob/v2.1.0/localized/zh-CN/methods/engineering-practices.sources.json).
 
 证据标识: EP-SVC-01; review-only.  执行状态及覆盖范围见实际记录；关联ID不证明该卡全部语义。
 
@@ -68,6 +68,6 @@ fastapi-lifespan, python-asyncio — [来源与适用限制](common/engineering-
 取消结论须测真实驱动/任务边界，只有lifespan样例不足以证明。
 
 ### 来源
-python-asyncio, fastapi-lifespan — [来源与适用限制](common/engineering-practices.sources.json).
+python-asyncio, fastapi-lifespan — [来源与适用限制](https://github.com/bovinphang/craft-common/blob/v2.1.0/localized/zh-CN/methods/engineering-practices.sources.json).
 
 证据标识: EP-SVC-01; review-only.  执行状态及覆盖范围见实际记录；关联ID不证明该卡全部语义。

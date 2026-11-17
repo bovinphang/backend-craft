@@ -14,7 +14,7 @@ practiceCards:
 
 # Local engineering decisions
 
-Locate the actual role, toolchain and existing conventions, then read relevant [shared principles](common/engineering-practices.md). These conditions apply to this entry, not every project. Structure checks do not prove all semantics or execution.
+Locate the actual role, toolchain and existing conventions, then read relevant [shared principles](https://github.com/bovinphang/craft-common/blob/v2.1.0/methods/engineering-practices.md). These conditions apply to this entry, not every project. Structure checks do not prove all semantics or execution.
 
 <a id="bec-api-design:idempotent-intent"></a>
 ## Deduplicate an operation with the same intent
@@ -40,7 +40,7 @@ Better: same key and intent reuses the stored result; changed intent is rejected
 EP-SVC-01 uses real HTTP clients, commit-then-response failure, changed intent and concurrent duplicates; inspect actual effect count. Database, crash recovery and authentication are not covered.
 
 ### Sources
-aws-idempotency, aws-retry — [registry and limits](common/engineering-practices.sources.json).
+aws-idempotency, aws-retry — [registry and limits](https://github.com/bovinphang/craft-common/blob/v2.1.0/methods/engineering-practices.sources.json).
 
 Evidence IDs: EP-SVC-01; case. [Local runnable example](../examples/engineering/README.md). Execution status and scope require actual records; a related ID does not prove every decision on this card.
 
@@ -68,6 +68,6 @@ Better: test old request/response fixtures against the changed boundary. Worse: 
 Exercise old-client behavior, invalid inputs and stable error semantics with current tooling; distinguish schema checks from runtime effects.
 
 ### Sources
-google-review, ms-playbook — [registry and limits](common/engineering-practices.sources.json).
+google-review, ms-playbook — [registry and limits](https://github.com/bovinphang/craft-common/blob/v2.1.0/methods/engineering-practices.sources.json).
 
 Evidence IDs: EP-SVC-01; review-only.  Execution status and scope require actual records; a related ID does not prove every decision on this card.

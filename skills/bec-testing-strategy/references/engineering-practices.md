@@ -14,7 +14,7 @@ practiceCards:
 
 # Local engineering decisions
 
-Locate the actual role, toolchain and existing conventions, then read relevant [shared principles](common/engineering-practices.md). These conditions apply to this entry, not every project. Structure checks do not prove all semantics or execution.
+Locate the actual role, toolchain and existing conventions, then read relevant [shared principles](https://github.com/bovinphang/craft-common/blob/v2.1.0/methods/engineering-practices.md). These conditions apply to this entry, not every project. Structure checks do not prove all semantics or execution.
 
 <a id="bec-testing-strategy:fault-matrix"></a>
 ## Choose tests from failure impact
@@ -40,7 +40,7 @@ Better: a real HTTP client observes replay and effect count. Worse: a fake respo
 Require named nonzero executed cases, actual exit/counts and failure markers; preserve missing tools/skips separately.
 
 ### Sources
-ms-playbook, ms-faults — [registry and limits](common/engineering-practices.sources.json).
+ms-playbook, ms-faults — [registry and limits](https://github.com/bovinphang/craft-common/blob/v2.1.0/methods/engineering-practices.sources.json).
 
 Evidence IDs: EP-SVC-01; review-only.  Execution status and scope require actual records; a related ID does not prove every decision on this card.
 
@@ -68,6 +68,6 @@ Better: mark DB integration NOT RUN beside the HTTP result. Worse: rename an in-
 Verify packed/isolated inputs and explicit missing/skip outcomes; report platform and remaining gaps.
 
 ### Sources
-ms-playbook, ms-faults — [registry and limits](common/engineering-practices.sources.json).
+ms-playbook, ms-faults — [registry and limits](https://github.com/bovinphang/craft-common/blob/v2.1.0/methods/engineering-practices.sources.json).
 
 Evidence IDs: EP-SVC-01; review-only.  Execution status and scope require actual records; a related ID does not prove every decision on this card.

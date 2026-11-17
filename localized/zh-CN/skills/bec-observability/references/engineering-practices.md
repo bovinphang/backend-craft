@@ -14,7 +14,7 @@ practiceCards:
 
 # 本入口工程决策
 
-先定位项目角色、工具链及已有约定，再按需读取[公共原则](common/engineering-practices.md)。下列条件仅约束当前语言/场景；结构检查不证明全部语义或实际运行。
+先定位项目角色、工具链及已有约定，再按需读取[公共原则](https://github.com/bovinphang/craft-common/blob/v2.1.0/localized/zh-CN/methods/engineering-practices.md)。下列条件仅约束当前语言/场景；结构检查不证明全部语义或实际运行。
 
 <a id="bec-observability:correlated-errors"></a>
 ## 关联故障且不改变错误含义
@@ -40,7 +40,7 @@ practiceCards:
 用合成故障检查公开错误与内部关联，包括耗尽和响应失败。
 
 ### 来源
-aws-retry, google-review — [来源与适用限制](common/engineering-practices.sources.json).
+aws-retry, google-review — [来源与适用限制](https://github.com/bovinphang/craft-common/blob/v2.1.0/localized/zh-CN/methods/engineering-practices.sources.json).
 
 证据标识: EP-SVC-01; review-only.  执行状态及覆盖范围见实际记录；关联ID不证明该卡全部语义。
 
@@ -68,6 +68,6 @@ aws-retry, google-review — [来源与适用限制](common/engineering-practice
 用合成值断言公开/日志字段并检查维度/大小；生产访问和保留策略仍属部署检查。
 
 ### 来源
-google-review, ms-playbook — [来源与适用限制](common/engineering-practices.sources.json).
+google-review, ms-playbook — [来源与适用限制](https://github.com/bovinphang/craft-common/blob/v2.1.0/localized/zh-CN/methods/engineering-practices.sources.json).
 
 证据标识: EP-SVC-01; review-only.  执行状态及覆盖范围见实际记录；关联ID不证明该卡全部语义。

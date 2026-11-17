@@ -14,7 +14,7 @@ practiceCards:
 
 # 本入口工程决策
 
-先定位项目角色、工具链及已有约定，再按需读取[公共原则](common/engineering-practices.md)。下列条件仅约束当前语言/场景；结构检查不证明全部语义或实际运行。
+先定位项目角色、工具链及已有约定，再按需读取[公共原则](https://github.com/bovinphang/craft-common/blob/v2.1.0/localized/zh-CN/methods/engineering-practices.md)。下列条件仅约束当前语言/场景；结构检查不证明全部语义或实际运行。
 
 <a id="bec-architecture-design:failure-units"></a>
 ## 设计可观察的故障单元
@@ -40,7 +40,7 @@ practiceCards:
 在实际边界前后注入局部故障，观察副作用、结果和恢复；内存HTTP例不证明数据库或分布式原子性。
 
 ### 来源
-aws-retry, ms-faults — [来源与适用限制](common/engineering-practices.sources.json).
+aws-retry, ms-faults — [来源与适用限制](https://github.com/bovinphang/craft-common/blob/v2.1.0/localized/zh-CN/methods/engineering-practices.sources.json).
 
 证据标识: EP-SVC-01; review-only.  执行状态及覆盖范围见实际记录；关联ID不证明该卡全部语义。
 
@@ -68,6 +68,6 @@ aws-retry, ms-faults — [来源与适用限制](common/engineering-practices.so
 验证受影响旧消费者及故障恢复，说明阻止回退的数据改动。
 
 ### 来源
-google-review, ms-playbook — [来源与适用限制](common/engineering-practices.sources.json).
+google-review, ms-playbook — [来源与适用限制](https://github.com/bovinphang/craft-common/blob/v2.1.0/localized/zh-CN/methods/engineering-practices.sources.json).
 
 证据标识: EP-SVC-01; review-only.  执行状态及覆盖范围见实际记录；关联ID不证明该卡全部语义。
